@@ -10,7 +10,7 @@ export const DATA = {
   description:
     "Software Engineer and Teacher. I love building things and teaching people. Why? Because the best way to learn is to teach.",
   summary:
-    "At the end of 2022, I quit my job as a software engineer to go fulltime into building and scaling my own SaaS businesses. In the past, [I pursued a double degree in computer science and business](/#education), [interned at big tech companies in Silicon Valley](https://www.youtube.com/watch?v=d-LJ2e5qKdE), and [competed in over 21 hackathons for fun](/#hackathons). I also had the pleasure of being a part of the first ever in-person cohort of buildspace called [buildspace sf1](https://buildspace.so/sf1).",
+    "Senior Software Engineer with 8 years of experience designing and developing business applications. Skilled in TypeScript, React, and Java. Strong understanding of software principles, OOP, and data structures.",
   avatarUrl:
     "https://media.licdn.com/dms/image/v2/D5635AQEpdddJPiCBGQ/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1723209659834?e=1727838000&v=beta&t=LAaJlaGjDnmEmpJOn9afV7E0ZStEKwRAMEpptD6od9E",
   skills: [
@@ -18,13 +18,15 @@ export const DATA = {
     "Next.js",
     "Typescript",
     "Node.js",
-    "Python",
-    "Go",
+    "Ruby",
+    "Java",
     "Postgres",
     "Docker",
     "Kubernetes",
     "Java",
-    "C++",
+    "Spring Boot",
+    "Laravel",
+    "Netflix Eureka",
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
@@ -73,76 +75,134 @@ export const DATA = {
 
   work: [
     {
-      company: "Atomic Finance",
-      href: "https://oschooluniversity.com",
+      company: "TecPatri",
+      href: "https://www.youtube.com/@TecPatri",
       badges: [],
       location: "Remote",
+      title: "Podcast Host",
+      logoUrl:
+        "https://media.licdn.com/dms/image/v2/D560BAQFfYX0LwWhdhQ/company-logo_100_100/company-logo_100_100/0/1725892648860?e=1735776000&v=beta&t=weeVwu4s_3r4f2v8nfyhJrDDmlmzx5MPDKuGwrrVbZs",
+      start: "Mar 2024",
+      end: "Present",
+      description:
+        "Host of a popular tech industry podcast, featuring expert guests from various sectors, providing valuable insights on their professional journeys. Garnered thousands of views on YouTube, with audience growth of 30% quarter-over-quarter.",
+    },
+    {
+      company: "Maagot",
+      badges: [],
+      href: "https://maagot.com/",
+      location: "Remote",
+      title: "CTO & Co-Founder",
+      logoUrl:
+        "https://media.licdn.com/dms/image/v2/D4E0BAQFCwLIReDxBlg/company-logo_100_100/company-logo_100_100/0/1725627214586/maagot_logo?e=1735776000&v=beta&t=hgOcGeNn3XuooOv95qyLIUcie3XqkCy4we7KZEMIeAU",
+      start: "Mar 2024",
+      end: "Aug 2024",
+      description:
+        "Spearheaded the development of a seamless online transaction platform, leveraging Spring Boot, API Gateway, EC2, and Heroku. Reduced transaction processing time by 40% and ensured 99.95% platform uptime, handling cross-network transactions with a volume increase of 300% within the first 6 months.",
+    },
+    {
+      company: "Oschool",
+      href: "https://oschooluniversity.com/",
+      badges: [],
+      location: "Abidjan, Ivory Coast",
       title: "Senior Software Engineer",
-      logoUrl: "/atomic.png",
-      start: "May 2021",
-      end: "Oct 2022",
+      logoUrl:
+        "https://media.licdn.com/dms/image/v2/C4E0BAQG6vM59bmFm1g/company-logo_100_100/company-logo_100_100/0/1631307261030?e=1735776000&v=beta&t=-7rUAVaBWMnXyY6JJgt8JsnxHAsipYUWqLHQLx6o9SM",
+      start: "Oct 2023",
+      end: "Aug 2024",
       description:
-        "Implemented the Bitcoin discreet log contract (DLC) protocol specifications as an open source Typescript SDK. Dockerized all microservices and setup production kubernetes cluster. Architected a data lake using AWS S3 and Athena for historical backtesting of bitcoin trading strategies. Built a mobile app using react native and typescript.",
+        "Implemented 5 features in a microservices architecture in Spring Boot to reduce churn rate by 7%",
     },
     {
-      company: "Shopify",
-      badges: [],
-      href: "https://shopify.com",
-      location: "Remote",
-      title: "Software Engineer",
-      logoUrl: "/shopify.svg",
-      start: "January 2021",
-      end: "April 2021",
-      description:
-        "Implemented a custom Kubernetes controller in Go to automate the deployment of MySQL and ProxySQL custom resources in order to enable 2,000+ internal developers to instantly deploy their app databases to production. Wrote several scripts in Go to automate MySQL database failovers while maintaining master-slave replication topologies and keeping Zookeeper nodes consistent with changes.",
-    },
-    {
-      company: "Nvidia",
-      href: "https://nvidia.com/",
-      badges: [],
-      location: "Santa Clara, CA",
-      title: "Software Engineer",
-      logoUrl: "/nvidia.png",
-      start: "January 2020",
-      end: "April 2020",
-      description:
-        "Architected and wrote the entire MVP of the GeForce Now Cloud Gaming internal admin and A/B testing dashboard using React, Redux, TypeScript, and Python.",
-    },
-    {
-      company: "Splunk",
-      href: "https://splunk.com",
-      badges: [],
-      location: "San Jose, CA",
-      title: "Software Engineer",
-      logoUrl: "/splunk.svg",
-      start: "January 2019",
-      end: "April 2019",
-      description:
-        "Co-developed a prototype iOS app with another intern in Swift for the new Splunk Phantom security orchestration product (later publicly demoed and launched at .conf annual conference in Las Vegas). Implemented a realtime service for the iOS app in Django (Python) and C++; serialized data using protobufs transmitted over gRPC resulting in an approximate 500% increase in data throughput.",
-    },
-    {
-      company: "Lime",
-      href: "https://li.me/",
+      company: "LTSE",
+      href: "https://ltse.com",
       badges: [],
       location: "San Francisco, CA",
-      title: "Software Engineer",
-      logoUrl: "/lime.svg",
-      start: "January 2018",
-      end: "April 2018",
+      title: "Senior Software Engineer III",
+      logoUrl:
+        "https://media.licdn.com/dms/image/v2/D560BAQGzZay-icPaGQ/company-logo_100_100/company-logo_100_100/0/1692214213101/ltse_logo?e=1735776000&v=beta&t=eyMNW3EfxhS1sby9-Kb8g9D1FGDS35M-0uZHANi7yrA",
+      start: "July 2022",
+      end: "July 2023",
       description:
-        "Proposed and implemented an internal ruby API for sending/receiving commands to scooters over LTE networks. Developed a fully automated bike firmware update system to handle asynchronous firmware updates of over 100,000+ scooters worldwide, and provide progress reports in real-time using React, Ruby on Rails, PostgreSQL and AWS EC2 saving hundreds of developer hours.",
+        "Conducted 12 pair programming sessions to help 2 engineers deliver and monitor successfully their project in 30 days.",
     },
     {
-      company: "Mitre Media",
-      href: "https://mitremedia.com/",
+      company: "My Opinion",
+      href: "https://www.linkedin.com/company/myopinion.ci",
       badges: [],
-      location: "Toronto, ON",
-      title: "Software Engineer",
-      logoUrl: "/mitremedia.png",
-      start: "May 2017",
-      end: "August 2017",
+      location: "Abidjan, Ivory Coast",
+      title: "Lead Software Engineer",
+      logoUrl:
+        "https://media.licdn.com/dms/image/v2/C4E0BAQEuzENnNDUPmQ/company-logo_100_100/company-logo_100_100/0/1660049083955?e=1735776000&v=beta&t=o7P3KpN-Rr2RUHQlCgVzwVtuKWnPWYAExdVkkmmHPbA",
+      start: "Aug 2021",
+      end: "June 2022",
       description:
-        "Designed and implemented a robust password encryption and browser cookie storage system in Ruby on Rails. Leveraged the Yahoo finance API to develop the dividend.com equity screener",
+        "Led the development of a robust backend API from scratch, utilizing Ruby on Rails, Spring Boot, AWS, and React Native, resulting in a highly scalable infrastructure that reduced backend latency by 30% and improved data processing speeds by 25%, supporting early user adoption and engagement.",
+    },
+    {
+      company: "Book Medial",
+      href: "https://www.linkedin.com/company/myopinion.ci",
+      badges: [],
+      location: "Abidjan, Ivory Coast",
+      title: "Lead Software Engineer",
+      logoUrl:
+        "https://media.licdn.com/dms/image/v2/C4E0BAQEuzENnNDUPmQ/company-logo_100_100/company-logo_100_100/0/1660049083955?e=1735776000&v=beta&t=o7P3KpN-Rr2RUHQlCgVzwVtuKWnPWYAExdVkkmmHPbA",
+      start: "Dec 2020",
+      end: "Feb 2022",
+      description:
+        "Developed 35 REST APIs using Java/Spring Boot, Kafka, and SQL that increased data access efficiency by 30% for thousands of users across networks.",
+    },
+    {
+      company: "Microverse",
+      href: "https://www.linkedin.com/company/myopinion.ci",
+      badges: [],
+      location: "San Francisco, CA",
+      title: "Student Project Reviewer",
+      logoUrl:
+        "https://media.licdn.com/dms/image/v2/C560BAQHr8P7gQ95yCQ/company-logo_100_100/company-logo_100_100/0/1630603594760/microverseinc_logo?e=1735776000&v=beta&t=BUNglCIbgKwZmc1TBT55cw6E1PSF2_WhZ0KTh83YCHk",
+      start: "Dec 2020",
+      end: "Oct 2021",
+      description:
+        "Led development of company projects and facilitated academic graduation projects for students in 100+ countries through an off-shore model from Abidjan, Ivory Coast.",
+    },
+    {
+      company: "Elavoo",
+      href: "https://www.linkedin.com/company/myopinion.ci",
+      badges: [],
+      location: "Abidjan, Ivory Coast",
+      title: "Senior Software Engineer",
+      logoUrl:
+        "https://media.licdn.com/dms/image/v2/C4E0BAQEuzENnNDUPmQ/company-logo_100_100/company-logo_100_100/0/1660049083955?e=1735776000&v=beta&t=o7P3KpN-Rr2RUHQlCgVzwVtuKWnPWYAExdVkkmmHPbA",
+      start: "Jun 2018",
+      end: "Jun 2020",
+      description:
+        "Improved code quality by achieving an average of 45% increase in test coverage through TDD",
+    },
+    {
+      company: "Open Classrooms",
+      href: "https://openclassrooms.com",
+      badges: [],
+      location: "Abidjan, Ivory Coast",
+      title: "Software Engineer Mentor",
+      logoUrl:
+        "https://media.licdn.com/dms/image/v2/D4E0BAQGGjlGUHa2png/company-logo_100_100/company-logo_100_100/0/1665412802239/openclassrooms_logo?e=1735776000&v=beta&t=4o2UKma4rzer-vthAeoeVlo9h79fCf9Vxs6JJ9LizF4",
+      start: "Aug 2021",
+      end: "Jun 2022",
+      description:
+        "Spent more than 40 hours per month following several students in order to help them validate their training path at openclassrooms.com",
+    },
+    {
+      company: "Oschool",
+      href: "https://oschooluniversity.com/",
+      badges: [],
+      location: "Abidjan, Ivory Coast",
+      title: "Software Engineer",
+      logoUrl:
+        "https://media.licdn.com/dms/image/v2/C4E0BAQG6vM59bmFm1g/company-logo_100_100/company-logo_100_100/0/1631307261030?e=1735776000&v=beta&t=-7rUAVaBWMnXyY6JJgt8JsnxHAsipYUWqLHQLx6o9SM",
+      start: "Oct 2015",
+      end: "Apr 2018",
+      description:
+        "Delivered 13 features on time by creating hundreds of milestones and user stories with Scrum methodology.",
     },
   ],
   education: [
