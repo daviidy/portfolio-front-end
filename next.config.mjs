@@ -14,6 +14,12 @@ const nextConfig = {
         hostname: 'assets.gcore.pro',
         port: '',
         pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'educative.io',
+        port: '',
+        pathname: '/**'
       }
     ],
   },
