@@ -12,7 +12,7 @@ export const DATA = {
   summary:
     "Senior Software Engineer with 8 years of experience designing and developing business applications. Skilled in TypeScript, React, and Java. Strong understanding of software principles, OOP, and data structures.",
   avatarUrl:
-    "https://media.licdn.com/dms/image/v2/D5635AQEpdddJPiCBGQ/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1723209659834?e=1727838000&v=beta&t=LAaJlaGjDnmEmpJOn9afV7E0ZStEKwRAMEpptD6od9E",
+    "https://github.com/daviidy/daviidy/raw/master/0-removebg-preview.png",
   skills: [
     "React",
     "Next.js",

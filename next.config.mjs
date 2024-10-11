@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    unoptimized: true, // Disable default image optimization
     remotePatterns: [
       {
         protocol: 'https',
@@ -20,11 +22,17 @@ const nextConfig = {
         hostname: 'educative.io',
         port: '',
         pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+        port: '',
+        pathname: '/**'
       }
     ],
   },
-  assetPrefix: '/portfolio-front-end/',
-  basePath: '/portfolio-front-end',
+  assetPrefix: isProd ? '/portfolio-front-end/' : '',
+  basePath: isProd ? '/portfolio-front-end' : '',
   output: 'export'
 };
 
