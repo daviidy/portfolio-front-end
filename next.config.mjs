@@ -31,8 +31,8 @@ const nextConfig = {
       }
     ],
   },
-  assetPrefix: isProd ? '/portfolio-front-end/' : '',
-  basePath: isProd ? '/portfolio-front-end' : '',
+  assetPrefix: isProd ? 'https://david-yao.com/' : '',
+  basePath: isProd ? '' : '',
   output: 'export'
 };
 
