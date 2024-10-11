@@ -24,7 +24,7 @@ const nextConfig = {
     ],
   },
   assetPrefix: '/portfolio-front-end/',
-  basePath: '/',
+  basePath: '/portfolio-front-end',
   output: 'export'
 };
 
