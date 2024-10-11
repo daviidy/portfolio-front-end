@@ -1,12 +1,15 @@
 {
-  "name": "porfolio",
+  "name": "david-porfolio",
   "version": "0.1.0",
+  "homepage": "https://daviidy.github.io/portfolio-front-end",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.0.4",
@@ -41,6 +44,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
+    "gh-pages": "^6.2.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
