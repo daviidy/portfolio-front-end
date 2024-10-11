@@ -2,7 +2,7 @@
   "name": "david-porfolio",
   "version": "0.1.0",
   "homepage": "https://daviidy.github.io/portfolio-front-end",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
