@@ -4,6 +4,7 @@ import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import Link from "next/link";
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
@@ -24,8 +25,9 @@ export async function generateMetadata({
     publishedAt: publishedTime,
     summary: description,
     image,
+    devToUrl,
   } = post.metadata;
-  let ogImage = image ? `${DATA.url}${image}` : `${DATA.url}/og?title=${title}`;
+  let ogImage = image ? image : `${DATA.url}/og?title=${title}`;
 
   return {
     title,
@@ -35,7 +37,7 @@ export async function generateMetadata({
       description,
       type: "article",
       publishedTime,
-      url: `${DATA.url}/blog/${post.slug}`,
+      url: devToUrl || `${DATA.url}/blog/${post.slug}`,
       images: [
         {
           url: ogImage,
@@ -78,9 +80,9 @@ export default async function Blog({
             dateModified: post.metadata.publishedAt,
             description: post.metadata.summary,
             image: post.metadata.image
-              ? `${DATA.url}${post.metadata.image}`
+              ? post.metadata.image
               : `${DATA.url}/og?title=${post.metadata.title}`,
-            url: `${DATA.url}/blog/${post.slug}`,
+            url: post.metadata.devToUrl || `${DATA.url}/blog/${post.slug}`,
             author: {
               "@type": "Person",
               name: DATA.name,
@@ -97,9 +99,34 @@ export default async function Blog({
             {formatDate(post.metadata.publishedAt)}
           </p>
         </Suspense>
+        {post.metadata.devToUrl && (
+          <Link
+            href={post.metadata.devToUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200"
+          >
+            Read on Dev.to →
+          </Link>
+        )}
       </div>
       <article
-        className="prose dark:prose-invert"
+        className="prose dark:prose-invert max-w-none
+          prose-pre:bg-neutral-100 dark:prose-pre:bg-neutral-900
+          prose-pre:border prose-pre:border-neutral-200 dark:prose-pre:border-neutral-800
+          prose-pre:rounded-lg
+          prose-code:before:content-none prose-code:after:content-none
+          prose-code:font-normal
+          prose-code:bg-neutral-100 dark:prose-code:bg-neutral-900
+          prose-code:rounded
+          prose-code:px-1
+          prose-code:py-0.5
+          prose-code:text-neutral-800 dark:prose-code:text-neutral-200
+          prose-a:text-blue-500 hover:prose-a:text-blue-400
+          prose-headings:font-medium
+          prose-h2:text-xl prose-h2:tracking-tight
+          prose-p:leading-7
+          prose-li:leading-7"
         dangerouslySetInnerHTML={{ __html: post.source }}
       ></article>
     </section>

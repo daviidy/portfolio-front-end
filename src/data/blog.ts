@@ -6,12 +6,14 @@ import rehypeStringify from "rehype-stringify";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
+import { getDevToPost, getDevToPosts } from "./devto";
 
 type Metadata = {
   title: string;
   publishedAt: string;
   summary: string;
   image?: string;
+  devToUrl?: string;
 };
 
 function getMDXFiles(dir: string) {
@@ -23,7 +25,6 @@ export async function markdownToHTML(markdown: string) {
     .use(remarkParse)
     .use(remarkRehype)
     .use(rehypePrettyCode, {
-      // https://rehype-pretty.pages.dev/#usage
       theme: {
         light: "min-light",
         dark: "min-dark",
@@ -37,6 +38,10 @@ export async function markdownToHTML(markdown: string) {
 }
 
 export async function getPost(slug: string) {
+  if (slug.startsWith('devto-')) {
+    return getDevToPost(slug);
+  }
+
   const filePath = path.join("content", `${slug}.mdx`);
   let source = fs.readFileSync(filePath, "utf-8");
   const { content: rawContent, data: metadata } = matter(source);
@@ -50,17 +55,22 @@ export async function getPost(slug: string) {
 
 async function getAllPosts(dir: string) {
   let mdxFiles = getMDXFiles(dir);
-  return Promise.all(
-    mdxFiles.map(async (file) => {
-      let slug = path.basename(file, path.extname(file));
-      let { metadata, source } = await getPost(slug);
-      return {
-        metadata,
-        slug,
-        source,
-      };
-    })
-  );
+  const [localPosts, devToPosts] = await Promise.all([
+    Promise.all(
+      mdxFiles.map(async (file) => {
+        let slug = path.basename(file, path.extname(file));
+        let { metadata, source } = await getPost(slug);
+        return {
+          metadata,
+          slug,
+          source,
+        };
+      })
+    ),
+    getDevToPosts(),
+  ]);
+
+  return [...localPosts, ...devToPosts];
 }
 
 export async function getBlogPosts() {
