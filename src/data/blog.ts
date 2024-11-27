@@ -26,10 +26,11 @@ export async function markdownToHTML(markdown: string) {
     .use(remarkRehype)
     .use(rehypePrettyCode, {
       theme: {
-        light: "min-light",
-        dark: "min-dark",
+        dark: 'github-dark',
+        light: 'github-light',
       },
-      keepBackground: false,
+      keepBackground: true,
+      defaultLang: 'plaintext',
     })
     .use(rehypeStringify)
     .process(markdown);
@@ -39,7 +40,13 @@ export async function markdownToHTML(markdown: string) {
 
 export async function getPost(slug: string) {
   if (slug.startsWith('devto-')) {
-    return getDevToPost(slug);
+    const devToPost = await getDevToPost(slug);
+    const content = await markdownToHTML(devToPost.source);
+    return {
+      source: content,
+      metadata: devToPost.metadata,
+      slug,
+    };
   }
 
   const filePath = path.join("content", `${slug}.mdx`);

@@ -4,29 +4,13 @@ interface DevToArticle {
   description: string;
   published_at: string;
   slug: string;
-  body_html: string;
+  body_markdown: string;
   url: string;
   cover_image: string | null;
 }
 
 const DEV_TO_API = 'https://dev.to/api';
 const DEV_TO_API_KEY = '4kQpckzb5UE1moVLyXXrVfXH';
-
-async function processCodeBlocks(html: string) {
-  // Replace dev.to's code block structure with our styled version
-  const styledHtml = html.replace(
-    /<div class="highlight">[\s\S]*?<pre.*?>([\s\S]*?)<\/pre>[\s\S]*?<\/div>/g,
-    (_, code) => {
-      // Remove existing syntax highlighting spans
-      const cleanCode = code.replace(/<\/?span[^>]*>/g, '');
-      // Decode HTML entities
-      const decodedCode = cleanCode.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
-      return `<pre class="language-"><code>${decodedCode}</code></pre>`;
-    }
-  );
-
-  return styledHtml;
-}
 
 export async function getDevToPosts() {
   const response = await fetch(`${DEV_TO_API}/articles/me`, {
@@ -59,7 +43,6 @@ export async function getDevToPost(id: string) {
     next: { revalidate: 3600 }
   });
   const article: DevToArticle = await response.json();
-  const processedContent = await processCodeBlocks(article.body_html);
 
   return {
     slug: `devto-${article.id}`,
@@ -70,6 +53,6 @@ export async function getDevToPost(id: string) {
       image: article.cover_image,
       devToUrl: article.url,
     },
-    source: processedContent,
+    source: article.body_markdown,
   };
 }
