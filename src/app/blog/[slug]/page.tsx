@@ -1,14 +1,33 @@
 import { getBlogPosts, getPost } from "@/data/blog";
+import { getDevToComments } from "@/data/devto";
 import { DATA } from "@/data/resume";
 import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import Link from "next/link";
+import { Comments } from "@/components/comments";
+
+interface DevToComment {
+  id: number;
+  created_at: string;
+  body_html: string;
+  user: {
+    name: string;
+    username: string;
+    profile_image: string;
+  };
+  children: DevToComment[];
+}
 
 export async function generateStaticParams() {
-  const posts = await getBlogPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  try {
+    const posts = await getBlogPosts();
+    return posts.map((post) => ({ slug: post.slug }));
+  } catch (error) {
+    console.error('Error generating static params:', error);
+    return [];
+  }
 }
 
 export async function generateMetadata({
@@ -18,39 +37,47 @@ export async function generateMetadata({
     slug: string;
   };
 }): Promise<Metadata | undefined> {
-  let post = await getPost(params.slug);
+  try {
+    let post = await getPost(params.slug);
 
-  let {
-    title,
-    publishedAt: publishedTime,
-    summary: description,
-    image,
-    devToUrl,
-  } = post.metadata;
-  let ogImage = image ? image : `${DATA.url}/og?title=${title}`;
+    let {
+      title,
+      publishedAt: publishedTime,
+      summary: description,
+      image,
+      devToUrl,
+    } = post.metadata;
+    let ogImage = image ? image : `${DATA.url}/og?title=${title}`;
 
-  return {
-    title,
-    description,
-    openGraph: {
+    return {
       title,
       description,
-      type: "article",
-      publishedTime,
-      url: devToUrl || `${DATA.url}/blog/${post.slug}`,
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
-  };
+      openGraph: {
+        title,
+        description,
+        type: "article",
+        publishedTime,
+        url: devToUrl || `${DATA.url}/blog/${post.slug}`,
+        images: [
+          {
+            url: ogImage,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: [ogImage],
+      },
+    };
+  } catch (error) {
+    console.error('Error generating metadata:', error);
+    return {
+      title: 'Blog Post',
+      description: 'Loading...',
+    };
+  }
 }
 
 export default async function Blog({
@@ -64,6 +91,17 @@ export default async function Blog({
 
   if (!post) {
     notFound();
+  }
+
+  // Fetch comments if it's a dev.to post
+  let comments: DevToComment[] = [];
+  if (post.metadata.devToUrl && params.slug.startsWith('devto-')) {
+    try {
+      comments = await getDevToComments(params.slug);
+    } catch (error) {
+      console.error('Error fetching comments:', error);
+      // Continue rendering the page even if comments fail to load
+    }
   }
 
   return (
@@ -129,6 +167,14 @@ export default async function Blog({
           prose-li:leading-7"
         dangerouslySetInnerHTML={{ __html: post.source }}
       ></article>
+
+      {post.metadata.devToUrl && (
+        <Comments 
+          comments={comments} 
+          articleUrl={post.metadata.devToUrl}
+          commentsCount={post.metadata.commentsCount || 0}
+        />
+      )}
     </section>
   );
 }
