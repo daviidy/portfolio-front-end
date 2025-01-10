@@ -1,4 +1,4 @@
-import { DATA } from "@/data/resume";
+import { DATA } from '../../data/resume';
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
