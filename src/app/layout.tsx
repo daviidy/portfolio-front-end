@@ -67,7 +67,20 @@ export default function RootLayout({
             <Navbar />
           </TooltipProvider>
         </ThemeProvider>
-        <script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=Yxt67z'></script>
+        <script 
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var s = document.createElement('script');
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = 'https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=Yxt67z';
+                var h = document.getElementsByTagName('script')[0];
+                h.parentNode.insertBefore(s, h);
+              })();
+            `
+          }}
+        />
       </body>
     </html>
   );
