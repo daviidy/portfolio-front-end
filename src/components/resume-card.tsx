@@ -50,7 +50,10 @@ export const ResumeCard = ({
             <AvatarImage
               src={logoUrl}
               alt={altText}
-              className="object-contain"
+              className="object-contain p-1"
+              onLoadingStatusChange={(status) => {
+                console.log(`Image loading status for ${altText}:`, status);
+              }}
             />
             <AvatarFallback>{altText[0]}</AvatarFallback>
           </Avatar>

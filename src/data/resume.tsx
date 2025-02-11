@@ -82,7 +82,7 @@ export const DATA = {
       location: "Remote",
       title: "Podcast Host",
       logoUrl:
-        "https://media.licdn.com/dms/image/v2/D560BAQFfYX0LwWhdhQ/company-logo_100_100/company-logo_100_100/0/1725892648860?e=1735776000&v=beta&t=weeVwu4s_3r4f2v8nfyhJrDDmlmzx5MPDKuGwrrVbZs",
+        "https://media.licdn.com/dms/image/v2/D560BAQFfYX0LwWhdhQ/company-logo_100_100/company-logo_100_100/0/1725892648860?e=1747267200&v=beta&t=WEE3lFCQ5FzW3ful37rvklhEhSfUOPTw2AiLePZ-9RY",
       start: "Mar 2024",
       end: "Present",
       description:
@@ -95,7 +95,7 @@ export const DATA = {
       location: "Remote",
       title: "CTO & Co-Founder",
       logoUrl:
-        "https://media.licdn.com/dms/image/v2/D4E0BAQFCwLIReDxBlg/company-logo_100_100/company-logo_100_100/0/1725627214586/maagot_logo?e=1735776000&v=beta&t=hgOcGeNn3XuooOv95qyLIUcie3XqkCy4we7KZEMIeAU",
+        "https://media.licdn.com/dms/image/v2/D4E0BAQFCwLIReDxBlg/company-logo_200_200/company-logo_200_200/0/1725627214586/maagot_logo?e=1747267200&v=beta&t=iRC_BACBS3PQJF50Jsd3Kh1l359lhZ4QidtsiDDh3dk",
       start: "Mar 2024",
       end: "Aug 2024",
       description:
@@ -108,7 +108,7 @@ export const DATA = {
       location: "Abidjan, Ivory Coast",
       title: "Senior Software Engineer",
       logoUrl:
-        "https://media.licdn.com/dms/image/v2/C4E0BAQG6vM59bmFm1g/company-logo_100_100/company-logo_100_100/0/1631307261030?e=1735776000&v=beta&t=-7rUAVaBWMnXyY6JJgt8JsnxHAsipYUWqLHQLx6o9SM",
+        "https://media.licdn.com/dms/image/v2/C4E0BAQG6vM59bmFm1g/company-logo_200_200/company-logo_200_200/0/1631307261030?e=1747267200&v=beta&t=yyPzz-4XPn5CGFmYveVzs-5POeXLSdI4m_BVTcoj7MI",
       start: "Oct 2023",
       end: "Aug 2024",
       description:
@@ -121,7 +121,7 @@ export const DATA = {
       location: "San Francisco, CA",
       title: "Senior Software Engineer III",
       logoUrl:
-        "https://media.licdn.com/dms/image/v2/D560BAQGzZay-icPaGQ/company-logo_100_100/company-logo_100_100/0/1692214213101/ltse_logo?e=1735776000&v=beta&t=eyMNW3EfxhS1sby9-Kb8g9D1FGDS35M-0uZHANi7yrA",
+        "https://media.licdn.com/dms/image/v2/D560BAQGzZay-icPaGQ/company-logo_200_200/company-logo_200_200/0/1692214213101/ltse_logo?e=1747267200&v=beta&t=fFXOXnmXAvUzkWPTEnZfpQVnlX0yihSF19KAnTI2YKE",
       start: "July 2022",
       end: "July 2023",
       description:
@@ -134,7 +134,7 @@ export const DATA = {
       location: "Abidjan, Ivory Coast",
       title: "Lead Software Engineer",
       logoUrl:
-        "https://media.licdn.com/dms/image/v2/C4E0BAQEuzENnNDUPmQ/company-logo_100_100/company-logo_100_100/0/1660049083955?e=1735776000&v=beta&t=o7P3KpN-Rr2RUHQlCgVzwVtuKWnPWYAExdVkkmmHPbA",
+        "https://media.licdn.com/dms/image/v2/C4E0BAQEuzENnNDUPmQ/company-logo_200_200/company-logo_200_200/0/1660049083955?e=1747267200&v=beta&t=qTJFoqN8a18Xcysi2A01kUGkHRB8WaTKnQwFh5FVE-c",
       start: "Aug 2021",
       end: "June 2022",
       description:
@@ -147,7 +147,7 @@ export const DATA = {
       location: "Abidjan, Ivory Coast",
       title: "Lead Software Engineer",
       logoUrl:
-        "https://media.licdn.com/dms/image/v2/C4E0BAQFfaTgKh8gTCw/company-logo_100_100/company-logo_100_100/0/1630615031022?e=1735776000&v=beta&t=pWScfJFmVtTl4rAqm7Fiulb1442E9KYh4ev6K928vJE",
+        "https://media.licdn.com/dms/image/v2/C4E0BAQFfaTgKh8gTCw/company-logo_100_100/company-logo_100_100/0/1630615031022?e=1747267200&v=beta&t=v_N5o9rZEHRpN0AXaNa6wnjqVB417sCfeXc2uyKqUuI",
       start: "Dec 2020",
       end: "Feb 2022",
       description:
@@ -160,7 +160,7 @@ export const DATA = {
       location: "San Francisco, CA",
       title: "Student Project Reviewer",
       logoUrl:
-        "https://media.licdn.com/dms/image/v2/C560BAQHr8P7gQ95yCQ/company-logo_100_100/company-logo_100_100/0/1630603594760/microverseinc_logo?e=1735776000&v=beta&t=BUNglCIbgKwZmc1TBT55cw6E1PSF2_WhZ0KTh83YCHk",
+        "https://media.licdn.com/dms/image/v2/C560BAQHr8P7gQ95yCQ/company-logo_200_200/company-logo_200_200/0/1630603594760/microverseinc_logo?e=1747267200&v=beta&t=DKj5KINIPj3Sf8Y81r9P2QQptdrTgd0djvzZ1eZa5dM",
       start: "Dec 2020",
       end: "Oct 2021",
       description:
@@ -173,7 +173,7 @@ export const DATA = {
       location: "Abidjan, Ivory Coast",
       title: "Senior Software Engineer",
       logoUrl:
-        "https://media.licdn.com/dms/image/v2/C4E0BAQEuzENnNDUPmQ/company-logo_100_100/company-logo_100_100/0/1660049083955?e=1735776000&v=beta&t=o7P3KpN-Rr2RUHQlCgVzwVtuKWnPWYAExdVkkmmHPbA",
+        "https://media.licdn.com/dms/image/v2/C560BAQF8PFZBpZbG-g/company-logo_100_100/company-logo_100_100/0/1630613386770/elavoo_logo?e=1747267200&v=beta&t=B8ZkPtMwp9lvXPpdrWs6a2NjRAsBH_Za0Y9TWMLkj40",
       start: "Jun 2018",
       end: "Jun 2020",
       description:
@@ -186,7 +186,7 @@ export const DATA = {
       location: "Abidjan, Ivory Coast",
       title: "Software Engineer Mentor",
       logoUrl:
-        "https://media.licdn.com/dms/image/v2/D4E0BAQGGjlGUHa2png/company-logo_100_100/company-logo_100_100/0/1665412802239/openclassrooms_logo?e=1735776000&v=beta&t=4o2UKma4rzer-vthAeoeVlo9h79fCf9Vxs6JJ9LizF4",
+        "https://media.licdn.com/dms/image/v2/D4E0BAQGGjlGUHa2png/company-logo_200_200/company-logo_200_200/0/1665412802239/openclassrooms_logo?e=1747267200&v=beta&t=n_82fbYZ6xmU9d6qrxAW-paJE4U6Fu-mvIMr94bFRkI",
       start: "Aug 2021",
       end: "Jun 2022",
       description:
@@ -199,7 +199,7 @@ export const DATA = {
       location: "Abidjan, Ivory Coast",
       title: "Software Engineer",
       logoUrl:
-        "https://media.licdn.com/dms/image/v2/C4E0BAQG6vM59bmFm1g/company-logo_100_100/company-logo_100_100/0/1631307261030?e=1735776000&v=beta&t=-7rUAVaBWMnXyY6JJgt8JsnxHAsipYUWqLHQLx6o9SM",
+        "https://media.licdn.com/dms/image/v2/C4E0BAQG6vM59bmFm1g/company-logo_200_200/company-logo_200_200/0/1631307261030?e=1747267200&v=beta&t=yyPzz-4XPn5CGFmYveVzs-5POeXLSdI4m_BVTcoj7MI",
       start: "Oct 2015",
       end: "Apr 2018",
       description:

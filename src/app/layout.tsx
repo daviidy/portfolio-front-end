@@ -19,6 +19,11 @@ export const metadata: Metadata = {
     template: `%s | ${DATA.name}`,
   },
   description: DATA.description,
+  icons: {
+    icon: '/dave.png',
+    shortcut: '/dave.png',
+    apple: '/dave.png',
+  },
   openGraph: {
     title: `${DATA.name}`,
     description: DATA.description,
