@@ -76,6 +76,32 @@ export const DATA = {
 
   work: [
     {
+      company: "Capital One",
+      href: "https://www.capitalone.com/",
+      badges: [],
+      location: "Remote",
+      title: "Software Engineer",
+      logoUrl:
+        "https://media.licdn.com/dms/image/v2/C560BAQF0OgQyRZ9yAA/company-logo_100_100/company-logo_100_100/0/1635782718446/capital_one_logo?e=1749686400&v=beta&t=4641HMPEoVT3nRi9cNZ7YUH4OwEYfDJEqMVPWYj7QTE",
+      start: "Apr 2025",
+      end: "Present",
+      description:
+        "Working on enterprise software solutions using modern technologies and best practices.",
+    },
+    {
+      company: "John Deere",
+      href: "https://www.deere.com/",
+      badges: [],
+      location: "Remote",
+      title: "Software Developer",
+      logoUrl:
+        "https://media.licdn.com/dms/image/v2/D4E0BAQGHcvebsMflbA/company-logo_100_100/company-logo_100_100/0/1684271619675/john_deere_logo?e=1749686400&v=beta&t=sT_hduOzdPCB7aF7Gky_lea3YQZmGh0Vcb2QRvalvyU",
+      start: "Mar 2025",
+      end: "Apr 2025",
+      description:
+        "Developed and maintained software applications for agricultural technology solutions.",
+    },
+    {
       company: "TecPatri",
       href: "https://www.youtube.com/@TecPatri",
       badges: [],
