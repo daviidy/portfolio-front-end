@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const isProd = process.env.NODE_ENV === 'production';
+const isStaticExport = process.env.STATIC_EXPORT === 'true';
 const nextConfig = {
+  ...(isStaticExport && { output: 'export' }),
   reactStrictMode: true,
   images: {
     unoptimized: true, // Disable default image optimization
@@ -75,7 +77,7 @@ const nextConfig = {
   },
   assetPrefix: isProd ? 'https://david-yao.com/' : '',
   basePath: isProd ? '' : '',
-  output: 'export'
+  // output: 'export' enabled conditionally via STATIC_EXPORT=true env var (set in CI)
 };
 
 export default nextConfig;
