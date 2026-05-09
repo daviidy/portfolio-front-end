@@ -67,18 +67,15 @@ async function getAllPosts(dir: string) {
     Promise.all(
       mdxFiles.map(async (file) => {
         let slug = path.basename(file, path.extname(file));
-        let { metadata, source } = await getPost(slug);
-        return {
-          metadata,
-          slug,
-          source,
-        };
+        let post = await getPost(slug);
+        if (!post) return null;
+        return { metadata: post.metadata, slug, source: post.source };
       })
     ),
     getDevToPosts(),
   ]);
 
-  return [...localPosts, ...devToPosts];
+  return [...localPosts.filter(Boolean), ...devToPosts] as NonNullable<(typeof localPosts)[number]>[];
 }
 
 export async function getBlogPosts() {
