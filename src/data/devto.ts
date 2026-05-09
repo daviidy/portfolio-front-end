@@ -71,7 +71,7 @@ export async function getDevToPost(id: string) {
 
     if (!response.ok) {
       console.error('Failed to fetch dev.to post:', await response.text());
-      throw new Error('Failed to fetch article');
+      return null;
     }
 
     const article: DevToArticle = await response.json();
@@ -90,7 +90,7 @@ export async function getDevToPost(id: string) {
     };
   } catch (error) {
     console.error('Error fetching dev.to post:', error);
-    throw error;
+    return null;
   }
 }
 

@@ -41,6 +41,7 @@ export async function markdownToHTML(markdown: string) {
 export async function getPost(slug: string) {
   if (slug.startsWith('devto-')) {
     const devToPost = await getDevToPost(slug);
+    if (!devToPost) return null;
     const content = await markdownToHTML(devToPost.source);
     return {
       source: content,

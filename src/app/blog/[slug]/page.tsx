@@ -39,6 +39,7 @@ export async function generateMetadata({
 }): Promise<Metadata | undefined> {
   try {
     let post = await getPost(params.slug);
+    if (!post) return undefined;
 
     let {
       title,
