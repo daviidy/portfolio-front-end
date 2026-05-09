@@ -1,5 +1,5 @@
 import { Icons } from "@/components/icons";
-import { HomeIcon, NotebookIcon, BookIcon } from "lucide-react";
+import { HomeIcon, NotebookIcon, BookIcon, CalendarDaysIcon } from "lucide-react";
 
 export const DATA = {
   name: "Nda David Yao",
@@ -32,6 +32,7 @@ export const DATA = {
     { href: "/", icon: HomeIcon, label: "Home" },
     { href: "/blog", icon: NotebookIcon, label: "Blog" },
     { href: "/ebook", icon: BookIcon, label: "Free Ebook" },
+    { href: "/content-calendars", icon: CalendarDaysIcon, label: "Content Calendars" },
   ],
   contact: {
     email: "nda.yao94@gmail.com",
