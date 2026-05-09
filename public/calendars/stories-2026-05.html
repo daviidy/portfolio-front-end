@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wealth Builders · 30-Day Stories Calendar</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --black:#0a0a0a;--card:#181818;--border:rgba(255,255,255,0.06);--gold:#C9A84C;--gold-light:#e0c070;--text:#f0f0f0;--muted:rgba(255,255,255,0.4);--fi:#4a90d9;--si:#e8a838;--fit:#2ecc71;--lb:#C9A84C;--edu:#9b59b6;--sp:#1abc9c; }
+  body{background:var(--black);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh}
+  .back-btn{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;text-decoration:none;padding:12px 48px 0;transition:color 0.15s}
+  .back-btn:hover{color:var(--gold)}
+  .back-btn svg{width:14px;height:14px}
+  header{padding:40px 48px 40px;max-width:1400px;margin:0 auto}
+  .eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
+  h1{font-family:'Bebas Neue',sans-serif;font-size:80px;line-height:0.9} h1 span{color:var(--gold)}
+  .subtitle{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:16px}
+  .legend{display:flex;flex-wrap:wrap;gap:20px;padding:0 48px 40px;max-width:1400px;margin:0 auto}
+  .leg{display:flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase}
+  .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .week-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;padding:24px 48px 12px;max-width:1400px;margin:8px auto 0;border-top:1px solid var(--border)}
+  .week-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:0 48px;max-width:1400px;margin:0 auto}
+  .day-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:14px;cursor:pointer;transition:border-color 0.15s,transform 0.1s;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden;min-height:190px}
+  .day-card:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-1px)}
+  .day-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px}
+  .card-lb::before{background:var(--lb)} .card-edu::before{background:var(--edu)} .card-sp::before{background:var(--sp)}
+  .day-card::after{content:'';position:absolute;top:0;right:0;width:3px;height:100%}
+  .pillar-fi::after{background:var(--fi)} .pillar-si::after{background:var(--si)} .pillar-fit::after{background:var(--fit)}
+  .day-number{font-family:'Bebas Neue',sans-serif;font-size:26px;color:rgba(255,255,255,0.1);line-height:1}
+  .day-meta{display:flex;flex-direction:column;gap:3px}
+  .day-name{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase}
+  .pillar-pip{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+  .pillar-fi .pillar-pip{color:var(--fi)} .pillar-si .pillar-pip{color:var(--si)} .pillar-fit .pillar-pip{color:var(--fit)}
+  .content-type-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:2px;font-weight:600;width:fit-content}
+  .badge-lb{background:rgba(201,168,76,0.12);color:var(--lb);border:1px solid rgba(201,168,76,0.25)}
+  .badge-edu{background:rgba(155,89,182,0.12);color:var(--edu);border:1px solid rgba(155,89,182,0.25)}
+  .badge-sp{background:rgba(26,188,156,0.12);color:var(--sp);border:1px solid rgba(26,188,156,0.25)}
+  .hook-text{font-size:11px;line-height:1.5;color:rgba(255,255,255,0.65);flex:1;font-style:italic}
+  .freebie-tag{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:auto}
+  .freebie-keyword{font-weight:600;padding:2px 6px;border-radius:2px;font-size:9px}
+  .kw-audit{background:rgba(201,168,76,0.12);color:var(--gold)} .kw-mindset{background:rgba(232,168,56,0.12);color:var(--si)} .kw-bands{background:rgba(46,204,113,0.12);color:var(--fit)}
+  .post-check{display:flex;align-items:center;gap:6px;cursor:pointer;width:fit-content;z-index:10;position:relative}
+  .post-check input[type="checkbox"]{appearance:none;-webkit-appearance:none;width:14px;height:14px;border:1px solid rgba(255,255,255,0.15);border-radius:3px;background:transparent;cursor:pointer;flex-shrink:0;transition:all 0.15s;position:relative}
+  .post-check input[type="checkbox"]:checked{background:#2a6e48;border-color:#5ab87a}
+  .post-check input[type="checkbox"]:checked::after{content:'✓';position:absolute;top:-1px;left:2px;font-size:10px;color:#5ab87a;font-weight:700}
+  .post-check-label{font-size:8px;font-family:'DM Mono',monospace;letter-spacing:1.5px;color:rgba(255,255,255,0.2);text-transform:uppercase;user-select:none}
+  .post-check:has(input:checked) .post-check-label{color:#5ab87a}
+  .day-card.posted{opacity:0.5} .day-card.posted .hook-text{text-decoration:line-through;color:rgba(255,255,255,0.3)}
+  .posted-stamp{display:none;position:absolute;top:10px;left:50%;transform:translateX(-50%) rotate(-8deg);font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:3px;color:#5ab87a;border:1.5px solid #5ab87a;padding:2px 8px;border-radius:2px;opacity:0.7;white-space:nowrap;z-index:5}
+  .day-card.posted .posted-stamp{display:block}
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;overflow-y:auto}
+  .overlay.open{display:flex;align-items:flex-start;justify-content:center;padding:40px 20px}
+  .panel{background:#161616;border:1px solid rgba(255,255,255,0.08);border-radius:6px;width:100%;max-width:700px}
+  .panel-head{display:flex;justify-content:space-between;align-items:flex-start;padding:22px 26px 18px;border-bottom:1px solid var(--border)}
+  .ph-left{flex:1}
+  .detail-meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+  .detail-pillar{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-weight:600}
+  .close-btn{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;border-radius:4px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:16px;transition:all 0.15s}
+  .close-btn:hover{border-color:var(--gold);color:var(--gold)}
+  .panel-body{padding:22px 26px;display:flex;flex-direction:column;gap:16px}
+  .detail-section h4{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  .detail-section p{font-size:13px;line-height:1.7;color:rgba(255,255,255,0.75)}
+  .slides-box{display:flex;flex-direction:column;gap:10px}
+  .slide-entry{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:3px;overflow:hidden}
+  .slide-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:6px 12px;border-bottom:1px solid var(--border);background:rgba(201,168,76,0.05)}
+  .slide-text{font-size:12px;line-height:1.75;color:rgba(255,255,255,0.75);padding:10px 12px;white-space:pre-wrap;font-family:'DM Mono',monospace}
+  .trigger-box{background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.15);border-radius:3px;padding:14px}
+  .trigger-box strong{color:var(--gold)}
+  .tags-row{display:flex;flex-wrap:wrap;gap:6px}
+  .tag-chip{font-family:'DM Mono',monospace;font-size:9px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:2px;padding:3px 8px;color:var(--muted)}
+  .script-section{border-top:1px solid var(--border);padding-top:16px}
+  .script-body{background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.12);border-radius:4px;padding:16px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.8;color:rgba(255,255,255,0.82);white-space:pre-wrap;word-break:break-word;margin:8px 0 12px;max-height:360px;overflow-y:auto}
+  .copy-btn{background:var(--gold);color:#000;border:none;padding:8px 20px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:2px;font-weight:600;transition:background 0.15s}
+  .copy-btn:hover{background:var(--gold-light)} .copy-btn.copied{background:#2a6e48;color:#5ab87a}
+  footer{text-align:center;padding:40px;margin-top:40px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted)}
+  @media(max-width:1100px){header,.legend,.week-label{padding-left:20px;padding-right:20px} .week-grid{padding:0 20px;grid-template-columns:repeat(3,1fr)} h1{font-size:56px}}
+  @media(max-width:700px){.week-grid{grid-template-columns:repeat(2,1fr)} h1{font-size:40px}}
+  ::-webkit-scrollbar{width:4px} ::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+  </style>
+</head>
+<body>
+<a class="back-btn" href="/content-calendars">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  Back to Calendars
+</a>
+<header>
+  <div class="eyebrow">@thenakedengineer · Wealth Builders · Stories</div>
+  <h1>30-DAY<br><span>STORIES</span><br>CALENDAR</h1>
+  <p class="subtitle">7 Story Types · 3 Pillars Equal · 2 Lead Baits/Week · May 11 – Jun 19, 2026</p>
+</header>
+<div class="legend">
+  <div class="leg"><div class="dot" style="background:var(--fi)"></div> Financial</div>
+  <div class="leg"><div class="dot" style="background:var(--si)"></div> Self-Improvement</div>
+  <div class="leg"><div class="dot" style="background:var(--fit)"></div> Fitness</div>
+  <div class="leg" style="margin-left:20px"><div class="dot" style="background:var(--lb)"></div> Lead Bait (Mon+Wed)</div>
+  <div class="leg"><div class="dot" style="background:var(--edu)"></div> Educative</div>
+  <div class="leg"><div class="dot" style="background:var(--sp)"></div> Transformation</div>
+</div>
+
+<div class="week-label">Week 1 — May 11–15</div>
+<div class="week-grid">
+  <div class="day-card card-lb pillar-fi" onclick="openDetail(0)">
+    <div class="day-number">01</div>
+    <div class="day-meta">
+      <div class="day-name">Mon · May 11</div>
+      <div class="pillar-pip">Financial</div>
+      <span class="content-type-badge badge-lb">Lead Bait</span>
+    </div>
+    <div class="hook-text">"Your salary resets to zero every January 1st. And you start all over. Most people never re"</div>
+    <div class="freebie-tag">Comment → <span class="freebie-keyword kw-audit">AUDIT</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,0)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-fit" onclick="openDetail(1)">
+    <div class="day-number">02</div>
+    <div class="day-meta">
+      <div class="day-name">Tue · May 12</div>
+      <div class="pillar-pip">Fitness</div>
+      <span class="content-type-badge badge-edu">Quick Win</span>
+    </div>
+    <div class="hook-text">"1 rule that instantly makes every workout more effective: never decide your rep count befo"</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-bands">BANDS</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,1)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-lb pillar-fit" onclick="openDetail(2)">
+    <div class="day-number">03</div>
+    <div class="day-meta">
+      <div class="day-name">Wed · May 13</div>
+      <div class="pillar-pip">Fitness</div>
+      <span class="content-type-badge badge-lb">Lead Bait</span>
+    </div>
+    <div class="hook-text">"Every client, every partner, every person you pitch — they see your energy before they hea"</div>
+    <div class="freebie-tag">Comment → <span class="freebie-keyword kw-bands">BANDS</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,2)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-fi" onclick="openDetail(3)">
+    <div class="day-number">04</div>
+    <div class="day-meta">
+      <div class="day-name">Thu · May 14</div>
+      <div class="pillar-pip">Financial</div>
+      <span class="content-type-badge badge-edu">L'Erreur</span>
+    </div>
+    <div class="hook-text">"Most professionals make this savings mistake: they optimize how much they save and complet"</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-audit">AUDIT</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,3)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-si" onclick="openDetail(4)">
+    <div class="day-number">05</div>
+    <div class="day-meta">
+      <div class="day-name">Fri · May 15</div>
+      <div class="pillar-pip">Self-Improvement</div>
+      <span class="content-type-badge badge-edu">Le Mythe</span>
+    </div>
+    <div class="hook-text">"Something that frustrates me: the belief that you need a perfect plan before you start. It"</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-mindset">MINDSET</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,4)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+</div>
+
+<div class="week-label">Week 2 — May 18–22</div>
+<div class="week-grid">
+  <div class="day-card card-lb pillar-si" onclick="openDetail(5)">
+    <div class="day-number">06</div>
+    <div class="day-meta">
+      <div class="day-name">Mon · May 18</div>
+      <div class="pillar-pip">Self-Improvement</div>
+      <span class="content-type-badge badge-lb">Lead Bait</span>
+    </div>
+    <div class="hook-text">"Most people know they need to change something. But they don't have a framework — or a com"</div>
+    <div class="freebie-tag">Comment → <span class="freebie-keyword kw-mindset">MINDSET</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,5)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-fit" onclick="openDetail(6)">
+    <div class="day-number">07</div>
+    <div class="day-meta">
+      <div class="day-name">Tue · May 19</div>
+      <div class="pillar-pip">Fitness</div>
+      <span class="content-type-badge badge-edu">Avant/Après</span>
+    </div>
+    <div class="hook-text">"A letter to the version of me that was skipping workouts and calling it 'being busy.' [Sti"</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-bands">BANDS</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,6)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-lb pillar-fi" onclick="openDetail(7)">
+    <div class="day-number">08</div>
+    <div class="day-meta">
+      <div class="day-name">Wed · May 20</div>
+      <div class="pillar-pip">Financial</div>
+      <span class="content-type-badge badge-lb">Lead Bait</span>
+    </div>
+    <div class="hook-text">"Most people save money — but they don't know if their money follows the 3 rules that actua"</div>
+    <div class="freebie-tag">Comment → <span class="freebie-keyword kw-audit">AUDIT</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,7)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-si" onclick="openDetail(8)">
+    <div class="day-number">09</div>
+    <div class="day-meta">
+      <div class="day-name">Thu · May 21</div>
+      <div class="pillar-pip">Self-Improvement</div>
+      <span class="content-type-badge badge-edu">L'Outil Secret</span>
+    </div>
+    <div class="hook-text">"The tool I use every week to make sure I'm building — not just staying busy: the 3-box dec"</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-mindset">MINDSET</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,8)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-sp pillar-fi" onclick="openDetail(9)">
+    <div class="day-number">10</div>
+    <div class="day-meta">
+      <div class="day-name">Fri · May 22</div>
+      <div class="pillar-pip">Financial</div>
+      <span class="content-type-badge badge-sp">Transformation</span>
+    </div>
+    <div class="hook-text">"[Name] understood the 3 Goals in one session. 3 months later: Income Protection in place, "</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-audit">AUDIT</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,9)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+</div>
+
+<div class="week-label">Week 3 — May 25–29</div>
+<div class="week-grid">
+  <div class="day-card card-lb pillar-fit" onclick="openDetail(10)">
+    <div class="day-number">11</div>
+    <div class="day-meta">
+      <div class="day-name">Mon · May 25</div>
+      <div class="pillar-pip">Fitness</div>
+      <span class="content-type-badge badge-lb">Lead Bait</span>
+    </div>
+    <div class="hook-text">"You keep saying you'll get serious about training. But every week looks the same."</div>
+    <div class="freebie-tag">Comment → <span class="freebie-keyword kw-bands">BANDS</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,10)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-si" onclick="openDetail(11)">
+    <div class="day-number">12</div>
+    <div class="day-meta">
+      <div class="day-name">Tue · May 26</div>
+      <div class="pillar-pip">Self-Improvement</div>
+      <span class="content-type-badge badge-edu">Quick Win</span>
+    </div>
+    <div class="hook-text">"1 question that upgrades your mindset faster than any book. [Sticker]"</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-mindset">MINDSET</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,11)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-lb pillar-si" onclick="openDetail(12)">
+    <div class="day-number">13</div>
+    <div class="day-meta">
+      <div class="day-name">Wed · May 27</div>
+      <div class="pillar-pip">Self-Improvement</div>
+      <span class="content-type-badge badge-lb">Lead Bait</span>
+    </div>
+    <div class="hook-text">"You haven't stopped dreaming because you gave up. You stopped because no one gave you a ma"</div>
+    <div class="freebie-tag">Comment → <span class="freebie-keyword kw-mindset">MINDSET</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,12)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-fi" onclick="openDetail(13)">
+    <div class="day-number">14</div>
+    <div class="day-meta">
+      <div class="day-name">Thu · May 28</div>
+      <div class="pillar-pip">Financial</div>
+      <span class="content-type-badge badge-edu">Le Mythe</span>
+    </div>
+    <div class="hook-text">"Someone asked me: 'Isn't a 401K enough for retirement?' My answer surprised them. [Slider]"</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-audit">AUDIT</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,13)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-fit" onclick="openDetail(14)">
+    <div class="day-number">15</div>
+    <div class="day-meta">
+      <div class="day-name">Fri · May 29</div>
+      <div class="pillar-pip">Fitness</div>
+      <span class="content-type-badge badge-edu">L'Erreur</span>
+    </div>
+    <div class="hook-text">"The most expensive mistake in fitness: training when motivated, resting when not. [Sticker"</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-bands">BANDS</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,14)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+</div>
+
+<div class="week-label">Week 4 — Jun 1–5</div>
+<div class="week-grid">
+  <div class="day-card card-lb pillar-fi" onclick="openDetail(15)">
+    <div class="day-number">16</div>
+    <div class="day-meta">
+      <div class="day-name">Mon · Jun 01</div>
+      <div class="pillar-pip">Financial</div>
+      <span class="content-type-badge badge-lb">Lead Bait</span>
+    </div>
+    <div class="hook-text">"If your income stopped tomorrow — how long would your family's lifestyle last? Most people"</div>
+    <div class="freebie-tag">Comment → <span class="freebie-keyword kw-audit">AUDIT</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,15)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-si" onclick="openDetail(16)">
+    <div class="day-number">17</div>
+    <div class="day-meta">
+      <div class="day-name">Tue · Jun 02</div>
+      <div class="pillar-pip">Self-Improvement</div>
+      <span class="content-type-badge badge-edu">Avant/Après</span>
+    </div>
+    <div class="hook-text">"A year ago I was waiting to feel ready. Waiting for the right time. Here's what actually c"</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-mindset">MINDSET</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,16)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-lb pillar-fit" onclick="openDetail(17)">
+    <div class="day-number">18</div>
+    <div class="day-meta">
+      <div class="day-name">Wed · Jun 03</div>
+      <div class="pillar-pip">Fitness</div>
+      <span class="content-type-badge badge-lb">Lead Bait</span>
+    </div>
+    <div class="hook-text">"You optimize systems at work. Your body is your first system. And most professionals are r"</div>
+    <div class="freebie-tag">Comment → <span class="freebie-keyword kw-bands">BANDS</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,17)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-fit" onclick="openDetail(18)">
+    <div class="day-number">19</div>
+    <div class="day-meta">
+      <div class="day-name">Thu · Jun 04</div>
+      <div class="pillar-pip">Fitness</div>
+      <span class="content-type-badge badge-edu">L'Outil Secret</span>
+    </div>
+    <div class="hook-text">"The tool that changed my workouts completely: resistance bands + failure training. No gym."</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-bands">BANDS</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,18)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-sp pillar-si" onclick="openDetail(19)">
+    <div class="day-number">20</div>
+    <div class="day-meta">
+      <div class="day-name">Fri · Jun 05</div>
+      <div class="pillar-pip">Self-Improvement</div>
+      <span class="content-type-badge badge-sp">Transformation</span>
+    </div>
+    <div class="hook-text">"Someone sent me this after 30 days of applying the decision framework: 'I stopped waiting "</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-mindset">MINDSET</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,19)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+</div>
+
+<div class="week-label">Week 5 — Jun 8–12</div>
+<div class="week-grid">
+  <div class="day-card card-lb pillar-si" onclick="openDetail(20)">
+    <div class="day-number">21</div>
+    <div class="day-meta">
+      <div class="day-name">Mon · Jun 08</div>
+      <div class="pillar-pip">Self-Improvement</div>
+      <span class="content-type-badge badge-lb">Lead Bait</span>
+    </div>
+    <div class="hook-text">"You haven't stopped dreaming because you gave up. You stopped because no one gave you a ma"</div>
+    <div class="freebie-tag">Comment → <span class="freebie-keyword kw-mindset">MINDSET</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,20)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-fit" onclick="openDetail(21)">
+    <div class="day-number">22</div>
+    <div class="day-meta">
+      <div class="day-name">Tue · Jun 09</div>
+      <div class="pillar-pip">Fitness</div>
+      <span class="content-type-badge badge-edu">Le Mythe</span>
+    </div>
+    <div class="hook-text">"I'll prove that 'you need a gym to get real results' is false. In 60 seconds. Ready? [Stic"</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-bands">BANDS</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,21)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-lb pillar-fi" onclick="openDetail(22)">
+    <div class="day-number">23</div>
+    <div class="day-meta">
+      <div class="day-name">Wed · Jun 10</div>
+      <div class="pillar-pip">Financial</div>
+      <span class="content-type-badge badge-lb">Lead Bait</span>
+    </div>
+    <div class="hook-text">"Most people save money — but they don't know if their money follows the 3 rules that actua"</div>
+    <div class="freebie-tag">Comment → <span class="freebie-keyword kw-audit">AUDIT</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,22)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-fi" onclick="openDetail(23)">
+    <div class="day-number">24</div>
+    <div class="day-meta">
+      <div class="day-name">Thu · Jun 11</div>
+      <div class="pillar-pip">Financial</div>
+      <span class="content-type-badge badge-edu">Quick Win</span>
+    </div>
+    <div class="hook-text">"1 number that tells you everything about your financial trajectory: your 10% savings rate."</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-audit">AUDIT</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,23)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-si" onclick="openDetail(24)">
+    <div class="day-number">25</div>
+    <div class="day-meta">
+      <div class="day-name">Fri · Jun 12</div>
+      <div class="pillar-pip">Self-Improvement</div>
+      <span class="content-type-badge badge-edu">L'Erreur</span>
+    </div>
+    <div class="hook-text">"Sunday night. I'm telling myself I'll start fresh Monday. For the third week in a row. [Sl"</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-mindset">MINDSET</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,24)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+</div>
+
+<div class="week-label">Week 6 — Jun 15–19</div>
+<div class="week-grid">
+  <div class="day-card card-lb pillar-fit" onclick="openDetail(25)">
+    <div class="day-number">26</div>
+    <div class="day-meta">
+      <div class="day-name">Mon · Jun 15</div>
+      <div class="pillar-pip">Fitness</div>
+      <span class="content-type-badge badge-lb">Lead Bait</span>
+    </div>
+    <div class="hook-text">"Your body is the one asset that compounds or depreciates based entirely on your daily deci"</div>
+    <div class="freebie-tag">Comment → <span class="freebie-keyword kw-bands">BANDS</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,25)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-fi" onclick="openDetail(26)">
+    <div class="day-number">27</div>
+    <div class="day-meta">
+      <div class="day-name">Tue · Jun 16</div>
+      <div class="pillar-pip">Financial</div>
+      <span class="content-type-badge badge-edu">Avant/Après</span>
+    </div>
+    <div class="hook-text">"A letter to myself 3 years ago — before I understood how money actually works. [Sticker]"</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-audit">AUDIT</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,26)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-lb pillar-si" onclick="openDetail(27)">
+    <div class="day-number">28</div>
+    <div class="day-meta">
+      <div class="day-name">Wed · Jun 17</div>
+      <div class="pillar-pip">Self-Improvement</div>
+      <span class="content-type-badge badge-lb">Lead Bait</span>
+    </div>
+    <div class="hook-text">"Decision leads to destiny. Quick decision → momentum. Delayed decision → arrive late. No d"</div>
+    <div class="freebie-tag">Comment → <span class="freebie-keyword kw-mindset">MINDSET</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,27)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-edu pillar-fi" onclick="openDetail(28)">
+    <div class="day-number">29</div>
+    <div class="day-meta">
+      <div class="day-name">Thu · Jun 18</div>
+      <div class="pillar-pip">Financial</div>
+      <span class="content-type-badge badge-edu">L'Outil Secret</span>
+    </div>
+    <div class="hook-text">"The tool I use to evaluate every financial decision in 10 seconds: the Rule of 72. [Slider"</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-audit">AUDIT</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,28)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+  <div class="day-card card-sp pillar-fit" onclick="openDetail(29)">
+    <div class="day-number">30</div>
+    <div class="day-meta">
+      <div class="day-name">Fri · Jun 19</div>
+      <div class="pillar-pip">Fitness</div>
+      <span class="content-type-badge badge-sp">Transformation</span>
+    </div>
+    <div class="hook-text">"[Name] trained for years without results. Changed one thing. Better results in 3 months th"</div>
+    <div class="freebie-tag">Watch → <span class="freebie-keyword kw-bands">BANDS</span></div>
+    <div class="posted-stamp">✓ POSTED</div>
+    <label class="post-check" onclick="event.stopPropagation()">
+      <input type="checkbox" onchange="togglePosted(this,29)">
+      <span class="post-check-label">Mark as posted</span>
+    </label>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeBg(event)">
+  <div class="panel">
+    <div class="panel-head">
+      <div class="ph-left">
+        <div class="detail-meta" id="ph-meta"></div>
+        <div class="detail-pillar" id="ph-title"></div>
+        <div id="d-type" style="font-size:11px;font-family:monospace;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:4px"></div>
+      </div>
+      <button class="close-btn" onclick="closeDetail()">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="detail-section"><h4>🎣 Hook Slide</h4><p id="d-hook"></p></div>
+      <div class="detail-section"><h4>📱 Slides</h4><div class="slides-box" id="d-slides"></div></div>
+      <div class="detail-section"><div class="trigger-box"><h4 style="margin-bottom:8px">⚡ CTA</h4><p id="d-cta"></p></div></div>
+      <div class="detail-section"><h4>🎬 Visual Direction</h4><p id="d-visual"></p></div>
+      <div class="detail-section"><h4># Hashtags</h4><div class="tags-row" id="d-tags"></div></div>
+      <div class="detail-section script-section">
+        <h4>📋 Full Script — Copy & Paste</h4>
+        <pre class="script-body" id="d-script"></pre>
+        <button class="copy-btn" onclick="copyScript()">Copy Script</button>
+      </div>
+    </div>
+  </div>
+</div>
+<footer><p>@thenakedengineer · Wealth Builders · Stories · May 11 – Jun 19, 2026 · 2 Lead Baits/Week</p></footer>
+<script>
+const stories=[{"day":1,"name":"Mon May 11 — W1 · Financial","pillar":"Financial","storyType":"Lead Bait 1 Story","hookSlide":"Your salary resets to zero every January 1st. And you start all over. Most people never realize this is the real problem.","slides":[{"label":"SINGLE SLIDE","text":"Your salary resets to zero\nevery January 1st.\nAnd you start all over.\n\nMost people never realize\nthis is the real problem.\n\nI built a free 10-minute audit\nthat shows where your money stands\non the 3 rules that build actual wealth.\n\nMost people score under 8/19.\nAnd they're relieved to finally understand why.\n\nComment AUDIT.\nI'll DM you the free PDF."}],"cta":"Comment <strong>AUDIT</strong> — I'll DM you the free 10-min 3 Rules of Money Audit PDF.","visual":"Single dark slide. Hook fills the screen. Under 20 seconds.","script":"SINGLE SLIDE\n\nYour salary resets to zero\nevery January 1st.\nAnd you start all over.\n\nMost people never realize\nthis is the real problem.\n\nI built a free 10-minute audit\nthat shows where your money stands\non the 3 rules that build actual wealth.\n\nMost people score under 8/19.\nAnd they're relieved to finally understand why.\n\nComment AUDIT.\nI'll DM you the free PDF.","tags":["#financialeducation","#wealthbuilders","#moneymindset","#financialfreedom","#personalfinance","#thenakedengineer"]},{"day":2,"name":"Tue May 12 — W1 · Fitness","pillar":"Fitness","storyType":"Quick Win","hookSlide":"1 rule that instantly makes every workout more effective: never decide your rep count before you start. [Slider]","slides":[{"label":"SLIDE 1 — TEASER","text":"1 rule that instantly makes every workout more effective:\nNever decide your rep count before you start.\n[Slider: 'That simple?' Not buying it _____ Tell me more]"},{"label":"SLIDE 2 — WHY IT WORKS","text":"When you pre-decide '3 sets of 10'\nyou stop at 10 — even if you had 3 more in you.\n\nThose last 3 reps you weren't planning?\nThat's where the growth actually happens.\nEvery rep before it was just warm-up.\n\nYour plan is literally robbing your results."},{"label":"SLIDE 3 — HOW TO DO IT","text":"Before your next set:\n→ Pick the exercise\n→ Remove the number from your head\n→ Go until you physically can't do another clean rep\n→ Rest 60-90 seconds. Repeat.\n→ 3-4 sets × 3-4 exercises = 25 minutes\n\nLog only: 'Did I go to failure? Yes/No'"},{"label":"SLIDE 4 — RESULT + CTA","text":"✅ Every set captures maximum stimulus\n✅ No plateau — your real limit is always the ceiling\n✅ 25 minutes beats 90 when you do this right\n\nComment BANDS — free Fitness group.\n200+ members training this way. I'll DM you the link."}],"cta":"Comment <strong>BANDS</strong> — I'll DM you the link to my free Fitness group. 200+ members.","visual":"Film yourself mid-set pushing past where you'd normally stop. The last reps are the content.","script":"SLIDE 1 — TEASER\n1 rule that instantly makes every workout more effective:\nNever decide your rep count before you start.\n[Slider: Not buying it _____ Tell me more]\n\nSLIDE 2 — WHY IT WORKS\nWhen you pre-decide '3 sets of 10' you stop at 10.\nEven if you had 3 more in you.\n\nThose last 3 reps you weren't planning?\nThat's where the growth actually happens.\nEvery rep before was just warm-up.\nYour plan is literally robbing your results.\n\nSLIDE 3 — HOW TO DO IT\nBefore your next set:\n→ Pick the exercise\n→ Remove the number from your head\n→ Go until you physically can't do another clean rep\n→ Rest 60-90 seconds. Repeat.\n→ 3-4 sets × 3-4 exercises = 25 minutes\n\nLog only: 'Did I go to failure? Yes/No'\n\nSLIDE 4 — RESULT + CTA\n✅ Every set captures maximum stimulus\n✅ No plateau — your real limit is always the ceiling\n✅ 25 minutes beats 90 when you do this right\n\nComment BANDS — free Fitness group.\n200+ members training this way. I'll DM you the link.","tags":["#fitness","#resistancebands","#failuretraining","#wealthbuilders","#busyprofessional","#thenakedengineer"]},{"day":3,"name":"Wed May 13 — W1 · Fitness","pillar":"Fitness","storyType":"Lead Bait 1 Story","hookSlide":"Every client, every partner, every person you pitch — they see your energy before they hear your words. Your body is your business card.","slides":[{"label":"SINGLE SLIDE","text":"Every client, every partner,\nevery person you pitch —\n\nThey see your energy\nbefore they hear your words.\n\nYour body is your business card.\n\nI have a free Fitness group\nwhere I share the 25-min band method —\nno gym, failure training built in —\nand 200+ professionals\nkeeping each other accountable.\n\nComment BANDS.\nI'll DM you the link to join."}],"cta":"Comment <strong>BANDS</strong> — I'll DM you the link to my free Fitness group. 200+ members.","visual":"Single slide. Professional framing. Not a gym bro reel — speak to the business-minded.","script":"SINGLE SLIDE\n\nEvery client, every partner,\nevery person you pitch —\n\nThey see your energy\nbefore they hear your words.\n\nYour body is your business card.\n\nI have a free Fitness group\nwhere I share the 25-min band method —\nno gym, failure training built in —\nand 200+ professionals\nkeeping each other accountable.\n\nComment BANDS.\nI'll DM you the link to join.","tags":["#fitness","#resistancebands","#failuretraining","#wealthbuilders","#busyprofessional","#thenakedengineer"]},{"day":4,"name":"Thu May 14 — W1 · Financial","pillar":"Financial","storyType":"L'Erreur Coûteuse — Approach A","hookSlide":"Most professionals make this savings mistake: they optimize how much they save and completely ignore where it goes. [Slider]","slides":[{"label":"SLIDE 1 — HOOK","text":"Most professionals make this savings mistake:\nThey optimize HOW MUCH they save\nand completely ignore WHERE it goes.\n\nHere's what that costs.\n[Slider: 'Guilty?' Not me _____ Tell me more]"},{"label":"SLIDE 2 — L'ERREUR","text":"The mistake in real life:\n\n→ 'How much should I save?' → '10%'\n→ Put it in whatever account already exists\n→ Default 401K. Regular savings. Maybe some stocks.\n\nFull focus on the deposit.\nZero focus on the vehicle.\n\nAnd the vehicle is everything."},{"label":"SLIDE 3 — POURQUOI C'EST UN PROBLÈME","text":"$500/month — same discipline, same 30 years:\n\nAt 4% → ~$346,000\nAt 12% → ~$1,760,000\n\nDifference: $1,414,000.\n\nNot because one person saved more.\nNot because one person worked harder.\nBecause of the vehicle."},{"label":"SLIDE 4 — LA VRAIE SOLUTION","text":"3 questions to ask about every account:\n\n1. What is my actual average annual rate?\n2. Which tax bucket am I in?\n   Tax Now / Tax Later / Tax Advantage\n3. Rule of 72: 72 ÷ my rate = years to double\n\nRun those numbers. Then decide."},{"label":"SLIDE 5 — CTA","text":"This is exactly what the audit covers.\n\nComment AUDIT — free 10-min 3 Rules of Money Audit.\nI'll DM you the PDF."}],"cta":"Comment <strong>AUDIT</strong> — I'll DM you the free 10-min 3 Rules of Money Audit PDF.","visual":"Slide 3: $346K vs $1.76M side by side. Same inputs, different vehicle. Let the numbers speak.","script":"SLIDE 1 — HOOK\nMost professionals make this savings mistake:\nThey optimize HOW MUCH they save\nand completely ignore WHERE it goes.\n[Slider: Not me _____ Tell me more]\n\nSLIDE 2 — L'ERREUR\nThe mistake:\n→ '10%' → put it in whatever account already exists\n→ Default 401K. Regular savings. Maybe some stocks.\nFull focus on the deposit. Zero on the vehicle.\nAnd the vehicle is everything.\n\nSLIDE 3 — THE COST\n$500/month, same discipline, same 30 years:\nAt 4% → ~$346,000\nAt 12% → ~$1,760,000\nDifference: $1,414,000.\nNot more savings. Not more work. Different vehicle.\n\nSLIDE 4 — THE FIX\n3 questions for every account:\n1. What's my actual average annual rate?\n2. Which tax bucket? Tax Now / Later / Advantage\n3. Rule of 72: 72 ÷ rate = years to double\n\nSLIDE 5 — CTA\nThis is exactly what the audit covers.\nComment AUDIT — free 10-min 3 Rules of Money Audit.\nI'll DM you the PDF.","tags":["#financialeducation","#wealthbuilders","#moneymindset","#financialfreedom","#personalfinance","#thenakedengineer"]},{"day":5,"name":"Fri May 15 — W1 · Self-Improvement","pillar":"Self-Improvement","storyType":"Le Mythe — Approach A","hookSlide":"Something that frustrates me: the belief that you need a perfect plan before you start. It's the most expensive myth in personal development. [Sticker]","slides":[{"label":"SLIDE 1 — HOOK","text":"Something that FRUSTRATES me:\n\nThe belief that you need\na perfect plan before you start.\n\nIt's the most expensive myth\nin personal development.\n[Sticker Reaction]"},{"label":"SLIDE 2 — THE MYTH","text":"What most people believe:\n'I'll start when the plan is solid.'\n'I'll commit when I have all the information.'\n'I just need a little more time to prepare.'\n\nThis feels responsible.\nIt's actually a sophisticated form of avoidance.\n\nThe plan never becomes perfect.\nSo the start never comes."},{"label":"SLIDE 3 — WHY IT'S FALSE","text":"The reality:\nClarity doesn't come before action.\nClarity comes FROM action.\n\nEvery person you admire who 'has it together'\ndid not figure it out before they started.\nThey figured it out BY starting.\n\nThe plan got better because they were in motion.\nNot the other way around."},{"label":"SLIDE 4 — REALITY + ACTION + CTA","text":"The action:\nPick the ONE thing you've been waiting\nto feel ready for.\n\nDecide in the next 60 seconds.\nNot perfectly — quickly.\n\nDecision leads to destiny.\nDelayed decisions arrive late and alone.\n\nComment MINDSET — free Mindset & Wealth WhatsApp group.\n200+ members. I'll DM you the link."}],"cta":"Comment <strong>MINDSET</strong> — I'll DM you the link to my free Mindset & Wealth WhatsApp group. 200+ members.","visual":"Direct to camera. Pause after the hook. Let the frustration be real — don't perform it.","script":"SLIDE 1 — HOOK\nSomething that FRUSTRATES me:\nThe belief that you need a perfect plan before you start.\nIt's the most expensive myth in personal development.\n[Sticker Reaction]\n\nSLIDE 2 — THE MYTH\n'I'll start when the plan is solid.'\n'I just need a little more time to prepare.'\nThis feels responsible.\nIt's a sophisticated form of avoidance.\nThe plan never becomes perfect.\nSo the start never comes.\n\nSLIDE 3 — WHY IT'S FALSE\nClarity doesn't come before action.\nClarity comes FROM action.\nEvery person you admire who 'has it together'\nfigured it out BY starting — not before.\nThe plan got better because they were in motion.\n\nSLIDE 4 — ACTION + CTA\nPick the ONE thing you've been waiting to feel ready for.\nDecide in the next 60 seconds. Not perfectly — quickly.\n\nDecision leads to destiny.\nDelayed decisions arrive late and alone.\n\nComment MINDSET — free Mindset & Wealth WhatsApp group.\n200+ members. I'll DM you the link.","tags":["#selfimprovement","#mindset","#wealthbuilders","#growthmindset","#discipline","#thenakedengineer"]},{"day":6,"name":"Mon May 18 — W2 · Self-Improvement","pillar":"Self-Improvement","storyType":"Lead Bait 1 Story","hookSlide":"Most people know they need to change something. But they don't have a framework — or a community — to figure out what.","slides":[{"label":"SINGLE SLIDE","text":"Most people know they need to change something.\nBut they don't have a framework\nor a community to figure out what — or what order.\n\nI have a free WhatsApp group where I share\nNAoL philosophy, mindset tools, and weekly frameworks.\n\n200+ members already inside.\n\nComment MINDSET.\nI'll DM you the link to join."}],"cta":"Comment <strong>MINDSET</strong> — I'll DM you the link to my free Mindset & Wealth WhatsApp group. 200+ members.","visual":"Single slide. Short and direct. Problem → community → keyword.","script":"SINGLE SLIDE\n\nMost people know they need to change something.\nBut they don't have a framework\nor a community to figure out what — or what order.\n\nI have a free WhatsApp group where I share\nNAoL philosophy, mindset tools, and weekly frameworks.\n200+ members already inside.\n\nComment MINDSET.\nI'll DM you the link to join.","tags":["#selfimprovement","#mindset","#wealthbuilders","#growthmindset","#discipline","#thenakedengineer"]},{"day":7,"name":"Tue May 19 — W2 · Fitness","pillar":"Fitness","storyType":"Avant/Après Toi — Approach A","hookSlide":"A letter to the version of me that was skipping workouts and calling it 'being busy.' [Sticker]","slides":[{"label":"SLIDE 1 — HOOK","text":"A letter to the version of me\nthat skipped workouts and called it 'being busy.'\n[Sticker: Read it]"},{"label":"SLIDE 2 — AVANT","text":"Hey.\n\nYou're skipping again. Third time this week.\n'Too tired.' 'Too much going on.'\n\nEvery skipped session isn't just a missed workout.\nIt's a broken promise to yourself.\n\nYour body isn't separate from your business.\nWhen your energy drops — your thinking drops."},{"label":"SLIDE 3 — CE QUI A CHANGÉ","text":"What changed:\n\nStop going to the gym. Start using resistance bands.\nNo commute. No setup. No excuse.\n\nStop counting reps. Start training to failure.\n25 minutes. 5 days. That's the system.\n\nYou don't train when you feel like it.\nYou train because you said you would."},{"label":"SLIDE 4 — APRÈS + CTA","text":"Today:\n✅ 25-min sessions, 5 days a week\n✅ Better results than 90 min at the gym\n✅ Discipline built here shows up everywhere\n\nComment BANDS — free Fitness group.\n200+ members. I'll DM you the link."}],"cta":"Comment <strong>BANDS</strong> — I'll DM you the link to my free Fitness group. 200+ members.","visual":"Letter format. Dark background. Before: heavy and real. After: forward and resolved.","script":"SLIDE 1\nA letter to the version of me that skipped workouts\nand called it 'being busy.'\n\nSLIDE 2\nYou're skipping again. Third time this week.\nEvery skipped session is a broken promise to yourself.\nYour body isn't separate from your business.\n\nSLIDE 3\nWhat changed: resistance bands at home, no commute.\nTraining to failure, not counting reps.\n25 minutes, 5 days. Because I said I would.\n\nSLIDE 4\n✅ 25-min sessions, consistent for months\n✅ Better results than the gym ever gave\n✅ The discipline shows up everywhere\nComment BANDS — free Fitness group.","tags":["#fitness","#resistancebands","#failuretraining","#wealthbuilders","#busyprofessional","#thenakedengineer"]},{"day":8,"name":"Wed May 20 — W2 · Financial","pillar":"Financial","storyType":"Lead Bait 1 Story","hookSlide":"Most people save money — but they don't know if their money follows the 3 rules that actually build wealth.","slides":[{"label":"SINGLE SLIDE","text":"Most people save money.\nBut they don't know\nif their money follows the 3 rules\nthat actually build wealth.\n\nI created a free 10-minute audit\nthat scores your money against all 3 rules:\nCompounding. Risk. Tax.\n\nMost people score under 5/10 — and didn't know it.\n\nComment AUDIT.\nI'll DM you the free PDF right now."}],"cta":"Comment <strong>AUDIT</strong> — I'll DM you the free 10-min 3 Rules of Money Audit PDF.","visual":"Single bold slide. Problem → audit tease → keyword.","script":"SINGLE SLIDE\n\nMost people save money.\nBut they don't know if their money follows\nthe 3 rules that actually build wealth.\n\nI created a free 10-minute audit\nthat scores your money against all 3 rules:\nCompounding. Risk. Tax.\n\nMost people score under 5/10 — and didn't know it.\n\nComment AUDIT.\nI'll DM you the free PDF right now.","tags":["#financialeducation","#wealthbuilders","#moneymindset","#financialfreedom","#personalfinance","#thenakedengineer"]},{"day":9,"name":"Thu May 21 — W2 · Self-Improvement","pillar":"Self-Improvement","storyType":"L'Outil Secret","hookSlide":"The tool I use every week to make sure I'm building — not just staying busy: the 3-box decision audit. [Slider]","slides":[{"label":"SLIDE 1 — TEASER","text":"The tool I use every week\nto make sure I'm building — not just staying busy:\nThe 3-box decision audit. 15 minutes. Every Sunday.\n[Slider: 'You have a weekly review?' Never _____ Every week]"},{"label":"SLIDE 2 — REVEAL + BEFORE","text":"Box 1: What decisions did I make? Quick, delayed, or none?\nBox 2: What promise did I keep to myself?\nBox 3: What is the 1 decision I will make this week?\n\nBEFORE:\n❌ Busy every week — moving in circles\n❌ No way to know if I was progressing\n❌ Delayed decisions piling up"},{"label":"SLIDE 3 — HOW I USE IT","text":"Every Sunday — 15 minutes:\n\nBox 1: Did I make quick decisions or keep deferring?\nDecision leads to destiny.\n\nBox 2: What promise did I keep this week?\nConfidence = kept promises.\n\nBox 3: ONE decision before next Sunday.\nWrite it. Commit. No deferral."},{"label":"SLIDE 4 — CTA","text":"This is part of what I share weekly with my community.\nComment MINDSET.\nFree Mindset & Wealth WhatsApp group.\n200+ members. I'll DM you the link."}],"cta":"Comment <strong>MINDSET</strong> — I'll DM you the link to my free Mindset & Wealth WhatsApp group. 200+ members.","visual":"Show the 3-box framework on paper or simple graphic. Real tools prove you use them.","script":"SLIDE 1\nThe tool I use every week to make sure I'm building:\nThe 3-box decision audit. 15 minutes. Every Sunday.\n\nSLIDE 2\nBox 1: What decisions did I make? Quick, delayed, or none?\nBox 2: What promise did I keep to myself?\nBox 3: What is the 1 decision I will make this week?\n\nSLIDE 3\nBox 1: Decision leads to destiny. Delayed = arrive late.\nBox 2: Confidence = kept promises. One per day.\nBox 3: Write it. Commit. No deferral.\n\nSLIDE 4\nComment MINDSET — free Mindset & Wealth WhatsApp group. I'll DM you the link.","tags":["#selfimprovement","#mindset","#wealthbuilders","#growthmindset","#discipline","#thenakedengineer"]},{"day":10,"name":"Fri May 22 — W2 · Financial","pillar":"Financial","storyType":"Transformation Client — Approach A","hookSlide":"[Name] understood the 3 Goals in one session. 3 months later: Income Protection in place, savings automated. [Slider]","slides":[{"label":"SLIDE 1 — HOOK","text":"[Name] understood the 3 Goals in one session.\n3 months later: Income Protection in place.\nSavings automated. Goal 2 mapped.\n[Slider: 'Possible for you?' Doubtful _____ Tell me how]"},{"label":"SLIDE 2 — AVANT","text":"6 months ago:\n❌ 401K only — didn't know which tax bucket\n❌ No Income Protection\n❌ Saved whatever was left (usually $0)\n❌ 'I'll figure it out when I earn more' — for 5 years"},{"label":"SLIDE 3 — THE METHOD","text":"One session. Three steps:\n\n1. Education first — learned 3 Rules, found Tax Later bucket.\n2. Goal 1 — Income Protection. In place within 30 days.\n3. 10% automated to a tax-advantage vehicle. Deliberately chosen."},{"label":"SLIDE 4 — APRÈS + CTA","text":"3 months later:\n✅ Income Protection in place\n✅ 10% moving to the right vehicle\n✅ Clear plan for Goals 2 and 3\n✅ 'I finally understand money.'\n\nComment AUDIT — same starting point.\nI'll DM you the PDF."}],"cta":"Comment <strong>AUDIT</strong> — free 10-min 3 Rules of Money Audit. I'll DM you the PDF.","visual":"BEFORE: dark, honest. AFTER: celebratory but earned. Keep client anonymous.","script":"SLIDE 1\n[Name] understood the 3 Goals in one session.\n3 months later: Income Protection in place, savings automated.\n\nSLIDE 2\nBefore: 401K only, no protection, saved nothing, waiting to earn more.\n\nSLIDE 3\nOne session, three steps:\n1. Education first — learned 3 Rules.\n2. Income Protection in 30 days.\n3. 10% automated to tax-advantage vehicle.\n\nSLIDE 4\n✅ Protection in place ✅ 10% moving ✅ Clear plan for Goals 2&3\nComment AUDIT — I'll DM you the PDF.","tags":["#financialeducation","#wealthbuilders","#moneymindset","#financialfreedom","#personalfinance","#thenakedengineer"]},{"day":11,"name":"Mon May 25 — W3 · Fitness","pillar":"Fitness","storyType":"Lead Bait 1 Story","hookSlide":"You keep saying you'll get serious about training. But every week looks the same.","slides":[{"label":"SINGLE SLIDE","text":"You keep saying you'll get serious about training.\nBut every week looks the same.\n\nI have a free Fitness group where I share\nthe 25-minute resistance band method,\nfailure training built in, no gym required —\nand 200+ members keeping each other accountable.\n\nComment BANDS.\nI'll DM you the link to join."}],"cta":"Comment <strong>BANDS</strong> — I'll DM you the link to my free Fitness group. 200+ members.","visual":"Single slide. Short and punchy.","script":"SINGLE SLIDE\n\nYou keep saying you'll get serious about training.\nBut every week looks the same.\n\nI have a free Fitness group where I share\nthe 25-minute resistance band method,\nfailure training built in, no gym required —\nand 200+ members keeping each other accountable every week.\n\nComment BANDS.\nI'll DM you the link to join.","tags":["#fitness","#resistancebands","#failuretraining","#wealthbuilders","#busyprofessional","#thenakedengineer"]},{"day":12,"name":"Tue May 26 — W3 · Self-Improvement","pillar":"Self-Improvement","storyType":"Quick Win","hookSlide":"1 question that upgrades your mindset faster than any book. [Sticker]","slides":[{"label":"SLIDE 1 — TEASER","text":"1 question that upgrades your mindset\nfaster than any book:\n'If I talked to you the way you talk to yourself —\nwould we even be friends?'\n[Sticker Reaction]"},{"label":"SLIDE 2 — WHY IT WORKS","text":"Most people speak to themselves in ways\nthey'd never speak to someone they care about.\n\nSelf-doubt. 'I can't.' 'It's too late.'\nThese aren't facts. They're bugs — outdated software.\nUnlike a phone, most people never run an update."},{"label":"SLIDE 3 — HOW TO DO IT","text":"→ Notice the voice. Name it: 'That's the old software.'\n→ Make 1 small promise to yourself today.\n→ Keep it. Exactly as stated.\n→ Repeat tomorrow.\n\nConfidence isn't built from hype.\nIt's built from evidence — kept promises."},{"label":"SLIDE 4 — RESULT + CTA","text":"✅ Self-doubt loses its authority\n✅ Confidence becomes something you earn\n✅ Every kept promise makes the next easier\n\nComment MINDSET — free Mindset & Wealth WhatsApp group.\n200+ members. I'll DM you the link."}],"cta":"Comment <strong>MINDSET</strong> — I'll DM you the link to my free Mindset & Wealth WhatsApp group. 200+ members.","visual":"Slide 1: the question fills the screen. Slide 3: action step, not a lecture.","script":"SLIDE 1\n'If I talked to you the way you talk to yourself —\nwould we even be friends?'\n\nSLIDE 2\nMost people speak to themselves in ways they'd never speak to someone they care about.\nSelf-doubt. 'I can't.' These are bugs — outdated software.\n\nSLIDE 3\n→ Notice the voice. Name it.\n→ Make 1 small promise today.\n→ Keep it. Repeat tomorrow.\nConfidence = accumulated evidence of kept promises.\n\nSLIDE 4\n✅ Self-doubt loses authority ✅ Confidence is earned\nComment MINDSET — free Mindset & Wealth WhatsApp group.","tags":["#selfimprovement","#mindset","#wealthbuilders","#growthmindset","#discipline","#thenakedengineer"]},{"day":13,"name":"Wed May 27 — W3 · Self-Improvement","pillar":"Self-Improvement","storyType":"Lead Bait 1 Story","hookSlide":"You haven't stopped dreaming because you gave up. You stopped because no one gave you a map.","slides":[{"label":"SINGLE SLIDE","text":"You haven't stopped dreaming because you gave up.\n\nYou stopped because no one gave you a map.\n\nI have a free WhatsApp group where I share\nNAoL philosophy, mindset tools, and weekly frameworks.\n\n200+ members already inside.\n\nComment MINDSET.\nI'll DM you the link to join."}],"cta":"Comment <strong>MINDSET</strong> — I'll DM you the link to my free Mindset & Wealth WhatsApp group. 200+ members.","visual":"Single emotional slide. Opening line fills the screen. No decoration.","script":"SINGLE SLIDE\n\nYou haven't stopped dreaming because you gave up.\n\nYou stopped because no one gave you a map.\n\nI have a free WhatsApp group where I share\nNAoL philosophy, mindset tools, and weekly frameworks.\n200+ members already inside.\n\nComment MINDSET.\nI'll DM you the link to join.","tags":["#selfimprovement","#mindset","#wealthbuilders","#growthmindset","#discipline","#thenakedengineer"]},{"day":14,"name":"Thu May 28 — W3 · Financial","pillar":"Financial","storyType":"Le Mythe — Approach B","hookSlide":"Someone asked me: 'Isn't a 401K enough for retirement?' My answer surprised them. [Slider]","slides":[{"label":"SLIDE 1 — HOOK","text":"Someone asked me:\n'Isn't a 401K enough for retirement?'\n\nMy answer surprised them.\n[Slider: 'Think you know?' I do _____ Tell me]"},{"label":"SLIDE 2 — THE MYTH","text":"What most believe:\n→ '401K = tax-advantaged growth'\n→ 'Employer matches — free money'\n→ 'This is what responsible people do'\n\nThe 401K is the default.\nWhen something is the default — we stop questioning it."},{"label":"SLIDE 3 — WHY IT'S INCOMPLETE","text":"The 401K is Tax LATER.\nYou pay taxes coming OUT — at an unknown future rate.\n\nTax Advantage (Roth/LIRP):\nPay now, grow tax-free, withdraw tax-free.\n\nSame contribution. Different outcome.\nIf tax rates rise — your retirement number just got smaller."},{"label":"SLIDE 4 — ACTION + CTA","text":"Action: find out which tax bucket your money is in.\nTax Now? Tax Later? Tax Advantage?\n\nComment AUDIT — free 10-min 3 Rules of Money Audit.\nIncludes full tax bucket analysis.\nI'll DM you the PDF."}],"cta":"Comment <strong>AUDIT</strong> — free 10-min 3 Rules of Money Audit including tax bucket analysis. I'll DM you the PDF.","visual":"Slide 3: 3 tax buckets side by side as labeled columns.","script":"SLIDE 1\nSomeone asked: 'Isn't a 401K enough for retirement?'\nMy answer surprised them.\n\nSLIDE 2\nWhat most believe: 401K = tax-advantaged, employer match = free money.\nThe 401K is the default. When something is default we stop questioning.\n\nSLIDE 3\nThe 401K is Tax LATER. Pay taxes at withdrawal — at unknown future rates.\nTax Advantage (Roth/LIRP): pay now, grow and withdraw tax-free.\nSame contribution. Different outcome.\n\nSLIDE 4\nFind out which bucket your money is in.\nComment AUDIT — includes full tax bucket analysis. I'll DM you the PDF.","tags":["#financialeducation","#wealthbuilders","#moneymindset","#financialfreedom","#personalfinance","#thenakedengineer"]},{"day":15,"name":"Fri May 29 — W3 · Fitness","pillar":"Fitness","storyType":"L'Erreur Coûteuse — Approach B","hookSlide":"The most expensive mistake in fitness: training when motivated, resting when not. [Sticker]","slides":[{"label":"SLIDE 1 — HOOK","text":"The most expensive mistake in fitness:\nTraining when motivated, resting when not.\n\nHere's why that's the opposite of what builds results.\n[Sticker Reaction]"},{"label":"SLIDE 2 — THE MISTAKE","text":"What most people do:\n→ 'I'm feeling it today' → great session\n→ 'I'm exhausted' → skip\n→ 'Too much going on' → skip\n\nMood becomes the deciding factor.\nMood is unreliable by design."},{"label":"SLIDE 3 — WHY IT COSTS","text":"When you train based on motivation — you train inconsistently.\n\nConsistency is the actual stimulus for growth.\nNot any single session — the pattern over weeks and months.\n\nEvery skip on a hard day teaches:\n'Hard days = no training.'\nAnd professionals have a lot of hard days."},{"label":"SLIDE 4 — THE FIX","text":"Identity, not motivation.\n\n'I train because I said I would.'\n\nWith bands:\n→ 25 minutes at home — no commute barrier\n→ Train to failure from wherever you are\n→ Hard days: lower intensity, same commitment"},{"label":"SLIDE 5 — CTA","text":"✅ Hard days no longer break the streak\n✅ Training becomes identity — not a decision\n✅ Consistency compounds over months\n\nComment BANDS — free Fitness group.\n200+ members. I'll DM you the link."}],"cta":"Comment <strong>BANDS</strong> — I'll DM you the link to my free Fitness group. 200+ members.","visual":"Slide 2: show the pattern — good day → train, bad day → skip. Slide 5: earned and clean.","script":"SLIDE 1\nThe most expensive mistake in fitness:\nTraining when motivated, resting when not.\n\nSLIDE 2\n'I'm feeling it' → great session. 'I'm exhausted' → skip.\nMood is the deciding factor. Mood is unreliable.\n\nSLIDE 3\nConsistency is the actual stimulus. Not any single session.\nEvery skip teaches: hard days = no training.\n\nSLIDE 4\nFix: identity, not motivation.\n'I train because I said I would.'\n25 minutes. Bands. To failure from wherever you are.\n\nSLIDE 5\n✅ Hard days don't break the streak ✅ Training becomes identity\nComment BANDS — free Fitness group. I'll DM you the link.","tags":["#fitness","#resistancebands","#failuretraining","#wealthbuilders","#busyprofessional","#thenakedengineer"]},{"day":16,"name":"Mon Jun 01 — W4 · Financial","pillar":"Financial","storyType":"Lead Bait 1 Story","hookSlide":"If your income stopped tomorrow — how long would your family's lifestyle last? Most people have never answered this question.","slides":[{"label":"SINGLE SLIDE","text":"If your income stopped tomorrow —\nhow long would your family's lifestyle last?\n\nMost people have never answered this question.\n\nI built a free 10-minute audit\nthat scores you on Income Protection\nand the 2 other goals that determine\nif you're actually building wealth.\n\nComment AUDIT.\nI'll DM you the free PDF right now."}],"cta":"Comment <strong>AUDIT</strong> — I'll DM you the free 10-min 3 Rules of Money Audit PDF.","visual":"Single slide. Quiet and serious. The question fills the screen.","script":"SINGLE SLIDE\n\nIf your income stopped tomorrow —\nhow long would your family's lifestyle last?\n\nMost people have never answered this question.\n\nI built a free 10-minute audit that scores you\non Income Protection and the 2 other goals\nthat determine if you're actually building wealth.\n\nComment AUDIT.\nI'll DM you the free PDF right now.","tags":["#financialeducation","#wealthbuilders","#moneymindset","#financialfreedom","#personalfinance","#thenakedengineer"]},{"day":17,"name":"Tue Jun 02 — W4 · Self-Improvement","pillar":"Self-Improvement","storyType":"Avant/Après Toi — Approach B","hookSlide":"A year ago I was waiting to feel ready. Waiting for the right time. Here's what actually changed. [Poll]","slides":[{"label":"SLIDE 1 — HOOK","text":"A year ago I was waiting to feel ready.\nWaiting for the right time.\nWaiting for the plan to be perfect.\n[Poll: 'Waiting for something?' Yes / Also yes]"},{"label":"SLIDE 2 — AVANT","text":"Before:\n❌ No content system — 'I'll start when I have more to say'\n❌ Delayed every decision — called it 'thinking it through'\n❌ Waiting for confidence before acting\n\nI understood the philosophy.\nI wasn't living it."},{"label":"SLIDE 3 — CE QUI A CHANGÉ","text":"What changed:\n\nQuick decision → act → momentum builds.\nDelayed → wait → arrive late, alone.\nNo decision → live as it is.\n\nI chose quick.\nCommitted before I felt ready.\nStarted before the plan was perfect."},{"label":"SLIDE 4 — APRÈS + CTA","text":"Today:\n✅ Consistent system — not waiting for the right mood\n✅ Community building around real value\n✅ 'Starting before ready' became my identity\n\nComment MINDSET — free Mindset & Wealth WhatsApp group.\n200+ members. I'll DM you the link."}],"cta":"Comment <strong>MINDSET</strong> — I'll DM you the link to my free Mindset & Wealth WhatsApp group. 200+ members.","visual":"BEFORE: honest and specific. AFTER: forward-looking. Text overlays: BEFORE / WHAT CHANGED / TODAY","script":"SLIDE 1\nA year ago I was waiting to feel ready.\nWaiting for the right time. Waiting for the plan to be perfect.\n\nSLIDE 2\nBefore: no system, delayed every decision, called it thinking it through.\n\nSLIDE 3\nQuick decision → act → momentum. Delayed → late. No decision → same life.\nI chose quick. Committed before ready.\n\nSLIDE 4\n✅ Consistent system ✅ Community growing ✅ Starting before ready = identity\nComment MINDSET — free Mindset & Wealth WhatsApp group.","tags":["#selfimprovement","#mindset","#wealthbuilders","#growthmindset","#discipline","#thenakedengineer"]},{"day":18,"name":"Wed Jun 03 — W4 · Fitness","pillar":"Fitness","storyType":"Lead Bait 1 Story","hookSlide":"You optimize systems at work. Your body is your first system. And most professionals are running it into the ground.","slides":[{"label":"SINGLE SLIDE","text":"You optimize systems at work.\nYour body is your first system.\nAnd most professionals are running it into the ground.\n\nI have a free Fitness group where I share\nthe 25-minute resistance band method,\nfailure training built in, no gym required —\nand 200+ members keeping each other accountable.\n\nComment BANDS.\nI'll DM you the link to join."}],"cta":"Comment <strong>BANDS</strong> — I'll DM you the link to my free Fitness group. 200+ members.","visual":"Single slide. Asset/systems framing for professionals.","script":"SINGLE SLIDE\n\nYou optimize systems at work.\nYour body is your first system.\nAnd most professionals are running it into the ground.\n\nI have a free Fitness group where I share\nthe 25-minute resistance band method,\nfailure training built in, no gym required —\nand 200+ members keeping each other accountable.\n\nComment BANDS.\nI'll DM you the link to join.","tags":["#fitness","#resistancebands","#failuretraining","#wealthbuilders","#busyprofessional","#thenakedengineer"]},{"day":19,"name":"Thu Jun 04 — W4 · Fitness","pillar":"Fitness","storyType":"L'Outil Secret","hookSlide":"The tool that changed my workouts completely: resistance bands + failure training. No gym. 25 minutes. Better results. [Slider]","slides":[{"label":"SLIDE 1 — TEASER","text":"The tool that changed my workouts completely:\nResistance bands + failure training.\nNo gym. 25 minutes. Better results.\n[Slider: 'Curious?' Not really _____ Very]"},{"label":"SLIDE 2 — REVEAL + BEFORE","text":"Before:\n❌ 60-90 min gym sessions\n❌ Counting to 10 and stopping every time\n❌ Commute, setup, inconsistency\n❌ Mediocre results\n\nThe problem: stopping at the planned number.\nLast 2-3 reps = where growth lives."},{"label":"SLIDE 3 — HOW I USE IT","text":"My split:\nDay 1&4 — Upper Push: chest, shoulders, tricep. To failure.\nDay 2&5 — Upper Pull + Lower: rows, curls, squats. To failure.\nDay 3 — Full body or recovery.\n\nThe rule: failure ends the set. Not the number."},{"label":"SLIDE 4 — CTA","text":"You don't need a gym\nto build the discipline that shows up everywhere.\n\nComment BANDS — free Fitness group.\n200+ members. The method + accountability."}],"cta":"Comment <strong>BANDS</strong> — I'll DM you the link to my free Fitness group. 200+ members.","visual":"Slide 3: demonstrate one exercise to failure — real proof.","script":"SLIDE 1\nThe tool that changed my workouts: resistance bands + failure training.\nNo gym. 25 minutes. Better results.\n\nSLIDE 2\nBefore: gym, 60-90 min, counting reps, inconsistent, mediocre results.\nProblem: stopping at the planned number.\n\nSLIDE 3\nMy split: Day 1&4 Upper Push. Day 2&5 Pull+Lower. Day 3 recovery.\nEvery set to failure. No predetermined number.\n\nSLIDE 4\nYou don't need a gym to build the discipline that shows up everywhere.\nComment BANDS — free Fitness group. 200+ members.","tags":["#fitness","#resistancebands","#failuretraining","#wealthbuilders","#busyprofessional","#thenakedengineer"]},{"day":20,"name":"Fri Jun 05 — W4 · Self-Improvement","pillar":"Self-Improvement","storyType":"Transformation Client — Approach B","hookSlide":"Someone sent me this after 30 days of applying the decision framework: 'I stopped waiting and just started.' [Screenshot]","slides":[{"label":"SLIDE 1 — HOOK","text":"Someone sent me this after 30 days:\n'I stopped waiting and just started.\nEverything changed.'\n[Show screenshot or recreate visually]"},{"label":"SLIDE 2 — AVANT","text":"Where they were before:\n❌ Had the knowledge — didn't act\n❌ 'I'll start next week' — every week\n❌ Self-doubt loop: not ready → delay → still not ready\n❌ Good intentions. No momentum."},{"label":"SLIDE 3 — THE METHOD","text":"What shifted in 30 days:\n\n1. Applied the decision framework.\nQuick decision → act → momentum. No more perfect conditions.\n\n2. Kept one small promise per day.\nEvidence of showing up built the confidence.\n\n3. Joined the community.\nAccountability changed the behavior."},{"label":"SLIDE 4 — APRÈS + CTA","text":"30 days later:\n✅ Consistent — confidence growing\n✅ Self-doubt losing its authority\n✅ 'I finally feel like I'm moving'\n\nComment MINDSET — free Mindset & Wealth WhatsApp group.\n200+ members. I'll DM you the link."}],"cta":"Comment <strong>MINDSET</strong> — I'll DM you the link to my free Mindset & Wealth WhatsApp group. 200+ members.","visual":"Lead with the screenshot. The message IS the hook. Personal and raw.","script":"SLIDE 1\n'I stopped waiting and just started. Everything changed.'\n[Show screenshot]\n\nSLIDE 2\nBefore: knew what to do, didn't act. 'I'll start next week.' Every week.\n\nSLIDE 3\n1. Quick decisions → momentum. 2. One kept promise/day. 3. Community = accountability.\n\nSLIDE 4\n✅ Consistent ✅ Confidence growing ✅ 'I finally feel like I'm moving'\nComment MINDSET — free Mindset & Wealth WhatsApp group.","tags":["#selfimprovement","#mindset","#wealthbuilders","#growthmindset","#discipline","#thenakedengineer"]},{"day":21,"name":"Mon Jun 08 — W5 · Self-Improvement","pillar":"Self-Improvement","storyType":"Lead Bait 1 Story","hookSlide":"You haven't stopped dreaming because you gave up. You stopped because no one gave you a map.","slides":[{"label":"SINGLE SLIDE","text":"You haven't stopped dreaming because you gave up.\n\nYou stopped because no one gave you a map.\n\nI have a free WhatsApp group where I share\nNAoL philosophy, mindset tools, and weekly frameworks.\n\n200+ members already inside.\n\nComment MINDSET.\nI'll DM you the link to join."}],"cta":"Comment <strong>MINDSET</strong> — I'll DM you the link to my free Mindset & Wealth WhatsApp group. 200+ members.","visual":"Single emotional slide. Opening line fills the screen.","script":"SINGLE SLIDE\n\nYou haven't stopped dreaming because you gave up.\nYou stopped because no one gave you a map.\n\nI have a free WhatsApp group where I share\nNAoL philosophy, mindset tools, and weekly frameworks.\n200+ members already inside.\n\nComment MINDSET.\nI'll DM you the link to join.","tags":["#selfimprovement","#mindset","#wealthbuilders","#growthmindset","#discipline","#thenakedengineer"]},{"day":22,"name":"Tue Jun 09 — W5 · Fitness","pillar":"Fitness","storyType":"Le Mythe — Approach C","hookSlide":"I'll prove that 'you need a gym to get real results' is false. In 60 seconds. Ready? [Sticker]","slides":[{"label":"SLIDE 1 — HOOK","text":"I'll prove that 'you need a gym to get real results' is false.\nIn 60 seconds. Ready?\n[Sticker: Ready / Let's go]"},{"label":"SLIDE 2 — THE MYTH","text":"What everyone believes:\n'Serious training = gym, weights, machines.'\n'Resistance bands = for beginners.'\n\nThis belief eliminates most busy professionals\nbefore they even start."},{"label":"SLIDE 3 — THE LIVE TEST","text":"My numbers:\n\nBefore (gym, 60-90 min): inconsistent, conflicts, mediocre results.\n\nAfter (bands, 25 min, failure): consistent, zero missed weeks, better results.\n\nWhy bands work: constant tension throughout full range.\nFree weights lose tension at the top. Bands increase it.\nMore time under tension = more growth stimulus."},{"label":"SLIDE 4 — ACTION + CTA","text":"You don't need more equipment. You need a better method.\n\nReplace one 'I need a gym day'\nwith a 25-min band session this week.\n\nComment BANDS — free Fitness group.\n200+ members. I'll DM you the link."}],"cta":"Comment <strong>BANDS</strong> — I'll DM you the link to my free Fitness group. 200+ members.","visual":"Live test energy. Show yourself training with bands — demonstrate tension.","script":"SLIDE 1\nI'll prove 'you need a gym to get real results' is false. In 60 seconds.\n\nSLIDE 2\nWhat everyone believes: serious training = gym. Bands = beginners.\nThis eliminates most professionals before they start.\n\nSLIDE 3\nBefore (gym, 60-90 min): inconsistent, mediocre.\nAfter (bands, 25 min, failure): consistent, better results.\nWhy: constant tension throughout full range = more stimulus per rep.\n\nSLIDE 4\nYou don't need more equipment. You need a better method.\nComment BANDS — free Fitness group. I'll DM you the link.","tags":["#fitness","#resistancebands","#failuretraining","#wealthbuilders","#busyprofessional","#thenakedengineer"]},{"day":23,"name":"Wed Jun 10 — W5 · Financial","pillar":"Financial","storyType":"Lead Bait 1 Story","hookSlide":"Most people save money — but they don't know if their money follows the 3 rules that actually build wealth.","slides":[{"label":"SINGLE SLIDE","text":"Most people save money.\nBut they don't know\nif their money follows the 3 rules\nthat actually build wealth.\n\nI created a free 10-minute audit\nthat scores your money against all 3 rules:\nCompounding. Risk. Tax.\n\nMost people score under 5/10 — and didn't know it.\n\nComment AUDIT.\nI'll DM you the free PDF right now."}],"cta":"Comment <strong>AUDIT</strong> — I'll DM you the free 10-min 3 Rules of Money Audit PDF.","visual":"Single bold slide. Short. Problem → audit → keyword.","script":"SINGLE SLIDE\n\nMost people save money.\nBut they don't know if their money follows\nthe 3 rules that actually build wealth.\n\nI created a free 10-minute audit\nthat scores your money against all 3 rules:\nCompounding. Risk. Tax.\n\nMost people score under 5/10 — and didn't know it.\n\nComment AUDIT.\nI'll DM you the free PDF right now.","tags":["#financialeducation","#wealthbuilders","#moneymindset","#financialfreedom","#personalfinance","#thenakedengineer"]},{"day":24,"name":"Thu Jun 11 — W5 · Financial","pillar":"Financial","storyType":"Quick Win","hookSlide":"1 number that tells you everything about your financial trajectory: your 10% savings rate. Do you have it running? [Poll]","slides":[{"label":"SLIDE 1 — TEASER","text":"1 number that tells you everything about your financial trajectory:\nYour 10% savings rate.\nDo you have it running?\n[Poll: Yes / Not yet]"},{"label":"SLIDE 2 — WHY IT WORKS","text":"Below 10%: inflation erodes savings faster than you build them.\nAt 10% + right vehicle + right rate: compounding activates.\n\n$200/month at 4% for 30 years → ~$138,000\n$200/month at 12% for 30 years → ~$702,000\n\nSame discipline. Same 30 years. Vehicle matters."},{"label":"SLIDE 3 — HOW TO DO IT","text":"Set it up in 5 minutes:\n→ Calculate 10% of your next paycheck\n→ Open a separate account — name it 'My System'\n→ Schedule automatic transfer for payday\n→ Treat it like a bill. Non-negotiable.\n\nMove it first. There's never anything left at month end."},{"label":"SLIDE 4 — RESULT + CTA","text":"In 30 days: the habit is locked.\nIn 90 days: a real foundation.\nIn 10 years: proof the system works.\n\nWhich vehicle does your 10% go into?\nThat's what the audit answers.\nComment AUDIT — free 10-min 3 Rules of Money Audit. I'll DM you the PDF."}],"cta":"Comment <strong>AUDIT</strong> — free 10-min 3 Rules of Money Audit. I'll DM you the PDF.","visual":"Slide 2: show $138K vs $702K side by side. Same inputs — different rate.","script":"SLIDE 1\n1 number that tells you everything: your 10% savings rate.\nDo you have it running? [Poll: Yes / Not yet]\n\nSLIDE 2\nBelow 10%: inflation wins. At 10% + right vehicle: compounding activates.\n$200/month at 4% = $138K. At 12% = $702K. Same discipline.\n\nSLIDE 3\n→ Calculate 10% of next paycheck\n→ Open separate account — 'My System'\n→ Auto-transfer on payday. Non-negotiable.\nMove it first. There's never anything left.\n\nSLIDE 4\n30 days: habit locked. 90 days: real foundation. 10 years: proof.\nComment AUDIT — I'll DM you the PDF.","tags":["#financialeducation","#wealthbuilders","#moneymindset","#financialfreedom","#personalfinance","#thenakedengineer"]},{"day":25,"name":"Fri Jun 12 — W5 · Self-Improvement","pillar":"Self-Improvement","storyType":"L'Erreur Coûteuse — Approach A","hookSlide":"Sunday night. I'm telling myself I'll start fresh Monday. For the third week in a row. [Slider]","slides":[{"label":"SLIDE 1 — HOOK","text":"Sunday night.\nI'm telling myself I'll start fresh Monday.\nFor the third week in a row.\n[Slider: 'Familiar?' Not at all _____ Every week]"},{"label":"SLIDE 2 — THE MISTAKE","text":"The mistake: treating delayed starts as neutral.\n\n'This week was unusually busy.'\n'I'll have more focus next week.'\n'Conditions aren't right yet.'\n\nAll feel true. All compound into the same result:\nMonths of preparation to start. No actual start."},{"label":"SLIDE 3 — WHY IT COMPOUNDS","text":"Every 'I'll start Monday' teaches:\n'It's acceptable to defer.'\n\nAnd once something is acceptable to defer —\nyou defer it. Indefinitely.\n\nThe decision to delay compounds\njust like interest. But in reverse."},{"label":"SLIDE 4 — THE FIX","text":"Decision leads to destiny.\n\nQuick decision → act → build momentum.\nDelayed → wait → arrive late, alone.\nNo decision → live exactly as it is.\n\nAsk: which am I choosing right now?\nThen make the quick decision. Before you feel ready."},{"label":"SLIDE 5 — CTA","text":"✅ Clarity replaces the anxiety of deferral\n✅ Progress starts before conditions are perfect\n\nComment MINDSET — free Mindset & Wealth WhatsApp group.\n200+ members. I'll DM you the link."}],"cta":"Comment <strong>MINDSET</strong> — I'll DM you the link to my free Mindset & Wealth WhatsApp group. 200+ members.","visual":"Open with the Sunday night scene. Raw and relatable.","script":"SLIDE 1\nSunday night. 'I'll start fresh Monday.' Third week in a row.\n\nSLIDE 2\nTreating delayed starts as neutral. All feel true, all compound to same result.\n\nSLIDE 3\nEvery 'I'll start Monday' teaches: deferring is acceptable.\nDelayed decisions compound — but in reverse.\n\nSLIDE 4\nDecision leads to destiny. Quick → momentum. Delayed → late. None → same life.\nMake the quick decision. Before you feel ready.\n\nSLIDE 5\n✅ Clarity replaces anxiety ✅ Progress before perfect conditions\nComment MINDSET — free Mindset & Wealth WhatsApp group.","tags":["#selfimprovement","#mindset","#wealthbuilders","#growthmindset","#discipline","#thenakedengineer"]},{"day":26,"name":"Mon Jun 15 — W6 · Fitness","pillar":"Fitness","storyType":"Lead Bait 1 Story","hookSlide":"Your body is the one asset that compounds or depreciates based entirely on your daily decisions.","slides":[{"label":"SINGLE SLIDE","text":"Your body is the one asset\nthat compounds or depreciates\nbased entirely on your daily decisions.\n\nMost professionals are letting it depreciate.\n\nI have a free Fitness group where I share\nthe 25-minute resistance band method —\nno gym, failure training built in —\nand 200+ members keeping each other accountable.\n\nComment BANDS.\nI'll DM you the link to join."}],"cta":"Comment <strong>BANDS</strong> — I'll DM you the link to my free Fitness group. 200+ members.","visual":"Single slide. Asset framing. Short and sharp.","script":"SINGLE SLIDE\n\nYour body is the one asset\nthat compounds or depreciates\nbased entirely on your daily decisions.\n\nMost professionals are letting it depreciate.\n\nI have a free Fitness group where I share\nthe 25-minute resistance band method —\nno gym, failure training built in —\nand 200+ members keeping each other accountable.\n\nComment BANDS.\nI'll DM you the link to join.","tags":["#fitness","#resistancebands","#failuretraining","#wealthbuilders","#busyprofessional","#thenakedengineer"]},{"day":27,"name":"Tue Jun 16 — W6 · Financial","pillar":"Financial","storyType":"Avant/Après Toi — Approach A","hookSlide":"A letter to myself 3 years ago — before I understood how money actually works. [Sticker]","slides":[{"label":"SLIDE 1 — HOOK","text":"A letter to myself 3 years ago —\nbefore I understood how money actually works.\n[Sticker: 'Want to read it?']"},{"label":"SLIDE 2 — AVANT","text":"Hey.\n\nYou think you have a financial plan.\nYou don't. You have a salary.\n\nYou're saving whatever's left at month end.\nThere's never anything left.\n\nYou're investing in what's trending.\nYou have no idea which tax bucket your money is in.\nYou've never heard of the Rule of 72."},{"label":"SLIDE 3 — CE QUI A CHANGÉ","text":"What I wish I had known:\n\n1. Education before products. Always.\n   Learn the 3 Rules: Compounding, Risk, Tax.\n\n2. Automate 10% first.\n   Not what's left. The first 10%.\n\n3. Work the 3 Goals in sequence.\n   Income Protection before Goals 2 and 3.\n   Not backwards. In order."},{"label":"SLIDE 4 — APRÈS + CTA","text":"Today:\n✅ 10% automated to a tax-advantage vehicle\n✅ Income Protection in place\n✅ A sequence — not just hope\n\nIf you recognized yourself in that letter —\nComment AUDIT. I'll DM you the PDF."}],"cta":"Comment <strong>AUDIT</strong> — free 10-min 3 Rules of Money Audit. I'll DM you the PDF.","visual":"Letter format. Dark, honest. Before: heavy. After: clear and forward.","script":"SLIDE 1\nA letter to myself 3 years ago — before I understood how money works.\n\nSLIDE 2\nYou think you have a plan. You have a salary.\nSaving whatever's left — there's never anything left.\nNo idea which tax bucket. Never heard of Rule of 72.\n\nSLIDE 3\n1. Education before products. Always.\n2. Automate 10% first. Not what's left.\n3. 3 Goals in order: Protection → Replacement → Generational.\n\nSLIDE 4\n✅ 10% automated ✅ Protection in place ✅ A real sequence\nComment AUDIT — I'll DM you the PDF.","tags":["#financialeducation","#wealthbuilders","#moneymindset","#financialfreedom","#personalfinance","#thenakedengineer"]},{"day":28,"name":"Wed Jun 17 — W6 · Self-Improvement","pillar":"Self-Improvement","storyType":"Lead Bait 1 Story","hookSlide":"Decision leads to destiny. Quick decision → momentum. Delayed decision → arrive late. No decision → live exactly as it is.","slides":[{"label":"SINGLE SLIDE","text":"Decision leads to destiny.\n\nQuick decision → act → arrive first.\nDelayed decision → wait → arrive late, alone.\nNo decision → live exactly as it is.\n\nI share this framework weekly\nin my free Mindset & Wealth WhatsApp group.\n200+ members who made the quick decision.\n\nComment MINDSET.\nI'll DM you the link to join."}],"cta":"Comment <strong>MINDSET</strong> — I'll DM you the link to my free Mindset & Wealth WhatsApp group. 200+ members.","visual":"Single slide. Framework fills the screen. Direct and bold.","script":"SINGLE SLIDE\n\nDecision leads to destiny.\n\nQuick decision → act → arrive first.\nDelayed decision → wait → arrive late, alone.\nNo decision → live exactly as it is.\n\nI share this framework weekly\nin my free Mindset & Wealth WhatsApp group.\n200+ members who made the quick decision.\n\nComment MINDSET.\nI'll DM you the link to join.","tags":["#selfimprovement","#mindset","#wealthbuilders","#growthmindset","#discipline","#thenakedengineer"]},{"day":29,"name":"Thu Jun 18 — W6 · Financial","pillar":"Financial","storyType":"L'Outil Secret","hookSlide":"The tool I use to evaluate every financial decision in 10 seconds: the Rule of 72. [Slider]","slides":[{"label":"SLIDE 1 — TEASER","text":"The tool I use to evaluate every financial decision in 10 seconds:\nThe Rule of 72.\n[Slider: 'You know this one?' Never heard of it _____ Use it weekly]"},{"label":"SLIDE 2 — REVEAL + BEFORE","text":"The tool: 72 ÷ your interest rate = years to double.\n\nBefore I knew this:\n❌ Put money in accounts because 'it feels safe'\n❌ No way to compare financial vehicles\n❌ Savings account: 0.5% = 144 years to double\n\n144 years. Most people don't know they're in that vehicle."},{"label":"SLIDE 3 — HOW I USE IT","text":"Every financial decision:\n\n72 ÷ 0.5% (savings) = 144 years ❌\n72 ÷ 4% (401K after fees) = 18 years ⚠️\n72 ÷ 12% (tax-advantage) = 6 years ✅\n\n$10,000 at 29:\nAt 4% → $40,000 at 65\nAt 12% → $640,000 at 65\n\nSame discipline. Different vehicle."},{"label":"SLIDE 4 — CTA","text":"Rule #1 of the 3 Rules of Money.\nWant to score your money against all 3?\n\nComment AUDIT — free 10-min 3 Rules of Money Audit.\nI'll DM you the PDF."}],"cta":"Comment <strong>AUDIT</strong> — free 10-min 3 Rules of Money Audit. I'll DM you the PDF.","visual":"Slide 3: 3 rate scenarios stacked. Bold the numbers — the contrast IS the content.","script":"SLIDE 1\nThe tool I use to evaluate every financial decision in 10 seconds: Rule of 72.\n\nSLIDE 2\n72 ÷ your rate = years to double.\nBefore: put money where it 'felt safe.' Savings at 0.5% = 144 years to double.\n\nSLIDE 3\n72 ÷ 0.5% = 144 years ❌  |  72 ÷ 4% = 18 years ⚠️  |  72 ÷ 12% = 6 years ✅\n$10K at 29: at 4% = $40K at 65. At 12% = $640K at 65.\n\nSLIDE 4\nRule #1 of the 3 Rules of Money.\nComment AUDIT — I'll DM you the PDF.","tags":["#financialeducation","#wealthbuilders","#moneymindset","#financialfreedom","#personalfinance","#thenakedengineer"]},{"day":30,"name":"Fri Jun 19 — W6 · Fitness","pillar":"Fitness","storyType":"Transformation Client — Approach A","hookSlide":"[Name] trained for years without results. Changed one thing. Better results in 3 months than 3 years. [Slider]","slides":[{"label":"SLIDE 1 — HOOK","text":"[Name] trained for years without real results.\nChanged one thing.\nBetter results in 3 months than 3 years combined.\n[Slider: 'Possible for you?' Doubtful _____ Tell me how]"},{"label":"SLIDE 2 — AVANT","text":"Before:\n❌ Gym membership — going when schedule allowed\n❌ Counting to 10 and stopping every set\n❌ Inconsistent — travel, work, life disrupting it\n❌ 'I've been trying for years. Nothing sticks.'"},{"label":"SLIDE 3 — THE ONE CHANGE","text":"The change: failure training.\n\n→ Resistance bands at home — no commute barrier\n→ Each set ends when body says stop — not when planned\n→ 25-minute sessions, 5 days a week\n\nBefore: stopping at rep 10 because that was the plan.\nAfter: stopping at rep 13-14 because the body couldn't.\nThose extra reps = where growth actually happens."},{"label":"SLIDE 4 — APRÈS + CTA","text":"3 months later:\n✅ Most consistent training period ever\n✅ Visible results within 6 weeks\n✅ 'This works better than the gym.'\n\nThe method was the variable — not the effort.\n\nComment BANDS — free Fitness group.\n200+ members training this way. I'll DM you the link."}],"cta":"Comment <strong>BANDS</strong> — I'll DM you the link to my free Fitness group. 200+ members.","visual":"BEFORE: specific and honest. AFTER: earned and real. Keep client anonymous.","script":"SLIDE 1\n[Name] trained for years without results. Changed one thing.\nBetter results in 3 months than 3 years combined.\n\nSLIDE 2\nBefore: gym when possible, counting reps, inconsistent, nothing sticking.\n\nSLIDE 3\nThe change: failure training.\nBands at home, each set to failure, 25 min/5 days.\nStopping at rep 13-14 (body's limit) vs rep 10 (planned limit).\nThose extra reps = all the growth.\n\nSLIDE 4\n✅ Most consistent period ever ✅ Results in 6 weeks ✅ 'Works better than the gym'\nThe method was the variable. Comment BANDS — I'll DM you the link.","tags":["#fitness","#resistancebands","#failuretraining","#wealthbuilders","#busyprofessional","#thenakedengineer"]}];
+
+const STORIES_KEY='wb_stories_posted_v5';
+function getPosted(){try{return JSON.parse(localStorage.getItem(STORIES_KEY)||'{}')}catch(e){return{}}}
+function savePosted(s){try{localStorage.setItem(STORIES_KEY,JSON.stringify(s))}catch(e){}}
+function togglePosted(cb,idx){const card=cb.closest('.day-card');const s=getPosted();if(cb.checked){s[idx]=true;card.classList.add('posted')}else{delete s[idx];card.classList.remove('posted')}savePosted(s)}
+function restorePostedState(){const s=getPosted();document.querySelectorAll('.day-card').forEach((card,i)=>{if(s[i]){card.classList.add('posted');const cb=card.querySelector('input[type="checkbox"]');if(cb)cb.checked=true}})}
+function copyScript(){const el=document.getElementById('d-script');if(!el)return;navigator.clipboard.writeText(el.textContent).then(()=>{const btn=document.querySelector('.copy-btn');btn.textContent='✓ Copied!';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy Script';btn.classList.remove('copied')},2000)})}
+function openDetail(i){
+  const d=stories[i];if(!d)return;
+  document.getElementById('ph-meta').textContent=`Day ${d.day} · ${d.name}`;
+  const pe=document.getElementById('ph-title');pe.textContent=d.pillar;
+  pe.style.color=d.pillar==='Financial'?'#4a90d9':d.pillar==='Self-Improvement'?'#e8a838':'#2ecc71';
+  document.getElementById('d-type').textContent=d.storyType||'';
+  document.getElementById('d-hook').textContent=d.hookSlide||'';
+  const sb=document.getElementById('d-slides');sb.innerHTML='';
+  (d.slides||[]).forEach(slide=>{
+    const entry=document.createElement('div');entry.className='slide-entry';
+    const lbl=document.createElement('div');lbl.className='slide-label';lbl.textContent=slide.label||'';
+    const txt=document.createElement('div');txt.className='slide-text';txt.textContent=slide.text||'';
+    entry.appendChild(lbl);entry.appendChild(txt);sb.appendChild(entry);
+  });
+  document.getElementById('d-cta').innerHTML=d.cta||'';
+  document.getElementById('d-visual').textContent=d.visual||'';
+  document.getElementById('d-tags').innerHTML=(d.tags||[]).map(t=>`<span class="tag-chip">${t}</span>`).join('');
+  const scriptEl=document.getElementById('d-script');if(scriptEl)scriptEl.textContent=d.script||'';
+  document.getElementById('overlay').classList.add('open');document.body.style.overflow='hidden';
+}
+function closeDetail(){document.getElementById('overlay').classList.remove('open');document.body.style.overflow=''}
+function closeBg(e){if(e.target===document.getElementById('overlay'))closeDetail()}
+document.addEventListener('DOMContentLoaded',restorePostedState);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail()});
+</script>
+</body>
+</html>
