@@ -20,6 +20,7 @@ const CALENDARS: Record<number, Record<number, { stories?: string; reels?: strin
   2026: {
     5: {
       stories: "/calendars/stories-2026-05.html",
+      reels: "/calendars/reels-2026-05.html",
     },
   },
 };
