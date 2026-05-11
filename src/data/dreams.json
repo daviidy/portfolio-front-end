@@ -1,11 +1,11 @@
 [
   {
     "id": "1",
-    "title": "Travel to 3 countries every year starting 2027",
+    "title": "Travel to Paris",
     "description": "Explore 3 new countries each year — experiencing cultures, cuisines, and adventures around the globe.",
     "category": "travel",
-    "deadline": "2027-12-31",
-    "image": null,
+    "deadline": "2027-02-01",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQmAcz8FIsuWyuEWE-z1boZdeG0ky8zgf2BQ&s",
     "achieved": false
   },
   {
@@ -14,16 +14,16 @@
     "description": "Own and daily drive a white Lamborghini Urus with a custom black interior within 5 years.",
     "category": "lifestyle",
     "deadline": "2031-05-10",
-    "image": null,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVgVRIBBscrbWYTA-bN3-FdTybuX8o8gLTzg&s",
     "achieved": false
   },
   {
     "id": "3",
-    "title": "Wear 1 new suit/outfit every quarter",
+    "title": "Wear Orange tailor fit milano suit",
     "description": "Level up my wardrobe by investing in one fresh, high-quality suit or outfit every quarter.",
     "category": "lifestyle",
-    "deadline": null,
-    "image": null,
+    "deadline": "2026-12-01",
+    "image": "https://cdn.suitsupply.com/image/upload/b_rgb:efefef,bo_300px_solid_rgb:efefef,c_pad,w_2600/b_rgb:efefef,c_pad,dpr_1,w_1690,h_3042,f_auto,q_auto,fl_progressive/products/Suits/default/Summer/P7205_1.jpg",
     "achieved": false
   },
   {
@@ -131,7 +131,7 @@
     "description": "Sit courtside at an NBA game within the next 3 years.",
     "category": "sports",
     "deadline": "2029-05-10",
-    "image": null,
+    "image": "https://c8.alamy.com/comp/2NR2642/in-a-general-view-from-courtside-the-dallas-skyline-is-seen-painted-on-the-court-below-the-american-airlines-center-name-before-an-nba-basketball-game-between-the-memphis-grizzlies-and-the-dallas-mavericks-on-friday-march-6-2020-in-dallas-matt-patterson-via-ap-2NR2642.jpg",
     "achieved": false
   },
   {
@@ -185,7 +185,7 @@
     "description": "Spend a full week in a treehouse resort in Thailand by March 2028.",
     "category": "travel",
     "deadline": "2028-03-31",
-    "image": null,
+    "image": "https://treehousemap.com/wp-content/uploads/2020/05/The-Rung-Nok-Clan-treehouse-HD.jpg",
     "achieved": false
   }
 ]
