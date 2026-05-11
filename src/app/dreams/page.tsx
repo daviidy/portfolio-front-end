@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Plus, Check, Clock, X, Upload, ChevronDown, ImageIcon } from "lucide-react";
+import { Plus, Check, Clock, X, Upload, ChevronDown, ImageIcon, Pencil } from "lucide-react";
 import seedDreams from "@/data/dreams.json";
 import Image from "next/image";
 
@@ -60,6 +60,7 @@ export default function DreamsPage() {
   const [dreams, setDreams] = useState<Dream[]>(seedDreams as Dream[]);
   const [tab, setTab] = useState<"all" | "achieved" | "pending">("all");
   const [showModal, setShowModal] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState<Partial<typeof EMPTY_FORM>>({});
   const [submitting, setSubmitting] = useState(false);
@@ -107,6 +108,26 @@ export default function DreamsPage() {
     }
   }
 
+  function openEdit(dream: Dream) {
+    setEditingId(dream.id);
+    setForm({
+      title: dream.title,
+      description: dream.description,
+      category: dream.category,
+      deadline: dream.deadline ?? "",
+      image: dream.image ?? "",
+      achieved: dream.achieved,
+    });
+    setShowModal(true);
+  }
+
+  function closeModal() {
+    setShowModal(false);
+    setEditingId(null);
+    setForm(EMPTY_FORM);
+    setErrors({});
+  }
+
   async function deleteDream(id: string) {
     setDreams((prev) => prev.filter((d) => d.id !== id));
     if (IS_DEV) {
@@ -128,8 +149,9 @@ export default function DreamsPage() {
   async function submitDream() {
     if (!validate()) return;
     setSubmitting(true);
-    const newDream: Dream = {
-      id: Date.now().toString(),
+
+    const payload: Dream = {
+      id: editingId ?? Date.now().toString(),
       title: form.title.trim(),
       description: form.description.trim(),
       category: form.category,
@@ -139,16 +161,22 @@ export default function DreamsPage() {
     };
 
     const res = await fetch("/api/dreams", {
-      method: "POST",
+      method: editingId ? "PATCH" : "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newDream),
+      body: JSON.stringify(payload),
     });
 
     if (res.ok) {
-      setDreams((prev) => [...prev, newDream]);
-      setShowModal(false);
-      setForm(EMPTY_FORM);
-      setErrors({});
+      if (editingId) {
+        setDreams((prev) => prev.map((d) => (d.id === editingId ? payload : d)));
+        // Keep achieved localStorage in sync
+        const map = loadAchievedMap();
+        map[editingId] = payload.achieved;
+        saveAchievedMap(map);
+      } else {
+        setDreams((prev) => [...prev, payload]);
+      }
+      closeModal();
     }
     setSubmitting(false);
   }
@@ -175,7 +203,7 @@ export default function DreamsPage() {
         </div>
         {IS_DEV && (
           <button
-            onClick={() => setShowModal(true)}
+            onClick={() => { setEditingId(null); setShowModal(true); }}
             className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors shrink-0"
           >
             <Plus className="size-4" />
@@ -217,6 +245,7 @@ export default function DreamsPage() {
               key={dream.id}
               dream={dream}
               onToggle={() => toggleAchieved(dream.id)}
+              onEdit={() => openEdit(dream)}
               onDelete={() => deleteDream(dream.id)}
             />
           ))}
@@ -228,9 +257,9 @@ export default function DreamsPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
           <div className="w-full max-w-md bg-background border border-border rounded-xl shadow-2xl flex flex-col max-h-[90vh]">
             <div className="flex items-center justify-between px-6 py-4 border-b border-border shrink-0">
-              <h2 className="font-semibold text-base">Add a new dream</h2>
+              <h2 className="font-semibold text-base">{editingId ? "Edit dream" : "Add a new dream"}</h2>
               <button
-                onClick={() => { setShowModal(false); setForm(EMPTY_FORM); setErrors({}); }}
+                onClick={closeModal}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <X className="size-5" />
@@ -350,7 +379,7 @@ export default function DreamsPage() {
 
             <div className="flex gap-3 px-6 py-4 border-t border-border shrink-0">
               <button
-                onClick={() => { setShowModal(false); setForm(EMPTY_FORM); setErrors({}); }}
+                onClick={closeModal}
                 className="flex-1 border border-border rounded-lg py-2 text-sm font-medium hover:bg-muted transition-colors"
               >
                 Cancel
@@ -360,7 +389,7 @@ export default function DreamsPage() {
                 disabled={submitting}
                 className="flex-1 bg-teal-600 hover:bg-teal-700 disabled:opacity-60 text-white rounded-lg py-2 text-sm font-medium transition-colors"
               >
-                {submitting ? "Saving..." : "Add dream"}
+                {submitting ? "Saving..." : editingId ? "Save changes" : "Add dream"}
               </button>
             </div>
           </div>
@@ -373,10 +402,12 @@ export default function DreamsPage() {
 function DreamCard({
   dream,
   onToggle,
+  onEdit,
   onDelete,
 }: {
   dream: Dream;
   onToggle: () => void;
+  onEdit: () => void;
   onDelete: () => void;
 }) {
   return (
@@ -388,13 +419,22 @@ function DreamCard({
       }`}
     >
       {IS_DEV && (
-        <button
-          onClick={onDelete}
-          className="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-rose-500 transition-all"
-          title="Remove"
-        >
-          <X className="size-3.5" />
-        </button>
+        <div className="absolute top-3 right-3 z-10 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all">
+          <button
+            onClick={onEdit}
+            className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded hover:bg-muted"
+            title="Edit"
+          >
+            <Pencil className="size-3" />
+          </button>
+          <button
+            onClick={onDelete}
+            className="text-muted-foreground hover:text-rose-500 transition-colors p-1 rounded hover:bg-muted"
+            title="Remove"
+          >
+            <X className="size-3" />
+          </button>
+        </div>
       )}
 
       {/* Image block — always present */}
