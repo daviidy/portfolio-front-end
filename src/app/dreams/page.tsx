@@ -41,8 +41,20 @@ function formatDeadline(iso: string | null): string {
   return new Date(iso).toLocaleDateString("en-US", { month: "short", year: "numeric" });
 }
 
-// True only when the dev server is running (API routes are available)
 const IS_DEV = process.env.NODE_ENV === "development";
+const ACHIEVED_KEY = "dy_dreams_achieved_v1";
+
+function loadAchievedMap(): Record<string, boolean> {
+  try {
+    return JSON.parse(localStorage.getItem(ACHIEVED_KEY) ?? "{}");
+  } catch {
+    return {};
+  }
+}
+
+function saveAchievedMap(map: Record<string, boolean>) {
+  localStorage.setItem(ACHIEVED_KEY, JSON.stringify(map));
+}
 
 export default function DreamsPage() {
   const [dreams, setDreams] = useState<Dream[]>(seedDreams as Dream[]);
@@ -53,6 +65,16 @@ export default function DreamsPage() {
   const [submitting, setSubmitting] = useState(false);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // On mount, merge JSON dreams with locally-stored achieved statuses
+  useEffect(() => {
+    const achieved = loadAchievedMap();
+    const base = seedDreams as Dream[];
+    const merged = base.map((d) =>
+      d.id in achieved ? { ...d, achieved: achieved[d.id] } : d
+    );
+    setDreams(merged);
+  }, []);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -66,13 +88,21 @@ export default function DreamsPage() {
 
   async function toggleAchieved(id: string) {
     const dream = dreams.find((d) => d.id === id)!;
-    const updated = { ...dream, achieved: !dream.achieved };
-    setDreams((prev) => prev.map((d) => (d.id === id ? updated : d)));
+    const next = !dream.achieved;
+
+    // Always persist achieved status in localStorage (works on live site too)
+    const map = loadAchievedMap();
+    map[id] = next;
+    saveAchievedMap(map);
+
+    setDreams((prev) => prev.map((d) => (d.id === id ? { ...d, achieved: next } : d)));
+
+    // In dev mode, also write back to the JSON file
     if (IS_DEV) {
       await fetch("/api/dreams", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, achieved: updated.achieved }),
+        body: JSON.stringify({ id, achieved: next }),
       });
     }
   }
