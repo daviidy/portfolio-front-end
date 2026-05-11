@@ -3,8 +3,8 @@
 import { useState, useEffect, ReactNode } from "react";
 import { Lock, Eye, EyeOff } from "lucide-react";
 
-// SHA-256 of "WealthForever26"
-const CORRECT_HASH = "79c0ab66f97d195d332ac1624bb5155949b0cb1e4f1f8d1c7b13aee245a0c13b";
+// SHA-256 of "WealthForever!26"
+const CORRECT_HASH = "698763e0059fc6f7ab259724edb41a2e04547c861018a15603de2ed85f6040a4";
 const STORAGE_KEY = "dy_auth_v1";
 
 async function sha256(text: string): Promise<string> {
