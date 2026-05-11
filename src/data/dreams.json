@@ -1,0 +1,191 @@
+[
+  {
+    "id": "1",
+    "title": "Travel to 3 countries every year starting 2027",
+    "description": "Explore 3 new countries each year — experiencing cultures, cuisines, and adventures around the globe.",
+    "category": "travel",
+    "deadline": "2027-12-31",
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "2",
+    "title": "Drive a white Lamborghini Urus with black interior",
+    "description": "Own and daily drive a white Lamborghini Urus with a custom black interior within 5 years.",
+    "category": "lifestyle",
+    "deadline": "2031-05-10",
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "3",
+    "title": "Wear 1 new suit/outfit every quarter",
+    "description": "Level up my wardrobe by investing in one fresh, high-quality suit or outfit every quarter.",
+    "category": "lifestyle",
+    "deadline": null,
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "4",
+    "title": "Travel first class all the time",
+    "description": "Make first class the standard for all my flights within the next 16 months.",
+    "category": "travel",
+    "deadline": "2027-09-10",
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "5",
+    "title": "Attend 2 World Cup games",
+    "description": "Be there in person for at least 2 games at the FIFA World Cup.",
+    "category": "sports",
+    "deadline": "2026-07-19",
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "6",
+    "title": "Build a custom home gym",
+    "description": "Design and build a fully equipped custom home gym within the next 3 years.",
+    "category": "health",
+    "deadline": "2029-05-10",
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "7",
+    "title": "Become 100% debt free",
+    "description": "Eliminate all credit card debt and school loans completely.",
+    "category": "finance",
+    "deadline": null,
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "8",
+    "title": "Open a self-improvement school in Africa",
+    "description": "Found and build a school dedicated to personal development and self-improvement on the African continent within 10 years.",
+    "category": "impact",
+    "deadline": "2036-05-10",
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "9",
+    "title": "Attend the Olympics Basketball final in 2028",
+    "description": "Be in the arena for the gold medal Basketball game at the 2028 Olympics.",
+    "category": "sports",
+    "deadline": "2028-08-12",
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "10",
+    "title": "Generate $80K income every month",
+    "description": "Build revenue streams that consistently produce $80,000 per month within the next 5 years.",
+    "category": "finance",
+    "deadline": "2031-05-10",
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "11",
+    "title": "Reach a net worth of $20M",
+    "description": "Build wealth to reach a $20 million net worth within 10 years.",
+    "category": "finance",
+    "deadline": "2036-05-10",
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "12",
+    "title": "Retire my mom",
+    "description": "Give my mom the retirement she deserves and cover all her needs within the next 5 years.",
+    "category": "family",
+    "deadline": "2031-05-10",
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "13",
+    "title": "Become a renowned speaker by 2028",
+    "description": "Build a platform as a just and renowned public speaker, speaking to thousands of people weekly.",
+    "category": "impact",
+    "deadline": "2028-12-31",
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "14",
+    "title": "Watch a Champions League final live",
+    "description": "Be in the stadium for a Champions League final within the next 5 years.",
+    "category": "sports",
+    "deadline": "2031-05-31",
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "15",
+    "title": "Watch an NBA game courtside",
+    "description": "Sit courtside at an NBA game within the next 3 years.",
+    "category": "sports",
+    "deadline": "2029-05-10",
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "16",
+    "title": "Watch Real Madrid at Bernabéu VIP",
+    "description": "Experience a Real Madrid game at the Santiago Bernabéu in the VIP section.",
+    "category": "sports",
+    "deadline": null,
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "17",
+    "title": "Own a quadbike / quadtrack",
+    "description": "Buy and own a quadbike for weekend adventures.",
+    "category": "lifestyle",
+    "deadline": null,
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "18",
+    "title": "Own a house in Philly",
+    "description": "Purchase and own a house in Philadelphia, Pennsylvania.",
+    "category": "lifestyle",
+    "deadline": null,
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "19",
+    "title": "Complete the top 50 Airbnb spots",
+    "description": "Stay at all of the top 50 best-rated Airbnb spots in the world.",
+    "category": "travel",
+    "deadline": null,
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "20",
+    "title": "Reach peak physique — 18\" biceps, 13% body fat",
+    "description": "Achieve 18-inch biceps, 17-inch calves, 30-inch thighs, and 13% body fat maximum.",
+    "category": "health",
+    "deadline": null,
+    "image": null,
+    "achieved": false
+  },
+  {
+    "id": "21",
+    "title": "Stay in a treehouse in Thailand",
+    "description": "Spend a full week in a treehouse resort in Thailand by March 2028.",
+    "category": "travel",
+    "deadline": "2028-03-31",
+    "image": null,
+    "achieved": false
+  }
+]
