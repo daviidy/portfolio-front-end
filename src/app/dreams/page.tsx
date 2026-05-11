@@ -18,16 +18,14 @@ interface Dream {
 }
 
 const CATEGORY_COLORS: Record<Category, string> = {
-  travel: "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-400",
+  travel:    "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-400",
   lifestyle: "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400",
-  sports: "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
-  finance: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
-  health: "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400",
-  impact: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
-  family: "bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400",
+  sports:    "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
+  finance:   "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
+  health:    "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400",
+  impact:    "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
+  family:    "bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400",
 };
-
-const STORAGE_KEY = "dy_dreams_v1";
 
 const EMPTY_FORM = {
   title: "",
@@ -40,28 +38,21 @@ const EMPTY_FORM = {
 
 function formatDeadline(iso: string | null): string {
   if (!iso) return "";
-  const d = new Date(iso);
-  return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+  return new Date(iso).toLocaleDateString("en-US", { month: "short", year: "numeric" });
 }
 
+// True only when the dev server is running (API routes are available)
+const IS_DEV = process.env.NODE_ENV === "development";
+
 export default function DreamsPage() {
-  const [dreams, setDreams] = useState<Dream[]>([]);
+  const [dreams, setDreams] = useState<Dream[]>(seedDreams as Dream[]);
   const [tab, setTab] = useState<"all" | "achieved" | "pending">("all");
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState<Partial<typeof EMPTY_FORM>>({});
+  const [submitting, setSubmitting] = useState(false);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      setDreams(JSON.parse(stored));
-    } else {
-      setDreams(seedDreams as Dream[]);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(seedDreams));
-    }
-  }, []);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -73,17 +64,28 @@ export default function DreamsPage() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  function persist(next: Dream[]) {
-    setDreams(next);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+  async function toggleAchieved(id: string) {
+    const dream = dreams.find((d) => d.id === id)!;
+    const updated = { ...dream, achieved: !dream.achieved };
+    setDreams((prev) => prev.map((d) => (d.id === id ? updated : d)));
+    if (IS_DEV) {
+      await fetch("/api/dreams", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, achieved: updated.achieved }),
+      });
+    }
   }
 
-  function toggleAchieved(id: string) {
-    persist(dreams.map((d) => (d.id === id ? { ...d, achieved: !d.achieved } : d)));
-  }
-
-  function deleteDream(id: string) {
-    persist(dreams.filter((d) => d.id !== id));
+  async function deleteDream(id: string) {
+    setDreams((prev) => prev.filter((d) => d.id !== id));
+    if (IS_DEV) {
+      await fetch("/api/dreams", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+    }
   }
 
   function validate() {
@@ -93,9 +95,10 @@ export default function DreamsPage() {
     return Object.keys(e).length === 0;
   }
 
-  function submitDream() {
+  async function submitDream() {
     if (!validate()) return;
-    const next: Dream = {
+    setSubmitting(true);
+    const newDream: Dream = {
       id: Date.now().toString(),
       title: form.title.trim(),
       description: form.description.trim(),
@@ -104,10 +107,20 @@ export default function DreamsPage() {
       image: form.image.trim() || null,
       achieved: form.achieved,
     };
-    persist([...dreams, next]);
-    setShowModal(false);
-    setForm(EMPTY_FORM);
-    setErrors({});
+
+    const res = await fetch("/api/dreams", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newDream),
+    });
+
+    if (res.ok) {
+      setDreams((prev) => [...prev, newDream]);
+      setShowModal(false);
+      setForm(EMPTY_FORM);
+      setErrors({});
+    }
+    setSubmitting(false);
   }
 
   const filtered = dreams.filter((d) => {
@@ -124,21 +137,21 @@ export default function DreamsPage() {
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
         <div className="space-y-1">
-          <p className="text-xs font-mono tracking-widest text-muted-foreground uppercase">
-            Personal
-          </p>
+          <p className="text-xs font-mono tracking-widest text-muted-foreground uppercase">Personal</p>
           <h1 className="text-3xl font-bold tracking-tight">My Dreams</h1>
           <p className="text-sm text-muted-foreground">
             {achievedCount} achieved · {pendingCount} in progress
           </p>
         </div>
-        <button
-          onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors shrink-0"
-        >
-          <Plus className="size-4" />
-          Add dream
-        </button>
+        {IS_DEV && (
+          <button
+            onClick={() => setShowModal(true)}
+            className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors shrink-0"
+          >
+            <Plus className="size-4" />
+            Add dream
+          </button>
+        )}
       </div>
 
       {/* Tabs */}
@@ -147,13 +160,17 @@ export default function DreamsPage() {
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`px-4 py-2 text-sm font-medium capitalize transition-colors border-b-2 -mb-px ${
+            className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
               tab === t
                 ? "border-teal-600 text-teal-600"
                 : "border-transparent text-muted-foreground hover:text-foreground"
             }`}
           >
-            {t === "all" ? `All ${dreams.length}` : t === "pending" ? `In Progress ${pendingCount}` : `Achieved ${achievedCount}`}
+            {t === "all"
+              ? `All ${dreams.length}`
+              : t === "pending"
+              ? `In Progress ${pendingCount}`
+              : `Achieved ${achievedCount}`}
           </button>
         ))}
       </div>
@@ -165,11 +182,10 @@ export default function DreamsPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {filtered.map((dream, idx) => (
+          {filtered.map((dream) => (
             <DreamCard
               key={dream.id}
               dream={dream}
-              index={idx + 1}
               onToggle={() => toggleAchieved(dream.id)}
               onDelete={() => deleteDream(dream.id)}
             />
@@ -177,11 +193,10 @@ export default function DreamsPage() {
         </div>
       )}
 
-      {/* Modal */}
+      {/* Add Dream Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
           <div className="w-full max-w-md bg-background border border-border rounded-xl shadow-2xl flex flex-col max-h-[90vh]">
-            {/* Modal header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-border shrink-0">
               <h2 className="font-semibold text-base">Add a new dream</h2>
               <button
@@ -192,7 +207,6 @@ export default function DreamsPage() {
               </button>
             </div>
 
-            {/* Modal body */}
             <div className="overflow-y-auto px-6 py-5 flex flex-col gap-4">
               {/* Title */}
               <div className="flex flex-col gap-1.5">
@@ -230,7 +244,7 @@ export default function DreamsPage() {
                   <button
                     type="button"
                     onClick={() => setCategoryOpen(!categoryOpen)}
-                    className="w-full flex items-center justify-between border border-border rounded-lg px-3 py-2 text-sm bg-background focus:outline-none"
+                    className="w-full flex items-center justify-between border border-border rounded-lg px-3 py-2 text-sm bg-background"
                   >
                     <span className="capitalize">{form.category}</span>
                     <ChevronDown className="size-4 text-muted-foreground" />
@@ -242,7 +256,9 @@ export default function DreamsPage() {
                           key={cat}
                           type="button"
                           onClick={() => { setForm({ ...form, category: cat }); setCategoryOpen(false); }}
-                          className={`w-full text-left px-3 py-2 text-sm capitalize hover:bg-muted transition-colors ${form.category === cat ? "bg-muted" : ""}`}
+                          className={`w-full text-left px-3 py-2 text-sm capitalize hover:bg-muted transition-colors ${
+                            form.category === cat ? "bg-muted" : ""
+                          }`}
                         >
                           {cat}
                         </button>
@@ -256,7 +272,8 @@ export default function DreamsPage() {
               <div className="flex flex-col gap-1.5">
                 <label className="text-sm font-medium flex items-center gap-1.5">
                   <Upload className="size-3.5" />
-                  Image URL <span className="text-muted-foreground text-xs font-normal">(optional)</span>
+                  Image URL{" "}
+                  <span className="text-muted-foreground text-xs font-normal">(optional)</span>
                 </label>
                 <input
                   type="url"
@@ -271,7 +288,8 @@ export default function DreamsPage() {
               <div className="flex flex-col gap-1.5">
                 <label className="text-sm font-medium flex items-center gap-1.5">
                   <Clock className="size-3.5" />
-                  Deadline <span className="text-muted-foreground text-xs font-normal">(optional)</span>
+                  Deadline{" "}
+                  <span className="text-muted-foreground text-xs font-normal">(optional)</span>
                 </label>
                 <input
                   type="date"
@@ -300,7 +318,6 @@ export default function DreamsPage() {
               </div>
             </div>
 
-            {/* Modal footer */}
             <div className="flex gap-3 px-6 py-4 border-t border-border shrink-0">
               <button
                 onClick={() => { setShowModal(false); setForm(EMPTY_FORM); setErrors({}); }}
@@ -310,9 +327,10 @@ export default function DreamsPage() {
               </button>
               <button
                 onClick={submitDream}
-                className="flex-1 bg-teal-600 hover:bg-teal-700 text-white rounded-lg py-2 text-sm font-medium transition-colors"
+                disabled={submitting}
+                className="flex-1 bg-teal-600 hover:bg-teal-700 disabled:opacity-60 text-white rounded-lg py-2 text-sm font-medium transition-colors"
               >
-                Add dream
+                {submitting ? "Saving..." : "Add dream"}
               </button>
             </div>
           </div>
@@ -324,12 +342,10 @@ export default function DreamsPage() {
 
 function DreamCard({
   dream,
-  index,
   onToggle,
   onDelete,
 }: {
   dream: Dream;
-  index: number;
   onToggle: () => void;
   onDelete: () => void;
 }) {
@@ -341,25 +357,23 @@ function DreamCard({
           : "border-border bg-background hover:border-foreground/20"
       }`}
     >
-      {/* Delete */}
-      <button
-        onClick={onDelete}
-        className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-rose-500 transition-all"
-        title="Remove"
-      >
-        <X className="size-3.5" />
-      </button>
+      {IS_DEV && (
+        <button
+          onClick={onDelete}
+          className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-rose-500 transition-all"
+          title="Remove"
+        >
+          <X className="size-3.5" />
+        </button>
+      )}
 
-      {/* Image */}
       {dream.image && (
         <div className="relative w-full h-32 rounded-lg overflow-hidden">
           <Image src={dream.image} alt={dream.title} fill className="object-cover" unoptimized />
         </div>
       )}
 
-      {/* Top row */}
       <div className="flex items-start gap-3">
-        {/* Check button */}
         <button
           onClick={onToggle}
           title={dream.achieved ? "Mark as pending" : "Mark as achieved"}
@@ -373,7 +387,11 @@ function DreamCard({
         </button>
 
         <div className="flex flex-col gap-1 flex-1 min-w-0">
-          <p className={`text-sm font-medium leading-snug ${dream.achieved ? "line-through text-muted-foreground" : ""}`}>
+          <p
+            className={`text-sm font-medium leading-snug ${
+              dream.achieved ? "line-through text-muted-foreground" : ""
+            }`}
+          >
             {dream.title}
           </p>
           {dream.description && (
@@ -384,9 +402,12 @@ function DreamCard({
         </div>
       </div>
 
-      {/* Footer */}
       <div className="flex items-center gap-2 flex-wrap pl-8">
-        <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full capitalize ${CATEGORY_COLORS[dream.category]}`}>
+        <span
+          className={`text-[10px] font-mono px-2 py-0.5 rounded-full capitalize ${
+            CATEGORY_COLORS[dream.category]
+          }`}
+        >
           {dream.category}
         </span>
         {dream.deadline && (
