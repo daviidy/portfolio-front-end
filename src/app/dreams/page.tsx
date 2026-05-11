@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Plus, Check, Clock, X, Upload, ChevronDown } from "lucide-react";
+import { Plus, Check, Clock, X, Upload, ChevronDown, ImageIcon } from "lucide-react";
 import seedDreams from "@/data/dreams.json";
 import Image from "next/image";
 
@@ -390,18 +390,33 @@ function DreamCard({
       {IS_DEV && (
         <button
           onClick={onDelete}
-          className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-rose-500 transition-all"
+          className="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-rose-500 transition-all"
           title="Remove"
         >
           <X className="size-3.5" />
         </button>
       )}
 
-      {dream.image && (
-        <div className="relative w-full h-32 rounded-lg overflow-hidden">
+      {/* Image block — always present */}
+      <div className="relative w-full h-40 rounded-lg overflow-hidden bg-muted/50 border border-border/50">
+        {dream.image ? (
           <Image src={dream.image} alt={dream.title} fill className="object-cover" unoptimized />
-        </div>
-      )}
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+            <ImageIcon className="size-8 text-muted-foreground/30" />
+            <span className="text-[10px] font-mono text-muted-foreground/40 uppercase tracking-widest">
+              No image
+            </span>
+          </div>
+        )}
+        {dream.achieved && (
+          <div className="absolute inset-0 bg-teal-600/20 flex items-center justify-center">
+            <div className="bg-teal-600 rounded-full p-2">
+              <Check className="size-5 text-white" strokeWidth={3} />
+            </div>
+          </div>
+        )}
+      </div>
 
       <div className="flex items-start gap-3">
         <button
