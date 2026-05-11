@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Plus, Check, Clock, X, Upload, ChevronDown, ImageIcon, Pencil } from "lucide-react";
 import seedDreams from "@/data/dreams.json";
 import Image from "next/image";
+import { PasswordGate } from "@/components/password-gate";
 
 type Category = "travel" | "lifestyle" | "sports" | "finance" | "health" | "impact" | "family";
 
@@ -56,7 +57,7 @@ function saveAchievedMap(map: Record<string, boolean>) {
   localStorage.setItem(ACHIEVED_KEY, JSON.stringify(map));
 }
 
-export default function DreamsPage() {
+function DreamsContent() {
   const [dreams, setDreams] = useState<Dream[]>(seedDreams as Dream[]);
   const [tab, setTab] = useState<"all" | "achieved" | "pending">("all");
   const [showModal, setShowModal] = useState(false);
@@ -396,6 +397,14 @@ export default function DreamsPage() {
         </div>
       )}
     </main>
+  );
+}
+
+export default function DreamsPage() {
+  return (
+    <PasswordGate>
+      <DreamsContent />
+    </PasswordGate>
   );
 }
 

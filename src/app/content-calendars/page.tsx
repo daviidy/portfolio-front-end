@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronLeft, Film, BookOpen } from "lucide-react";
 import type { Metadata } from "next";
+import { PasswordGate } from "@/components/password-gate";
 
 type View = "years" | "months" | "types";
 
@@ -27,7 +28,7 @@ const CALENDARS: Record<number, Record<number, { stories?: string; reels?: strin
 
 const YEARS = Object.keys(CALENDARS).map(Number);
 
-export default function ContentCalendarsPage() {
+function ContentCalendarsContent() {
   const [view, setView] = useState<View>("years");
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
@@ -234,5 +235,13 @@ export default function ContentCalendarsPage() {
         </div>
       )}
     </main>
+  );
+}
+
+export default function ContentCalendarsPage() {
+  return (
+    <PasswordGate>
+      <ContentCalendarsContent />
+    </PasswordGate>
   );
 }
