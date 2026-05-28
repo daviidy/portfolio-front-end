@@ -28,29 +28,29 @@
   },
   {
     "id": "4",
-    "title": "Travel first class all the time",
+    "title": "Travel first class to Ivory Coast",
     "description": "Make first class the standard for all my flights within the next 16 months.",
     "category": "travel",
     "deadline": "2027-09-10",
-    "image": null,
+    "image": "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_999,h_666/https://www.godsavethepoints.com/wp-content/uploads/2019/12/emirates-a38-first-class-photos-34.jpg",
     "achieved": false
   },
   {
     "id": "5",
-    "title": "Attend 2 World Cup games",
+    "title": "Attend a World Cup game",
     "description": "Be there in person for at least 2 games at the FIFA World Cup.",
     "category": "sports",
     "deadline": "2026-07-19",
-    "image": null,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYWSRs6FPpSAo8ePJDhDNruoNyirLcCBHhIg&s",
     "achieved": false
   },
   {
     "id": "6",
-    "title": "Build a custom home gym",
+    "title": "Build a custom home gym (Tonal)",
     "description": "Design and build a fully equipped custom home gym within the next 3 years.",
     "category": "health",
     "deadline": "2029-05-10",
-    "image": null,
+    "image": "https://tonal.com/cdn/shop/articles/21113_LBJ_Blog_01-Hero-Image_1200x800-1.jpg?v=1742330525",
     "achieved": false
   },
   {
@@ -59,7 +59,7 @@
     "description": "Eliminate all credit card debt and school loans completely.",
     "category": "finance",
     "deadline": null,
-    "image": null,
+    "image": "https://t4.ftcdn.net/jpg/11/03/16/79/360_F_1103167933_Us6abrEvnzoPkfELxG05fkaCaQZemczR.jpg",
     "achieved": false
   },
   {
@@ -122,7 +122,7 @@
     "description": "Be in the stadium for a Champions League final within the next 5 years.",
     "category": "sports",
     "deadline": "2031-05-31",
-    "image": null,
+    "image": "https://vip-tickets-only.com/wp-content/uploads/2026/03/Stadion-Header-1024x683.jpg",
     "achieved": false
   },
   {
@@ -140,16 +140,7 @@
     "description": "Experience a Real Madrid game at the Santiago Bernabéu in the VIP section.",
     "category": "sports",
     "deadline": null,
-    "image": null,
-    "achieved": false
-  },
-  {
-    "id": "17",
-    "title": "Own a quadbike / quadtrack",
-    "description": "Buy and own a quadbike for weekend adventures.",
-    "category": "lifestyle",
-    "deadline": null,
-    "image": null,
+    "image": "https://www.bookstyle.net/sites/default/files/2019-03/realmadridareavip_introduccion1.jpg",
     "achieved": false
   },
   {
@@ -162,21 +153,12 @@
     "achieved": false
   },
   {
-    "id": "19",
-    "title": "Complete the top 50 Airbnb spots",
-    "description": "Stay at all of the top 50 best-rated Airbnb spots in the world.",
-    "category": "travel",
-    "deadline": null,
-    "image": null,
-    "achieved": false
-  },
-  {
     "id": "20",
     "title": "Reach peak physique — 18\" biceps, 13% body fat",
     "description": "Achieve 18-inch biceps, 17-inch calves, 30-inch thighs, and 13% body fat maximum.",
     "category": "health",
     "deadline": null,
-    "image": null,
+    "image": "https://psychedelic-taste-dc3.notion.site/image/attachment%3Abad17d68-f6f0-4c32-b8f7-ea710a56f697%3AGemini_Generated_Image_xg12scxg12scxg12.png?table=block&id=2ddefd28-31b9-81d6-b3d2-d52d1cf91c39&spaceId=a5ff1e7d-bb1f-4334-be43-c4b8f4605ed1&width=650&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl",
     "achieved": false
   },
   {
@@ -186,6 +168,33 @@
     "category": "travel",
     "deadline": "2028-03-31",
     "image": "https://treehousemap.com/wp-content/uploads/2020/05/The-Rung-Nok-Clan-treehouse-HD.jpg",
+    "achieved": false
+  },
+  {
+    "id": "1778886175623",
+    "title": "I am driving a Red Aston Martin Vantage",
+    "description": "",
+    "category": "lifestyle",
+    "deadline": "2028-05-15",
+    "image": "https://static.cargurus.com/images/forsale/2026/03/28/09/57/2025_aston_martin_vantage-pic-2068782690390295553-1024x768.jpeg",
+    "achieved": false
+  },
+  {
+    "id": "1779051744971",
+    "title": "I have a nice smile",
+    "description": "",
+    "category": "health",
+    "deadline": "2027-06-16",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDB9CvmnDKjANQ5ACSTQjRAoF8b_gqGbZl_Q&s",
+    "achieved": false
+  },
+  {
+    "id": "1779986447793",
+    "title": "Sleep at the ocean resort",
+    "description": "",
+    "category": "travel",
+    "deadline": "2027-11-24",
+    "image": "https://www.theoceanac.com/sites/default/files/styles/room_slideshow_slide/public/2026-01/OCR_BluRM_Onebedroom_OCEAN_SFreihon_NoEXP_0029_0.jpg?itok=Y-YcLh6d",
     "achieved": false
   }
 ]
