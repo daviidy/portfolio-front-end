@@ -11,8 +11,7 @@ export const DATA = {
     "Software Engineer and Teacher. I love building things and teaching people. Why? Because the best way to learn is to teach.",
   summary:
     "Senior Software Engineer with 8 years of experience designing and developing business applications. Skilled in TypeScript, React, and Java. Strong understanding of software principles, OOP, and data structures.",
-  avatarUrl:
-    "https://github.com/daviidy/daviidy/raw/master/0-removebg-preview.png",
+  avatarUrl: "/david-avatar.png",
   skills: [
     "React",
     "Next.js",
