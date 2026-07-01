@@ -1,0 +1,21 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[537],{8340:function(e,t,r){Promise.resolve().then(r.bind(r,3754))},3041:function(e,t,r){"use strict";r.d(t,{Z:function(){return c}});var s=r(6763);/**
+ * @license lucide-react v0.395.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let n=e=>e.replace(/([a-z0-9])([A-Z])/g,"$1-$2").toLowerCase(),o=function(){for(var e=arguments.length,t=Array(e),r=0;r<e;r++)t[r]=arguments[r];return t.filter((e,t,r)=>!!e&&r.indexOf(e)===t).join(" ")};/**
+ * @license lucide-react v0.395.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */var i={xmlns:"http://www.w3.org/2000/svg",width:24,height:24,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:2,strokeLinecap:"round",strokeLinejoin:"round"};/**
+ * @license lucide-react v0.395.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let a=(0,s.forwardRef)((e,t)=>{let{color:r="currentColor",size:n=24,strokeWidth:a=2,absoluteStrokeWidth:c,className:l="",children:d,iconNode:u,...m}=e;return(0,s.createElement)("svg",{ref:t,...i,width:n,height:n,stroke:r,strokeWidth:c?24*Number(a)/Number(n):a,className:o("lucide",l),...m},[...u.map(e=>{let[t,r]=e;return(0,s.createElement)(t,r)}),...Array.isArray(d)?d:[d]])}),c=(e,t)=>{let r=(0,s.forwardRef)((r,i)=>{let{className:c,...l}=r;return(0,s.createElement)(a,{ref:i,iconNode:t,className:o("lucide-".concat(n(e)),c),...l})});return r.displayName="".concat(e),r}},2836:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.395.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(3041).Z)("ChevronLeft",[["path",{d:"m15 18-6-6 6-6",key:"1wnfg3"}]])},6898:function(e,t,r){"use strict";r.d(t,{default:function(){return n.a}});var s=r(1102),n=r.n(s)},3754:function(e,t,r){"use strict";r.r(t),r.d(t,{default:function(){return a}});var s=r(5559),n=r(6898),o=r(2836);let i=[{href:"/quad-comeback",emoji:"\uD83E\uDDB5",title:"Right Quad Comeback",subtitle:"8-Week \xb7 Patellar Tendon Recovery",description:"Phase-by-phase strength rebuilding after surgical repair — wall sits to single-leg box squats. Track every session, weight, and biweekly strength checks."},{href:"/bicep-comeback",emoji:"\uD83D\uDCAA",title:"Bicep Push",subtitle:"4-Week \xb7 Arm Explosion",description:'16.5" → 17.5" by end of month. Gym Tue/Thu + home sessions engineered for maximum arm growth: incline curls, cables, 21s, and slow eccentrics.'}];function a(){return(0,s.jsxs)("main",{className:"flex flex-col min-h-[70vh] space-y-8",children:[(0,s.jsxs)(n.default,{href:"/",className:"flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors w-fit",children:[(0,s.jsx)(o.Z,{className:"size-4"}),"Back"]}),(0,s.jsxs)("div",{className:"space-y-1",children:[(0,s.jsx)("p",{className:"text-xs font-mono tracking-widest text-muted-foreground uppercase",children:"Personal"}),(0,s.jsx)("h1",{className:"text-3xl font-bold tracking-tight",children:"Fitness Trackers"}),(0,s.jsx)("p",{className:"text-sm text-muted-foreground",children:"Active programs — password protected, auto-saved to this device."})]}),(0,s.jsx)("div",{className:"grid grid-cols-1 sm:grid-cols-2 gap-4",children:i.map(e=>(0,s.jsxs)(n.default,{href:e.href,className:"group flex flex-col gap-4 border border-border rounded-xl p-6 hover:border-foreground/30 hover:bg-muted/40 transition-all",children:[(0,s.jsx)("div",{className:"text-4xl",children:e.emoji}),(0,s.jsxs)("div",{className:"flex-1 space-y-1.5",children:[(0,s.jsx)("p",{className:"text-xs font-mono text-muted-foreground uppercase tracking-wide",children:e.subtitle}),(0,s.jsx)("h2",{className:"text-xl font-bold",children:e.title}),(0,s.jsx)("p",{className:"text-sm text-muted-foreground leading-relaxed",children:e.description})]}),(0,s.jsx)("span",{className:"text-sm font-medium text-foreground/60 group-hover:text-foreground transition-colors",children:"Open tracker →"})]},e.href))})]})}}},function(e){e.O(0,[102,192,221,744],function(){return e(e.s=8340)}),_N_E=e.O()}]);
