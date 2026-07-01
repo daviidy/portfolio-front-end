@@ -34,7 +34,7 @@ export const DATA = {
     { href: "/ebook", icon: BookIcon, label: "Free Ebook" },
     { href: "/content-calendars", icon: CalendarDaysIcon, label: "Content Calendars" },
     { href: "/dreams", icon: StarIcon, label: "My Dreams" },
-    { href: "/quad-comeback", icon: Dumbbell, label: "Quad Comeback" },
+    { href: "/fitness", icon: Dumbbell, label: "Fitness" },
   ],
   contact: {
     email: "nda.yao94@gmail.com",

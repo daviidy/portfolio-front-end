@@ -158,11 +158,11 @@ function QuadComebackContent() {
   return (
     <main className="flex flex-col min-h-[70vh] space-y-6 pb-16">
       <Link
-        href="/"
+        href="/fitness"
         className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors w-fit"
       >
         <ChevronLeft className="size-4" />
-        Back
+        Back to Fitness
       </Link>
 
       <div className="space-y-1">
