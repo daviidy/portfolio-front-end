@@ -4,12 +4,29 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { DATA } from '@/data/resume';
 import { cn } from '@/lib/utils';
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
+import { Inter as FontSans, Cormorant_Garamond } from "next/font/google";
+import localFont from "next/font/local";
+import { PageShell } from "@/components/page-shell";
 import "./globals.css";
 
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
+});
+
+// Headline face. Premium license (FontBundles, invoice jryyg67z).
+const fontDisplay = localFont({
+  src: "../fonts/BrigendsExpanded.woff",
+  variable: "--font-display",
+  display: "swap",
+});
+
+// Free stand-in for Apple Garamond (license unconfirmed) for serif accents.
+const fontSerif = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
 });
 
 export const metadata: Metadata = {
@@ -62,13 +79,15 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
-          fontSans.variable
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
+          fontDisplay.variable,
+          fontSerif.variable
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light">
           <TooltipProvider delayDuration={0}>
-            {children}
+            <PageShell>{children}</PageShell>
             <Navbar />
           </TooltipProvider>
         </ThemeProvider>
