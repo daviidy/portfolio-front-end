@@ -34,6 +34,9 @@ const config = {
           atom: "#282c34",
           navy: "#112a46",
           black: "#000000",
+          // light tints derived from cream, for the reference-style light page
+          paper: "#f8f1e5",
+          surface: "#fffaf2",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
