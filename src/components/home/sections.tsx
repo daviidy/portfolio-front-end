@@ -55,11 +55,11 @@ export function Hero() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 md:grid-cols-[1.1fr_0.9fr] md:py-28">
         <div className="space-y-8">
           <Pill>Engineer · Educator · Founder</Pill>
-          <h1 className="font-display text-4xl leading-[1.1] sm:text-5xl lg:text-6xl">
+          <h1 className="font-sf font-bold text-4xl leading-[1.1] sm:text-5xl lg:text-6xl">
             Tech brought me to the US. <Highlight>Finance</Highlight> is what
             gives me freedom.
           </h1>
-          <p className="max-w-xl font-serif text-xl leading-relaxed text-brand-cream/85 sm:text-2xl">
+          <p className="max-w-xl font-sf text-xl leading-relaxed text-brand-cream/85 sm:text-2xl">
             I&apos;m a software engineer who also runs a company that teaches
             people how money really works, so they can build time and money
             freedom.
@@ -114,7 +114,7 @@ export function Story() {
         <p className="text-xs tracking-[0.2em] uppercase text-brand-bronze">
           My story
         </p>
-        <h2 className="mt-3 max-w-3xl font-display text-3xl sm:text-4xl">
+        <h2 className="mt-3 max-w-3xl font-sf font-bold text-3xl sm:text-4xl">
           Two skills. One goal: freedom.
         </h2>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -123,11 +123,11 @@ export function Story() {
               key={b.n}
               className="rounded-2xl border border-brand-navy/10 bg-white/50 p-7"
             >
-              <span className="font-display text-3xl text-brand-bronze">
+              <span className="font-sf font-bold text-3xl text-brand-bronze">
                 {b.n}
               </span>
               <h3 className="mt-4 text-lg font-semibold">{b.title}</h3>
-              <p className="mt-2 font-serif text-lg leading-relaxed text-brand-navy/80">
+              <p className="mt-2 font-sf text-lg leading-relaxed text-black">
                 {b.body}
               </p>
             </div>
@@ -145,10 +145,10 @@ export function Engineering() {
         <p className="text-xs tracking-[0.2em] uppercase text-brand-cream/60">
           Engineering
         </p>
-        <h2 className="mt-3 max-w-3xl font-display text-3xl sm:text-4xl">
+        <h2 className="mt-3 max-w-3xl font-sf font-bold text-3xl sm:text-4xl">
           I build software for a living.
         </h2>
-        <p className="mt-5 max-w-2xl font-serif text-xl leading-relaxed text-brand-cream/80">
+        <p className="mt-5 max-w-2xl font-sf text-xl leading-relaxed text-brand-cream/80">
           {DATA.summary}
         </p>
         <div className="mt-10 flex flex-wrap gap-2">
@@ -194,10 +194,10 @@ export function Finance() {
         <p className="text-xs tracking-[0.2em] uppercase text-brand-bronze">
           Financial education
         </p>
-        <h2 className="mt-3 max-w-3xl font-display text-3xl sm:text-4xl">
+        <h2 className="mt-3 max-w-3xl font-sf font-bold text-3xl sm:text-4xl">
           Learn how money works, then make it work for you.
         </h2>
-        <p className="mt-5 max-w-2xl font-serif text-xl leading-relaxed text-brand-navy/80">
+        <p className="mt-5 max-w-2xl font-sf text-xl leading-relaxed text-black">
           I run a company in the financial industry that educates people about
           money, so more of them can reach time and money freedom.
         </p>
@@ -223,10 +223,10 @@ export function FinalCta() {
   return (
     <section className="bg-brand-navy text-brand-cream">
       <div className="mx-auto max-w-3xl px-6 py-24 text-center md:py-32">
-        <h2 className="font-display text-3xl sm:text-5xl">
+        <h2 className="font-sf font-bold text-3xl sm:text-5xl">
           Ready to talk about <Highlight>your</Highlight> freedom?
         </h2>
-        <p className="mx-auto mt-5 max-w-xl font-serif text-xl text-brand-cream/80">
+        <p className="mx-auto mt-5 max-w-xl font-sf text-xl text-brand-cream/80">
           Book a call and let&apos;s look at where you are and where you want
           to be.
         </p>

@@ -8,7 +8,7 @@ import {
 
 export default function HomePage() {
   return (
-    <main className="pb-20">
+    <main data-home>
       <Hero />
       <Story />
       <Engineering />
