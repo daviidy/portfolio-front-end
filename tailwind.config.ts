@@ -21,8 +21,23 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
+        display: ["var(--font-display)", ...fontFamily.sans],
+        // SF Pro on Apple devices via the system stack (SF Pro files can't be self-hosted on the web)
+        sf: ["-apple-system", "BlinkMacSystemFont", '"SF Pro Text"', '"SF Pro Display"', "var(--font-sans)", ...fontFamily.sans],
+        serif: ["var(--font-serif)", ...fontFamily.serif],
       },
       colors: {
+        // TecPatri brand palette (authority homepage)
+        brand: {
+          cream: "#f0dfc8",
+          bronze: "#795833",
+          atom: "#282c34",
+          navy: "#112a46",
+          black: "#000000",
+          // light tints derived from cream, for the reference-style light page
+          paper: "#f8f1e5",
+          surface: "#fffaf2",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

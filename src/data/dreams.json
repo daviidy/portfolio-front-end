@@ -42,7 +42,7 @@
     "category": "sports",
     "deadline": "2026-07-19",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYWSRs6FPpSAo8ePJDhDNruoNyirLcCBHhIg&s",
-    "achieved": false
+    "achieved": true
   },
   {
     "id": "6",
@@ -144,15 +144,6 @@
     "achieved": false
   },
   {
-    "id": "18",
-    "title": "Own a house in Philly",
-    "description": "Purchase and own a house in Philadelphia, Pennsylvania.",
-    "category": "lifestyle",
-    "deadline": null,
-    "image": null,
-    "achieved": false
-  },
-  {
     "id": "20",
     "title": "Reach peak physique — 18\" biceps, 13% body fat",
     "description": "Achieve 18-inch biceps, 17-inch calves, 30-inch thighs, and 13% body fat maximum.",
@@ -168,15 +159,6 @@
     "category": "travel",
     "deadline": "2028-03-31",
     "image": "https://treehousemap.com/wp-content/uploads/2020/05/The-Rung-Nok-Clan-treehouse-HD.jpg",
-    "achieved": false
-  },
-  {
-    "id": "1778886175623",
-    "title": "I am driving a Red Aston Martin Vantage",
-    "description": "",
-    "category": "lifestyle",
-    "deadline": "2028-05-15",
-    "image": "https://static.cargurus.com/images/forsale/2026/03/28/09/57/2025_aston_martin_vantage-pic-2068782690390295553-1024x768.jpeg",
     "achieved": false
   },
   {
