@@ -1,10 +1,10 @@
 import {
-  Engineering,
   FinalCta,
-  Finance,
   Hero,
   SiteHeader,
   Story,
+  WhatIDid,
+  WhoAmI,
 } from "@/components/home/sections";
 
 export default function HomePage() {
@@ -12,9 +12,9 @@ export default function HomePage() {
     <main data-home className="min-h-screen bg-brand-paper">
       <SiteHeader />
       <Hero />
+      <WhoAmI />
       <Story />
-      <Engineering />
-      <Finance />
+      <WhatIDid />
       <FinalCta />
     </main>
   );

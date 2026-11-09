@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { bookingHref } from "@/data/site";
 import { DATA } from "@/data/resume";
 
@@ -8,8 +8,6 @@ import { DATA } from "@/data/resume";
 // left-aligned, eyebrow + uppercase heading + soft white cards, banner CTA.
 // Colors: TecPatri palette. Titles: Brigends (font-display). Body: SF Pro (font-sf).
 // NOTE: all copy is DRAFT, built only from facts David stated.
-
-const STACK = Array.from(new Set(DATA.skills));
 
 const CARD =
   "rounded-3xl bg-brand-surface shadow-[0_1px_2px_rgba(17,42,70,0.06),0_14px_34px_-14px_rgba(17,42,70,0.2)]";
@@ -92,11 +90,6 @@ export function Hero() {
           Tech brought me to the US. <Highlight>Finance</Highlight> is what
           gives me freedom.
         </h1>
-        <p className="max-w-md font-sf text-base leading-relaxed text-black sm:text-lg">
-          I&apos;m a software engineer who also runs a company that teaches
-          people how money really works, so they can build time and money
-          freedom.
-        </p>
         <div className="flex flex-wrap items-center gap-5">
           <CtaButton />
           <Link
@@ -128,117 +121,177 @@ export function Hero() {
   );
 }
 
-const BEATS = [
-  {
-    n: "01",
-    title: "Tech brought me to the US",
-    body: "Engineering was my way in. It opened the door to a new country and a career I built from scratch.",
-  },
-  {
-    n: "02",
-    title: "Nobody taught me how money works",
-    body: "Earning well is not the same as being free. I had to learn the rules of money on my own.",
-  },
-  {
-    n: "03",
-    title: "Now I teach both",
-    body: "I build software and I educate people on money, because the best way to learn is to teach.",
-  },
+const CHECKLIST = [
+  "Maxing the 401(k)",
+  "Company match",
+  "Money in the market",
+  "Roth IRA",
+  "Life insurance through work",
 ];
+
+function Chapter({
+  n,
+  title,
+  children,
+}: {
+  n: string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <article className={`${CARD} grid gap-4 p-7 sm:p-9 md:grid-cols-[5rem_1fr] md:gap-8`}>
+      <span className="font-display text-3xl text-brand-bronze">{n}</span>
+      <div>
+        <h3 className="font-sf text-xl font-bold text-brand-navy sm:text-2xl">
+          {title}
+        </h3>
+        <div className="mt-3 space-y-3 font-sf text-base leading-relaxed text-black sm:text-lg">
+          {children}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function Stat({
+  value,
+  label,
+  strong = false,
+}: {
+  value: string;
+  label: string;
+  strong?: boolean;
+}) {
+  return (
+    <div
+      className={`rounded-2xl p-5 ${
+        strong
+          ? "bg-brand-bronze text-brand-cream"
+          : "bg-brand-cream/60 text-brand-navy ring-1 ring-brand-navy/5"
+      }`}
+    >
+      <p className="font-display text-2xl sm:text-3xl">{value}</p>
+      <p className="mt-1 font-sf text-sm">{label}</p>
+    </div>
+  );
+}
+
+export function WhoAmI() {
+  return (
+    <section id="story" className="mx-auto max-w-6xl px-6 py-14">
+      <Eyebrow>Who I am</Eyebrow>
+      <H2>I came here to build something that lasts</H2>
+      <div className={`${CARD} mt-8 max-w-3xl space-y-4 p-7 font-sf text-base leading-relaxed text-black sm:p-9 sm:text-lg`}>
+        <p>
+          I&apos;m David. I have a background in software engineering, I&apos;m
+          a husband, and I came to the US in 2021 to build something that lasts.
+        </p>
+        <p>
+          I&apos;m not here because I got rich fast. I&apos;m here because I
+          got tired of not understanding where my money went. So I learned it
+          properly, tested it on my own money first, and got licensed.
+        </p>
+      </div>
+    </section>
+  );
+}
 
 export function Story() {
   return (
-    <section id="story" className="mx-auto max-w-6xl px-6 py-14">
+    <section className="mx-auto max-w-6xl px-6 py-14">
       <Eyebrow>My story</Eyebrow>
-      <H2>Two skills. One goal: freedom.</H2>
-      <div className="mt-8 grid gap-5 md:grid-cols-3">
-        {BEATS.map((b) => (
-          <div key={b.n} className={`${CARD} p-7`}>
-            <span className="font-display text-2xl text-brand-bronze">
-              {b.n}
-            </span>
-            <h3 className="mt-4 font-sf text-lg font-bold text-brand-navy">
-              {b.title}
-            </h3>
-            <p className="mt-2 font-sf text-[15px] leading-relaxed text-black">
-              {b.body}
-            </p>
+      <H2>It wasn&apos;t always this way</H2>
+      <div className="mt-8 space-y-5">
+        <Chapter n="01" title="On paper, everything looked right">
+          <ul className="grid gap-2 sm:grid-cols-2">
+            {CHECKLIST.map((c) => (
+              <li key={c} className="flex items-center gap-2">
+                <Check className="size-5 shrink-0 text-brand-bronze" />
+                {c}
+              </li>
+            ))}
+          </ul>
+          <p className="font-semibold">
+            Everybody said this was the plan. So I followed the plan.
+          </p>
+        </Chapter>
+
+        <Chapter n="02" title="What I was actually chasing">
+          <p>I was chasing freedom, and security.</p>
+          <p>
+            Being able to save a lot of the money I was earning, make it grow
+            fast and not lose it. I wanted to be in a position where I would
+            never have to worry about taking care of my family in the US and
+            back home.
+          </p>
+        </Chapter>
+
+        <Chapter n="03" title="Then came July">
+          <p>
+            I pulled money out of my savings and used it as a down payment on a
+            brand new Tesla.
+          </p>
+          <p>
+            The very next day, a meeting I thought was normal. Then somebody
+            from HR joined the call. Then we got laid off.
+          </p>
+        </Chapter>
+
+        <Chapter n="04" title="Two things hurt me">
+          <p>
+            The car payment was coming from my own savings account, money I
+            needed to survive until I found a job.
+          </p>
+          <p>And it was killing the compounding effect in my account.</p>
+        </Chapter>
+
+        <Chapter n="05" title="Then I went to get my own money">
+          <p>I asked my 401(k) for my own money.</p>
+          <div className="grid gap-3 pt-1 sm:grid-cols-3">
+            <Stat value="$4,649.82" label="Gross" />
+            <Stat value="$3,487.37" label="The check I received" />
+            <Stat value="+10%" label="Penalty bill at tax time" />
           </div>
-        ))}
+        </Chapter>
+
+        <Chapter n="06" title="What the taxes and penalties actually cost me">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Stat value="$1,600" label="What that check seemed to cost" />
+            <Stat
+              strong
+              value="$17,000"
+              label="What it really cost: $1,600 left alone at 10% for 25 years"
+            />
+          </div>
+        </Chapter>
+
+        <Chapter n="07" title="So I went down the rabbit hole">
+          <p>
+            I had followed the plan everyone gave me, and I still couldn&apos;t
+            reach my own money without paying for it.
+          </p>
+        </Chapter>
       </div>
     </section>
   );
 }
 
-export function Engineering() {
+export function WhatIDid() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-14">
-      <Eyebrow>Engineering</Eyebrow>
-      <H2>I build software for a living</H2>
-      <div className={`${CARD} mt-8 p-7 sm:p-9`}>
-        <p className="max-w-2xl font-sf text-base leading-relaxed text-black sm:text-lg">
-          {DATA.summary}
+      <Eyebrow>What I did</Eyebrow>
+      <H2>I finally found what I was looking for</H2>
+      <div className={`${CARD} mt-8 max-w-3xl p-7 font-sf text-base leading-relaxed text-black sm:p-9 sm:text-lg`}>
+        <p>
+          After discovering this strategy, I started testing it for myself. I
+          created a step-by-step plan that helped me move and grow my money
+          somewhere I could actually reach it, without taxes, penalties, or
+          asking permission.
         </p>
-        <div className="mt-6 flex flex-wrap gap-2">
-          {STACK.map((s) => (
-            <span
-              key={s}
-              className="rounded-full bg-brand-cream/70 px-3.5 py-1 font-sf text-sm text-brand-navy"
-            >
-              {s}
-            </span>
-          ))}
-        </div>
-        <div className="mt-7 flex flex-wrap gap-5 font-sf text-sm font-semibold">
-          <Link
-            href="/about"
-            className="text-brand-bronze underline-offset-4 hover:underline"
-          >
-            Experience and projects →
-          </Link>
-          <Link
-            href="/blog"
-            className="text-brand-bronze underline-offset-4 hover:underline"
-          >
-            What I teach on the blog →
-          </Link>
-        </div>
+        <p className="mt-4 font-semibold">
+          Now I teach that same process to others.
+        </p>
       </div>
-    </section>
-  );
-}
-
-const PILLARS = [
-  "How money actually works",
-  "Protecting what you build",
-  "Growing it over time",
-  "Buying back your time",
-];
-
-export function Finance() {
-  return (
-    <section className="mx-auto max-w-6xl px-6 py-14">
-      <Eyebrow>Financial education</Eyebrow>
-      <H2>Learn how money works, then make it work for you</H2>
-      <p className="mt-4 max-w-2xl font-sf text-base leading-relaxed text-black sm:text-lg">
-        I run a company in the financial industry that educates people about
-        money, so more of them can reach time and money freedom.
-      </p>
-      <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {PILLARS.map((p, i) => (
-          <li
-            key={p}
-            className="rounded-3xl bg-brand-cream/60 p-6 ring-1 ring-brand-navy/5"
-          >
-            <span className="grid size-9 place-items-center rounded-full bg-brand-bronze font-sf text-sm font-bold text-brand-cream">
-              {i + 1}
-            </span>
-            <p className="mt-5 font-sf text-lg font-bold leading-snug text-brand-navy">
-              {p}
-            </p>
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }
