@@ -204,7 +204,7 @@ function Stat({
           : "bg-brand-cream/60 text-brand-navy ring-1 ring-brand-navy/5"
       }`}
     >
-      <p className="font-display text-2xl sm:text-3xl">{value}</p>
+      <p className="break-words font-display text-xl sm:text-2xl">{value}</p>
       <p className="mt-1 font-sf text-sm">{label}</p>
     </div>
   );
@@ -307,7 +307,7 @@ export function Story() {
           image="/story/cash-out.jpg"
         >
           <p>I asked my 401(k) for my own money.</p>
-          <div className="grid gap-3 pt-1 sm:grid-cols-3">
+          <div className="grid gap-3 pt-1">
             <Stat value="$4,649.82" label="Gross" />
             <Stat value="$3,487.37" label="The check I received" />
             <Stat value="+10%" label="Penalty bill at tax time" />
