@@ -9,8 +9,17 @@ import { DATA } from "@/data/resume";
 // Colors: TecPatri palette. Titles: Brigends (font-display). Body: SF Pro (font-sf).
 // NOTE: all copy is DRAFT, built only from facts David stated.
 
+// Apple-style glass: translucent white, strong blur + saturation, hairline
+// border (colour set per card), inner top highlight, soft drop shadow.
 const CARD =
-  "rounded-3xl bg-brand-surface shadow-[0_1px_2px_rgba(17,42,70,0.06),0_14px_34px_-14px_rgba(17,42,70,0.2)]";
+  "rounded-3xl border-2 bg-white/45 backdrop-blur-2xl backdrop-saturate-150 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_1px_2px_rgba(17,42,70,0.06),0_18px_40px_-16px_rgba(17,42,70,0.28)]";
+
+const BORDERS = [
+  "border-brand-bronze/70",
+  "border-brand-navy/60",
+  "border-[#d8bf98]",
+  "border-brand-atom/50",
+];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -133,16 +142,34 @@ function Chapter({
   n,
   title,
   children,
+  image,
 }: {
   n: string;
   title: string;
   children: React.ReactNode;
+  image?: string;
 }) {
+  const border = BORDERS[(parseInt(n, 10) - 1) % BORDERS.length];
   return (
-    <article className={`${CARD} grid gap-4 p-7 sm:p-9 md:grid-cols-[5rem_1fr] md:gap-8`}>
-      <span className="font-display text-3xl text-brand-bronze">{n}</span>
+    <article
+      className={`${CARD} ${border} grid gap-5 p-6 sm:p-8 ${
+        image ? "md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]" : ""
+      } md:gap-8`}
+    >
+      {image && (
+        <div className="relative aspect-video overflow-hidden rounded-2xl ring-1 ring-brand-navy/10">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            sizes="(min-width: 768px) 40vw, 90vw"
+            className="object-cover"
+          />
+        </div>
+      )}
       <div>
-        <h3 className="font-sf text-xl font-bold text-brand-navy sm:text-2xl">
+        <span className="font-display text-2xl text-brand-bronze">{n}</span>
+        <h3 className="mt-2 font-sf text-xl font-bold text-brand-navy sm:text-2xl">
           {title}
         </h3>
         <div className="mt-3 space-y-3 font-sf text-base leading-relaxed text-black sm:text-lg">
@@ -181,7 +208,7 @@ export function WhoAmI() {
     <section id="story" className="mx-auto max-w-6xl px-6 py-14">
       <Eyebrow>Who I am</Eyebrow>
       <H2>I came here to build something that lasts</H2>
-      <div className={`${CARD} mt-8 max-w-3xl space-y-4 p-7 font-sf text-base leading-relaxed text-black sm:p-9 sm:text-lg`}>
+      <div className={`${CARD} border-brand-bronze/70 mt-8 max-w-3xl space-y-4 p-7 font-sf text-base leading-relaxed text-black sm:p-9 sm:text-lg`}>
         <p>
           I&apos;m David. I have a background in software engineering, I&apos;m
           a husband, and I came to the US in 2021 to build something that lasts.
@@ -281,7 +308,7 @@ export function WhatIDid() {
     <section className="mx-auto max-w-6xl px-6 py-14">
       <Eyebrow>What I did</Eyebrow>
       <H2>I finally found what I was looking for</H2>
-      <div className={`${CARD} mt-8 max-w-3xl p-7 font-sf text-base leading-relaxed text-black sm:p-9 sm:text-lg`}>
+      <div className={`${CARD} border-brand-navy/60 mt-8 max-w-3xl p-7 font-sf text-base leading-relaxed text-black sm:p-9 sm:text-lg`}>
         <p>
           After discovering this strategy, I started testing it for myself. I
           created a step-by-step plan that helped me move and grow my money
