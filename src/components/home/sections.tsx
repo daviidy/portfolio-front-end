@@ -70,18 +70,12 @@ export function CtaButton({
 
 export function SiteHeader() {
   return (
-    <header className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-6">
+    <header className="mx-auto flex max-w-6xl items-center px-6 pt-6">
       <Link
         href="/"
-        className="font-sf text-lg font-bold tracking-tight text-brand-navy"
+        className="font-display text-lg uppercase tracking-wide text-brand-navy"
       >
         david yao<span className="text-brand-bronze">.</span>
-      </Link>
-      <Link
-        href="/about"
-        className="font-sf text-sm text-brand-navy/70 hover:text-brand-navy"
-      >
-        About
       </Link>
     </header>
   );
@@ -109,23 +103,16 @@ export function Hero() {
           </Link>
         </div>
       </div>
-      <figure className="space-y-3">
-        <div className="rounded-[2rem] bg-[radial-gradient(120%_90%_at_75%_15%,#fffaf2_0%,#f0dfc8_45%,#d8bf98_100%)] p-5 sm:p-7">
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl shadow-[0_24px_50px_-18px_rgba(17,42,70,0.55)] ring-1 ring-brand-navy/10">
-            <Image
-              src="/david-avatar.png"
-              alt={`Portrait of ${DATA.name}`}
-              fill
-              priority
-              sizes="(min-width: 768px) 384px, 90vw"
-              className="object-cover object-[52%_30%]"
-            />
-          </div>
-        </div>
-        <figcaption className="text-center font-sf text-xs text-brand-navy/60">
-          {DATA.name}
-        </figcaption>
-      </figure>
+      <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl shadow-[0_24px_50px_-18px_rgba(17,42,70,0.55)]">
+        <Image
+          src="/david-avatar.png"
+          alt={`Portrait of ${DATA.name}`}
+          fill
+          priority
+          sizes="(min-width: 768px) 384px, 90vw"
+          className="object-cover object-[52%_30%]"
+        />
+      </div>
     </section>
   );
 }
@@ -143,11 +130,13 @@ function Chapter({
   title,
   children,
   image,
+  gallery,
 }: {
   n: string;
   title: string;
   children: React.ReactNode;
   image?: string;
+  gallery?: string[];
 }) {
   const border = BORDERS[(parseInt(n, 10) - 1) % BORDERS.length];
   return (
@@ -157,7 +146,7 @@ function Chapter({
       } md:gap-8`}
     >
       {image && (
-        <div className="relative aspect-video overflow-hidden rounded-2xl ring-1 ring-brand-navy/10">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl ring-1 ring-brand-navy/10">
           <Image
             src={image}
             alt={title}
@@ -175,6 +164,24 @@ function Chapter({
         <div className="mt-3 space-y-3 font-sf text-base leading-relaxed text-black sm:text-lg">
           {children}
         </div>
+        {gallery && (
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            {gallery.map((g) => (
+              <div
+                key={g}
+                className="relative aspect-[4/3] overflow-hidden rounded-2xl ring-1 ring-brand-navy/10"
+              >
+                <Image
+                  src={g}
+                  alt={title}
+                  fill
+                  sizes="(min-width: 768px) 30vw, 90vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </article>
   );
@@ -208,16 +215,30 @@ export function WhoAmI() {
     <section id="story" className="mx-auto max-w-6xl px-6 py-14">
       <Eyebrow>Who I am</Eyebrow>
       <H2>I came here to build something that lasts</H2>
-      <div className={`${CARD} border-brand-bronze/70 mt-8 max-w-3xl space-y-4 p-7 font-sf text-base leading-relaxed text-black sm:p-9 sm:text-lg`}>
-        <p>
-          I&apos;m David. I have a background in software engineering, I&apos;m
-          a husband, and I came to the US in 2021 to build something that lasts.
-        </p>
-        <p>
-          I&apos;m not here because I got rich fast. I&apos;m here because I
-          got tired of not understanding where my money went. So I learned it
-          properly, tested it on my own money first, and got licensed.
-        </p>
+      <div
+        className={`${CARD} border-brand-bronze/70 mt-8 grid gap-6 p-6 sm:p-8 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-8`}
+      >
+        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl ring-1 ring-brand-navy/10">
+          <Image
+            src="/story/who-i-am.jpg"
+            alt="David with his wife and son"
+            fill
+            sizes="(min-width: 768px) 40vw, 90vw"
+            className="object-cover object-[50%_25%]"
+          />
+        </div>
+        <div className="space-y-4 self-center font-sf text-base leading-relaxed text-black sm:text-lg">
+          <p>
+            I&apos;m David. I have a background in software engineering,
+            I&apos;m a husband, and I came to the US in 2021 to build something
+            that lasts.
+          </p>
+          <p>
+            I&apos;m not here because I got rich fast. I&apos;m here because I
+            got tired of not understanding where my money went. So I learned it
+            properly, tested it on my own money first, and got licensed.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -229,7 +250,11 @@ export function Story() {
       <Eyebrow>My story</Eyebrow>
       <H2>It wasn&apos;t always this way</H2>
       <div className="mt-8 space-y-5">
-        <Chapter n="01" title="On paper, everything looked right">
+        <Chapter
+          n="01"
+          title="On paper, everything looked right"
+          image="/story/coding.jpg"
+        >
           <ul className="grid gap-2 sm:grid-cols-2">
             {CHECKLIST.map((c) => (
               <li key={c} className="flex items-center gap-2">
@@ -243,7 +268,11 @@ export function Story() {
           </p>
         </Chapter>
 
-        <Chapter n="02" title="What I was actually chasing">
+        <Chapter
+          n="02"
+          title="What I was actually chasing"
+          image="/story/field.jpg"
+        >
           <p>I was chasing freedom, and security.</p>
           <p>
             Being able to save a lot of the money I was earning, make it grow
@@ -253,7 +282,7 @@ export function Story() {
           </p>
         </Chapter>
 
-        <Chapter n="03" title="Then came July">
+        <Chapter n="03" title="Then came July" image="/story/tesla.jpg">
           <p>
             I pulled money out of my savings and used it as a down payment on a
             brand new Tesla.
@@ -264,7 +293,7 @@ export function Story() {
           </p>
         </Chapter>
 
-        <Chapter n="04" title="Two things hurt me">
+        <Chapter n="04" title="Two things hurt me" image="/story/payments.jpg">
           <p>
             The car payment was coming from my own savings account, money I
             needed to survive until I found a job.
@@ -272,7 +301,11 @@ export function Story() {
           <p>And it was killing the compounding effect in my account.</p>
         </Chapter>
 
-        <Chapter n="05" title="Then I went to get my own money">
+        <Chapter
+          n="05"
+          title="Then I went to get my own money"
+          image="/story/cash-out.jpg"
+        >
           <p>I asked my 401(k) for my own money.</p>
           <div className="grid gap-3 pt-1 sm:grid-cols-3">
             <Stat value="$4,649.82" label="Gross" />
@@ -292,11 +325,27 @@ export function Story() {
           </div>
         </Chapter>
 
-        <Chapter n="07" title="So I went down the rabbit hole">
+        <Chapter
+          n="07"
+          title="So I went down the rabbit hole"
+          image="/story/books.jpg"
+        >
           <p>
             I had followed the plan everyone gave me, and I still couldn&apos;t
             reach my own money without paying for it.
           </p>
+        </Chapter>
+
+        <Chapter
+          n="08"
+          title="Who helped me?"
+          gallery={[
+            "/story/mentor.jpg",
+            "/story/event.jpg",
+            "/story/group.jpg",
+          ]}
+        >
+          <p>I didn&apos;t figure it out alone.</p>
         </Chapter>
       </div>
     </section>
@@ -308,16 +357,36 @@ export function WhatIDid() {
     <section className="mx-auto max-w-6xl px-6 py-14">
       <Eyebrow>What I did</Eyebrow>
       <H2>I finally found what I was looking for</H2>
-      <div className={`${CARD} border-brand-navy/60 mt-8 max-w-3xl p-7 font-sf text-base leading-relaxed text-black sm:p-9 sm:text-lg`}>
-        <p>
-          After discovering this strategy, I started testing it for myself. I
-          created a step-by-step plan that helped me move and grow my money
-          somewhere I could actually reach it, without taxes, penalties, or
-          asking permission.
-        </p>
-        <p className="mt-4 font-semibold">
-          Now I teach that same process to others.
-        </p>
+      <div
+        className={`${CARD} border-brand-navy/60 mt-8 grid gap-6 p-6 sm:p-8 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:gap-8`}
+      >
+        <div className="self-center font-sf text-base leading-relaxed text-black sm:text-lg">
+          <p>
+            After discovering this strategy, I started testing it for myself. I
+            created a step-by-step plan that helped me move and grow my money
+            somewhere I could actually reach it, without taxes, penalties, or
+            asking permission.
+          </p>
+          <p className="mt-4 font-semibold">
+            Now I teach that same process to others.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-1">
+          {["/story/stadium.jpg", "/story/gorilla.jpg"].map((g) => (
+            <div
+              key={g}
+              className="relative aspect-[4/3] overflow-hidden rounded-2xl ring-1 ring-brand-navy/10"
+            >
+              <Image
+                src={g}
+                alt="David"
+                fill
+                sizes="(min-width: 768px) 30vw, 45vw"
+                className="object-cover object-[50%_30%]"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
