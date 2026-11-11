@@ -23,7 +23,7 @@ interface DevToComment {
 }
 
 const DEV_TO_API = 'https://dev.to/api';
-const DEV_TO_API_KEY = '4kQpckzb5UE1moVLyXXrVfXH';
+const DEV_TO_API_KEY = process.env.DEV_TO_API_KEY ?? '';
 
 export async function getDevToPosts() {
   try {
