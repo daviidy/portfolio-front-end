@@ -4,6 +4,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { DATA } from '@/data/resume';
 import { cn } from '@/lib/utils';
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter as FontSans, Cormorant_Garamond } from "next/font/google";
 import localFont from "next/font/local";
 import { PageShell } from "@/components/page-shell";
@@ -65,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
   verification: {
-    google: "",
+    google: "OPGiniqaO1dzWHxtRFlPq5GmUspAzn3QecJEfkWh91k",
     yandex: "",
   },
 };
@@ -91,6 +92,18 @@ export default function RootLayout({
             <Navbar />
           </TooltipProvider>
         </ThemeProvider>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-C7YBN59WZJ"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-C7YBN59WZJ');
+          `}
+        </Script>
         <script 
           dangerouslySetInnerHTML={{
             __html: `
