@@ -4,7 +4,7 @@ import { HomeIcon, NotebookIcon, BookIcon, CalendarDaysIcon, StarIcon, Dumbbell 
 export const DATA = {
   name: "Nda David Yao",
   initials: "DV",
-  url: "https://dillion.io",
+  url: "https://david-yao.com",
   location: "USA",
   locationLink: "https://www.google.com/maps/place/sanfrancisco",
   description:
