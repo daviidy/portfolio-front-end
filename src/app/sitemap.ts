@@ -17,6 +17,8 @@ const STATIC_ROUTES = [
   "/quad-comeback",
   "/resources",
   "/resources/retirement-tax-calculator",
+  "/workshop",
+  "/workshop/call",
 ];
 
 function getLocalPostSlugs(): { slug: string; lastModified: Date }[] {
