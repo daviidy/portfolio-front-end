@@ -65,6 +65,11 @@ const GET = [
   ["$0 and no purchase required", "you’re free to simply listen and learn"],
 ];
 
+const HOSTS = [
+  { name: "David", src: "/workshop/david.jpg" },
+  { name: "Samantha", src: "/workshop/samantha.jpg" },
+];
+
 export default function WorkshopPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-brand-paper pb-32">
@@ -157,6 +162,24 @@ export default function WorkshopPage() {
               </li>
             ))}
           </ul>
+        </section>
+
+        <section className="mx-auto max-w-4xl px-6 py-10">
+          <p className={KICKER}>Who&apos;s in the room</p>
+          <h2 className={H2}>Real people. A small room.</h2>
+          <div className="mt-6 grid max-w-md grid-cols-2 gap-5">
+            {HOSTS.map((h) => (
+              <figure key={h.name}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={h.src}
+                  alt={h.name}
+                  className="aspect-[3/4] w-full rounded-2xl border border-brand-bronze/30 object-cover object-top"
+                />
+                <figcaption className="mt-2 text-center font-sf text-sm font-semibold text-brand-navy">{h.name}</figcaption>
+              </figure>
+            ))}
+          </div>
         </section>
 
         <section className="mx-auto max-w-4xl px-6 py-10">
