@@ -1,5 +1,5 @@
 import { Icons } from "@/components/icons";
-import { HomeIcon, NotebookIcon, BookIcon, CalendarDaysIcon, StarIcon, Dumbbell } from "lucide-react";
+import { HomeIcon, NotebookIcon, BookIcon, CalendarDaysIcon, StarIcon, Dumbbell, LibraryIcon } from "lucide-react";
 
 export const DATA = {
   name: "Nda David Yao",
@@ -30,6 +30,7 @@ export const DATA = {
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
     { href: "/blog", icon: NotebookIcon, label: "Blog" },
+    { href: "/resources", icon: LibraryIcon, label: "Resources" },
     { href: "/ebook", icon: BookIcon, label: "Free Ebook" },
     { href: "/content-calendars", icon: CalendarDaysIcon, label: "Content Calendars" },
     { href: "/dreams", icon: StarIcon, label: "My Dreams" },

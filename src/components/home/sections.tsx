@@ -69,14 +69,30 @@ export function CtaButton({
 }
 
 export function SiteHeader() {
+  const link =
+    "font-sf text-sm font-medium text-brand-navy/80 underline-offset-4 transition hover:text-brand-navy hover:underline";
   return (
-    <header className="mx-auto flex max-w-6xl items-center px-6 pt-6">
+    <header className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-6">
       <Link
         href="/"
         className="font-display text-lg uppercase tracking-wide text-brand-navy"
       >
         david yao<span className="text-brand-bronze">.</span>
       </Link>
+      <nav aria-label="Main" className="flex items-center gap-5 sm:gap-7">
+        <Link href="/resources" className={link}>
+          Resources
+        </Link>
+        <Link href="/blog" className={link}>
+          Blog
+        </Link>
+        <a
+          href={bookingHref}
+          className="hidden rounded-xl border border-brand-bronze px-4 py-2 font-sf text-sm font-semibold text-brand-bronze transition hover:bg-white sm:inline-block"
+        >
+          Book a call
+        </a>
+      </nav>
     </header>
   );
 }
