@@ -4,7 +4,14 @@ import { LeadGate, useUnlocked } from "@/components/resources/lead-gate";
 import { RetirementCalculator } from "@/components/resources/retirement-calculator";
 
 export function CalculatorGatePage() {
-  const { state, unlock } = useUnlocked("retirement-tax-calculator");
+  const { state, inFrame } = useUnlocked("retirement-tax-calculator");
+
+  // Loaded inside the CRM form's iframe after submit: the parent page takes over.
+  if (inFrame) {
+    return (
+      <p className="p-6 text-center font-sf text-sm text-brand-navy/70">You&apos;re in. Opening the calculator…</p>
+    );
+  }
 
   if (state === "loading") return <div className="min-h-[24rem]" aria-busy="true" />;
   if (state === "open") return <RetirementCalculator />;
@@ -23,7 +30,7 @@ export function CalculatorGatePage() {
         </ul>
         <p className="font-sf text-sm text-brand-navy/70">Enter your details and it opens right here, instantly.</p>
       </div>
-      <LeadGate resource="retirement-tax-calculator" tag="Retirement Tax Calculator" onUnlock={unlock} />
+      <LeadGate />
     </div>
   );
 }
