@@ -68,7 +68,7 @@ export default function RoadmapLanding() {
             data-form-id={ROADMAP_FORM_ID}
             data-height="auto"
           />
-          <Script src="https://app.iulinsiders.com/js/form_embed.js" strategy="lazyOnload" />
+          <Script src="https://apps.iulinsiders.com/js/form_embed.js" strategy="lazyOnload" />
           <p className="rm-fine">
             By submitting you agree to be contacted by David Yao about this guide. No spam. Educational content only, not
             tax, legal or investment advice.
