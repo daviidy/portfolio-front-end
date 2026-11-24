@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, Calculator } from "lucide-react";
+import { ArrowUpRight, Calculator, Map as MapIcon } from "lucide-react";
 import { SiteHeader } from "@/components/home/sections";
 
 export const metadata: Metadata = {
   title: "Resources",
-  description: "Free tools to see what taxes will cost you in retirement and how long your money will last.",
+  description: "Free tools and guides to see what taxes will cost you in retirement and how to build wealth in the US.",
 };
 
 const RESOURCES = [
@@ -16,6 +16,14 @@ const RESOURCES = [
     title: "Retirement Tax Calculator",
     body: "See how long your 401(k), IRA or brokerage account will last, what you will pay in taxes, and grade your plan with a 15-question scorecard.",
     cta: "Get the calculator",
+  },
+  {
+    href: "/roadmap",
+    icon: MapIcon,
+    kicker: "Free guide",
+    title: "The Immigrant's Wealth Roadmap",
+    body: "Find your FIN number, the 3 goals of money and the 4 principles of prudent investing. The roadmap to build wealth in the US as an immigrant.",
+    cta: "Get the free guide",
   },
 ];
 
@@ -31,7 +39,7 @@ export default function ResourcesPage() {
         <section className="mx-auto max-w-6xl px-6 pb-10 pt-14 md:pt-20">
           <p className="font-sf text-xs font-semibold uppercase tracking-[0.16em] text-brand-bronze">Resources</p>
           <h1 className="mt-3 max-w-3xl font-display text-3xl uppercase leading-tight text-brand-navy sm:text-4xl">
-            Free tools to take the guesswork out of money
+            Free tools and guides to take the guesswork out of money
           </h1>
         </section>
         <section className="mx-auto grid max-w-6xl gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3">
