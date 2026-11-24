@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 // original narrow reading column.
 export function PageShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  if (pathname === "/" || pathname?.startsWith("/resources") || pathname?.startsWith("/workshop")) return <>{children}</>;
+  if (pathname === "/" || pathname?.startsWith("/resources") || pathname?.startsWith("/workshop") || pathname?.startsWith("/roadmap")) return <>{children}</>;
   return (
     <div className="max-w-2xl mx-auto py-12 sm:py-24 px-6">{children}</div>
   );

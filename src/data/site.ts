@@ -21,3 +21,9 @@ export const WORKSHOP_LAT = 39.8036;
 export const WORKSHOP_LNG = -75.5411;
 // ~45 minutes of driving is roughly 35 miles in a straight line.
 export const WORKSHOP_RADIUS_MILES = 35;
+
+// Wealth-roadmap freebie
+export const ROADMAP_BOOKING_URL = "https://calendly.com/yaodavidarmel/1-1-david-yao";
+// GoHighLevel (Insiders CRM) form embed. Filled in once the form is created.
+export const ROADMAP_FORM_ID = "sDooGBXPyls01t83d23k";
+export const ROADMAP_FORM_URL = `https://app.iulinsiders.com/widget/form/${ROADMAP_FORM_ID}`;
