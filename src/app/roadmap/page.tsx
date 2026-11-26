@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const INSIDE = [
-  ["01", "Your destination", "How to find your FIN number, the amount of money that lets you stop trading time for money."],
+  ["01", "Your destination", "Your FIN number starts with the income you want when you retire, not with a rule built to help you survive."],
   ["02", "The 3 goals of money", "Income protection, income replacement and generational wealth, in the right order."],
   ["03", "The 4 principles of prudent investing", "A four-question test any vehicle must pass: liquidity, safety, predictable return, tax-favored."],
   ["04", "Savings is the fuel", "Why the best vehicle goes nowhere without fuel, and how to start filling the tank."],
