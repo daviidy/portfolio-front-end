@@ -90,32 +90,16 @@ function StarFigure() {
   );
 }
 
-function VennFigure() {
+function WealthImage() {
   return (
-    <figure className="rm-fig">
-      <svg viewBox="-70 0 700 520" role="img" aria-label="Three circles: financial, foundational and intellectual wealth overlap as authentic wealth">
-        <circle cx="280" cy="170" r="150" fill="rgba(138,180,248,0.16)" stroke="#8ab4f8" strokeWidth="1.6" />
-        <circle cx="198" cy="312" r="150" fill="rgba(242,196,109,0.15)" stroke="#f2c46d" strokeWidth="1.6" />
-        <circle cx="362" cy="312" r="150" fill="rgba(111,207,138,0.15)" stroke="#6fcf8a" strokeWidth="1.6" />
-        <text x="280" y="70" textAnchor="middle" fontSize="12" letterSpacing="3" fill="#8ab4f8">1 · FINANCIAL</text>
-        <text x="280" y="94" textAnchor="middle" fontSize="13" fill="#e5e7eb">Liquidity · Safety</text>
-        <text x="280" y="112" textAnchor="middle" fontSize="13" fill="#e5e7eb">Return · Tax-free</text>
-        <text x="112" y="372" textAnchor="middle" fontSize="12" letterSpacing="3" fill="#f2c46d">2 · FOUNDATIONAL</text>
-        <text x="112" y="396" textAnchor="middle" fontSize="13" fill="#e5e7eb">Family · Values</text>
-        <text x="112" y="414" textAnchor="middle" fontSize="13" fill="#e5e7eb">Health · Faith</text>
-        <text x="448" y="372" textAnchor="middle" fontSize="12" letterSpacing="3" fill="#6fcf8a">3 · INTELLECTUAL</text>
-        <text x="448" y="396" textAnchor="middle" fontSize="13" fill="#e5e7eb">Knowledge · Skills</text>
-        <text x="448" y="414" textAnchor="middle" fontSize="13" fill="#e5e7eb">Wisdom</text>
-        <text x="280" y="258" textAnchor="middle" fontSize="15" className="serif" fill="#fafafa">Authentic</text>
-        <text x="280" y="278" textAnchor="middle" fontSize="15" className="serif" fill="#fafafa">Wealth</text>
-        {/* anchor */}
-        <g stroke="#fafafa" strokeWidth="2" fill="none" strokeLinecap="round" transform="translate(280 318)">
-          <circle cx="0" cy="-14" r="5" />
-          <line x1="0" y1="-9" x2="0" y2="22" />
-          <line x1="-8" y1="-2" x2="8" y2="-2" />
-          <path d="M-16 10 Q-14 24 0 24 Q14 24 16 10" />
-        </g>
-      </svg>
+    <figure className="rm-img">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/roadmap/3d-wealth.jpg"
+        width={1152}
+        height={864}
+        alt="3D Wealth Transformation with the SCALE Method: financial, foundational and intellectual wealth overlap as authentic wealth, anchored by family. Protect the kids, grow tax-free, pass on a legacy. KASH: knowledge, attitudes, skills, habits."
+      />
     </figure>
   );
 }
@@ -170,35 +154,34 @@ export default function GuidePage() {
           <H n="01">Know your destination: your FIN number</H>
           <p className="rm-p">
             Every trip starts with an address. In money, the address is your <b>FIN number</b>: your Financial
-            Independence number. It is the amount of money working for you that covers your life without you having to
-            trade another hour for it.
+            Independence number. And it starts with one question: <b>what income do you want when you retire?</b>
           </p>
           <p className="rm-p">
-            Most immigrants never calculate it. They work hard, send money home, and hope. Hope is not a destination.
+            Not what you live on today. Not the status quo. The income that pays for the life you deserve, for you and
+            the family you support here and back home.
           </p>
           <div className="rm-sheet">
             <div className="rm-line">
-              <span>Monthly cost of the life you want here (rent, food, kids, insurance)</span>
+              <span>Monthly income I want when I retire (the life I deserve, not just the bills)</span>
               <span className="blank" />
             </div>
             <div className="rm-line">
-              <span>+ Monthly support you send to family abroad</span>
-              <span className="blank" />
-            </div>
-            <div className="rm-line">
-              <span>= Total monthly need, × 12 = yearly need</span>
+              <span>+ Monthly support I want to keep sending to family abroad</span>
               <span className="blank" />
             </div>
             <div className="rm-line gold res">
               <span>
-                Yearly need ÷ 0.04 = <b>your FIN number</b>
+                = Monthly retirement income I want, × 12 = <b>my destination</b>
               </span>
               <span className="blank" />
             </div>
           </div>
-          <p className="rm-note">
-            The 0.04 is a common rule-of-thumb for how much you can draw each year. It is an illustration, not a
-            guarantee. We refine the real number together on a call.
+          <div className="rm-quote gold">
+            You may have heard of the &quot;4% rule.&quot; It is built to help you survive retirement, not to create
+            wealth. Your FIN number starts from the income you want, not from a rule that tells you how little to live on.
+          </div>
+          <p className="rm-note" style={{ marginTop: 18 }}>
+            On a call, we work backward from that income to the number that produces it.
           </p>
           <Disclaimer />
         </Sheet>
@@ -227,7 +210,7 @@ export default function GuidePage() {
               What you leave behind, passed on in a way that protects your kids and the tax bill.
             </div>
           </div>
-          <div className="rm-quote">Protect the kids. Grow it tax-free. Pass on a legacy.</div>
+          <div className="rm-quote">Protect yourself and your family. Grow it tax-free. Pass on a legacy.</div>
           <p className="rm-p" style={{ marginTop: 22 }}>
             Skip goal 1 and one accident can erase years of work. Skip goal 3 and the next generation starts from zero,
             like you did.
@@ -365,10 +348,7 @@ export default function GuidePage() {
             Money is only one dimension. A rich account and a broken family is not wealth. Authentic wealth grows in three
             places at once, and you optimize every area of life.
           </p>
-          <VennFigure />
-          <div className="rm-quote gold">
-            KASH: Knowledge, Attitudes, Skills, Habits. A hand up, not a handout.
-          </div>
+          <WealthImage />
         </Sheet>
 
         {/* 8 — close */}
